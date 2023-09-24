@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-type PageState = "News" | "Vote"
+type PageState = "News" | "Vote";
 
 export const Header = ({ toggle }: { toggle: PageState }) => {
   const [headerBtn, setHeaderBtn] = useState(toggle);
-
 
   return (
     <header>
@@ -69,7 +68,7 @@ export const Header = ({ toggle }: { toggle: PageState }) => {
                 </div>
                 <div className="font-medium text-gray-800  flex flex-col items-start">
                   <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
-                    <div>11IS-273</div>
+                    <div>11ИС-273</div>
                   </div>
                 </div>
               </div>
