@@ -1,3 +1,8 @@
+import Auth from './Auth'
+
 export const News = () => {
-  return <div>zalupa</div>;
+  return (
+    <div></div>
+  )
 };
+
