@@ -1,8 +1,5 @@
-import Auth from './Auth'
+import Auth from "./Auth";
 
 export const News = () => {
-  return (
-    <div></div>
-  )
+  return <div></div>;
 };
-

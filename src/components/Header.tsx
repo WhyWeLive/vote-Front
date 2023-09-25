@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-type PageState = "News" | "Vote"
+type PageState = "News" | "Vote";
 
 export const Header = ({ toggle }: { toggle: PageState }) => {
   const [headerBtn, setHeaderBtn] = useState(toggle);
-
 
   return (
     <header>
