@@ -68,7 +68,7 @@ export const Header = ({ toggle }: { toggle: PageState }) => {
                 </div>
                 <div className="font-medium text-gray-800  flex flex-col items-start">
                   <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
-                    <div>11IS-273</div>
+                    <div>11ИС-273</div>
                   </div>
                 </div>
               </div>

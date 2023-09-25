@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./styles/index.css";
 import { useState } from "react";
+import "./styles/index.css";
 import { News } from "./components/News";
 import { Vote } from "./components/Vote";
 import { Header } from "./components/Header";
@@ -9,8 +9,8 @@ import { Auth } from "./components/Auth";
 export const App = () => {
   const [isAuth, setIsAuth] = useState(false);
 
-  function toAuth(user) {
-    setIsAuth(user);
+  function toAuth(authState: boolean): void {
+    setIsAuth(authState);
   }
 
   return (
