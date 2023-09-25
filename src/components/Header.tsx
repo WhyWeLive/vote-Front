@@ -55,6 +55,10 @@ export const Header = ({ toggle }: { toggle: PageState }) => {
         >
           <div>
             <button
+              onClick={() => {
+                document.cookie = `email =; path=/; max-age=0`;
+                window.location.reload();
+              }}
               className=""
               id="headlessui-menu-button-:r0:"
               type="button"
