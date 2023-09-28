@@ -1,13 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useMutation } from "react-query";
-
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [error, setError] = useState(true);
-
-  const readValue = document.cookie;
 
   const [eye, setEye] = useState(true);
 
@@ -15,14 +10,13 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
 
   const [password, setPassword] = useState("");
 
-  const { mutate, isLoading } = useMutation(
-    "login",
-    () =>
-      axios.post(
+  async function auth() {
+    await axios
+      .post(
         "http://localhost:3000/auth",
         {
-          email: email,
-          password: password,
+          email,
+          password,
         },
         {
           headers: {
@@ -32,28 +26,32 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
-      ),
-    {
-      onSuccess: ({ data }) => {
-        if (data) {
-          toAuth(true);
-          const magic = email;
-          document.cookie = `email = ${magic}; path=/; max-age=15778800`;
-        } else {
-          setError((prev) => !prev);
         }
-      },
-    },
-  );
+      )
+      .then(({ data }) => {
+        document.cookie = `token=${data.token}; max-age=86400; path=/`;
 
-  useEffect(() => {
-    if (readValue) {
-      toAuth(true);
-    } else {
-      toAuth(false);
-    }
-  });
+        axios
+          .post(
+            "http://localhost:3000/auth/decode",
+            {
+              token: `${document.cookie.split("=")[1]}`,
+            },
+            {
+              headers: {
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "POST",
+                "X-Requested-With": "XMLHttpRequest",
+                "Access-Control-Allow-Methods": "POST",
+                "Access-Control-Allow-Headers": "Authorization",
+              },
+            }
+          )
+          .then(({ data }) => {
+            toAuth(data);
+          });
+      });
+  }
 
   return (
     <div className="w-screen h-screen flex justify-center bg-gray-100">
@@ -75,7 +73,6 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 className="w-full border-0 border-b border-transparent focus:ring-0 outline-none sm:text-xl"
                 placeholder="Email"
               />
@@ -108,8 +105,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
         </div>
 
         <button
-          onClick={() => mutate()}
-          disabled={isLoading}
+          onClick={() => auth()}
           type="button"
           className="rounded-lg w-226 bg-gradient-to-b from-cyan-400 to-blue-600 border-transparent h-14 text-base font-medium text-white font-sans"
         >
