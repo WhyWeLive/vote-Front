@@ -14,7 +14,7 @@ export const Dropdown = ({
   return (
     <div className="flex justify-end flex-row duration-700">
       <div className="relative flex flex-col items-center">
-        <button onClick={() => setIsOpen((prev: boolean) => true)}>
+        <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
           <div className="flex items-center place-items-center space-x-4 hover:cursor-pointer">
             <div className="h-10 w-10 aspect-square bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex justify-center items-center">
               <div className="font-medium text-md text-white">
