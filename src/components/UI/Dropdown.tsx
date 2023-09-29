@@ -43,12 +43,27 @@ export const Dropdown = ({
       <div
         className={
           isOpen
-            ? "w-40 h-20 p-2 flex opacity-100 bg-gray-500 absolute mt-14 rounded-lg transition-all duration-500"
-            : "w-40 h-20 p-2 none opacity-0 bg-gray-500 absolute mt-14 rounded-lg transition-all duration-500"
+            ? "w-36 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500"
+            : "w-0 h-16 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500"
         }
         ref={menuRef}
       >
-        Я кнопочка в дропбоксе
+          { isOpen ?
+              <div className={"flex flex-col "}>
+                  <button className={"text-start font-sans p-2 w-36 hover:bg-blue-400 transition-all duration-500 rounded-lg "} onClick={() => {
+                      // profile page
+                  }}>
+                      Profile
+                  </button>
+                  <button className={"text-start p-2 w-36 hover:bg-red-600 transition-all duration-500 rounded-lg"} onClick={() => {
+                      document.cookie = `token=; path=/; max-age=0;` // clear cookie
+                      window.location.reload(); // reload page
+                  }}>
+                      Exit
+                  </button>
+              </div>
+            : ""
+          }
       </div>
     </div>
   );

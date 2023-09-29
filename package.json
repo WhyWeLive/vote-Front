@@ -12,12 +12,14 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@tailwindcss/typography": "^0.5.10",
     "@uidotdev/usehooks": "^2.3.1",
     "axios": "^1.5.0",
     "luxon": "^3.4.3",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.16.0"
   },

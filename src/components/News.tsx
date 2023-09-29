@@ -1,5 +1,11 @@
+import { NewForm } from "./NewForm";
+
 export const News = () => {
   return (
-    <div className="w-screen h-full bg-gray-200 flex justify-center">News</div>
+    <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
+      <NewForm />
+
+
+    </div>
   );
 };
