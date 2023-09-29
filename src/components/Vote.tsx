@@ -1,3 +1,7 @@
 export const Vote = () => {
-  return <div>Votes</div>;
+  return (
+    <div className="w-screen h-screen bg-gray-200 flex justify-center">
+      <div></div>
+    </div>
+  );
 };
