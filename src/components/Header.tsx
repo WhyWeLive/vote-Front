@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
-type PageState = "News" | "Vote";
 
-export const Header = ({ toggle }: { toggle: PageState }) => {
+type PageState = "News" | "Vote";
+interface userDataInterface {
+  id: number,
+  firstName: string,
+  secondName: string,
+  thirdName: string,
+  email: string,
+  password: string,
+  roles: Array<object>
+}
+
+export const Header = ({
+  toggle, userObject
+}: {
+  toggle: PageState, userObject: userDataInterface;
+}) => {
   const [headerBtn, setHeaderBtn] = useState(toggle);
 
+
+
+
   return (
+
     <header>
       <div className="container mx-auto py-2 items-center flex">
         <a aria-current="page" className="active" href="/">
@@ -68,11 +86,11 @@ export const Header = ({ toggle }: { toggle: PageState }) => {
             >
               <div className="flex items-center place-items-center space-x-4 hover:cursor-pointer">
                 <div className="h-10 w-10 aspect-square bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex justify-center items-center">
-                  <div className="font-medium text-md text-white">273</div>
+                  <div className="font-medium text-md text-white">{"123"}</div>
                 </div>
                 <div className="font-medium text-gray-800  flex flex-col items-start">
                   <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
-                    <div>11ИС-273</div>
+                    <div>{"test" ?? <h1 className={"opacity-50"}> Loading...</h1>}</div>
                   </div>
                 </div>
               </div>

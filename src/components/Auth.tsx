@@ -1,8 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useMutation } from "react-query";
-
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [error, setError] = useState(true);
@@ -32,7 +30,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       ),
     {
       onSuccess: ({ data }) => {
@@ -44,7 +42,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
           setError((prev) => !prev);
         }
       },
-    },
+    }
   );
 
   useEffect(() => {
@@ -75,7 +73,6 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 className="w-full border-0 border-b border-transparent focus:ring-0 outline-none sm:text-xl"
                 placeholder="Email"
               />
