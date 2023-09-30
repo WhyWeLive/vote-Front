@@ -1,6 +1,10 @@
 import { useState, useRef } from "react";
-import { userInterface } from "../Header";
+import { CgProfile } from "react-icons/cg";
+import { ImExit } from "react-icons/im";
 import { useClickOutside } from "./useClickOutside";
+import { userInterface } from "../Header";
+import { Profile } from "../Profile";
+import { NavLink } from "react-router-dom";
 
 export const Dropdown = ({
   userData,
@@ -48,22 +52,34 @@ export const Dropdown = ({
         }
         ref={menuRef}
       >
-          { isOpen ?
-              <div className={"flex flex-col "}>
-                  <button className={"text-start font-sans p-2 w-36 hover:bg-blue-400 transition-all duration-500 rounded-lg "} onClick={() => {
-                      // profile page
-                  }}>
-                      Profile
-                  </button>
-                  <button className={"text-start p-2 w-36 hover:bg-red-600 transition-all duration-500 rounded-lg"} onClick={() => {
-                      document.cookie = `token=; path=/; max-age=0;` // clear cookie
-                      window.location.reload(); // reload page
-                  }}>
-                      Exit
-                  </button>
-              </div>
-            : ""
-          }
+        {isOpen ? (
+          <div className={"flex flex-col "}>
+            <NavLink to={"/profile"}>
+              <button
+                className={
+                  "text-start font-sans p-2 w-36 hover:bg-blue-400 transition-all duration-500 rounded-lg flex row items-center "
+                }
+              >
+                <CgProfile size={16} />
+                <p className={"px-2"}>Профиль </p>
+              </button>
+            </NavLink>
+            <button
+              className={
+                "text-start p-2 w-36 hover:bg-red-600 transition-all duration-500 rounded-lg flex row items-center"
+              }
+              onClick={() => {
+                document.cookie = `token=; path=/; max-age=0;`; // clear cookie
+                window.location.reload(); // reload page
+              }}
+            >
+              <ImExit size={16} />
+              <p className={"px-2"}>Выйти </p>
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles/index.css";
 import { News } from "./components/News";
 import { Vote } from "./components/Vote";
 import { Header } from "./components/Header";
 import { Auth } from "./components/Auth";
-import axios from "axios";
+import { Profile } from "./components/Profile";
 export const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   function toAuth(authState: boolean): void {
@@ -26,7 +27,7 @@ export const App = () => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        }
+        },
       )
       .then(({ data }) => {
         toAuth(data);
@@ -52,6 +53,14 @@ export const App = () => {
               element={[
                 <Header key={1} toggle={"Vote"} userData={isAuth} />,
                 <Vote key={2} />,
+              ]}
+            />
+
+            <Route
+              path="/profile"
+              element={[
+                <Header key={1} toggle={"Profile"}userData={isAuth} />,
+                <Profile key={2} />,
               ]}
             />
           </Routes>

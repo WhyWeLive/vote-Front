@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Dropdown } from "./UI/Dropdown";
-
 
 export interface userInterface {
   id?: number;
@@ -22,11 +21,7 @@ export const Header = ({
 }) => {
   const [headerBtn, setHeaderBtn] = useState(toggle);
 
-
-
-
   return (
-
     <header>
       <div className="px-56 mx-auto py-2 items-center flex">
         <a aria-current="page" className="active" href="/">
@@ -47,7 +42,7 @@ export const Header = ({
                 className={
                   headerBtn === "News"
                     ? "py-2 px-10 bg-gray-800 rounded-l-lg text-white duration-700"
-                    : "py-2 px-10 bg-gray-500 rounded-l-lg text-white duration-700" // тут обитает костыль
+                    : "py-2 px-10 bg-gray-500 rounded-l-lg text-white duration-700"
                 }
               >
                 Новости

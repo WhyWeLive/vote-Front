@@ -5,19 +5,16 @@ export const NewForm = () => {
   return (
     <div
       className={
-        "my-5 w-300 h-auto border border-2 border-blue-200 rounded-lg bg-white flex flex-col "
+        "my-5 w-300 h-auto border border-2 rounded-lg bg-white flex flex-col "
       }
     >
-      <div
-        className={"border-b-2 border-blue-200 p-4 flex flex-row items-center"}
-      >
-        {" "}
+      <div className={"border-b-2 p-4 flex flex-row items-center"}>
         <img
           src={
             "https://i.pinimg.com/736x/d6/a2/9c/d6a29c547a97c578083cb06f90775c58.jpg"
           }
-          className="h-12 w-12 rounded-3xl border border-blue-200 "
-        />{" "}
+          className="h-12 w-12 rounded-3xl"
+        />
         <h1 className={"font-medium text-xl ml-2 flex flex-col text-sans"}>
           11IS-173
           <h2 className={"text-xs text-gray-700 text-sans "}>Today 9:46</h2>
@@ -25,7 +22,7 @@ export const NewForm = () => {
       </div>
       <div className={"text-sans font-medium px-4 w-auto"}>
         <div className={"mt-4 prose prose-xl max-w-full text-sans"}>
-          <h1 className={""}>
+          <h1 className={"text-center"}>
             Сентябрь - это лучшее время, чтобы начать активно участвовать в
             жизни колледжа! 🍁
           </h1>
