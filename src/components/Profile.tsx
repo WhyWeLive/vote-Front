@@ -1,4 +1,5 @@
-import React from "react";
+
+
 
 export const Profile = () => {
   return (
@@ -54,7 +55,7 @@ export const Profile = () => {
         </div>
         <div>
           <textarea
-            rows="4"
+            autoFocus={true}
             className={
               "outline p-2 my-2 outline-1 rounded-lg w-full h-full resize-none outline-black/80"
             }

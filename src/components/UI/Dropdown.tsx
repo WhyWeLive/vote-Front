@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
-import { CgProfile } from "react-icons/cg";
-import { ImExit } from "react-icons/im";
-import { useClickOutside } from "./useClickOutside";
-import { userInterface } from "../Header";
-import { Profile } from "../Profile";
 import { NavLink } from "react-router-dom";
+import { useClickOutside } from "./useClickOutside";
+import { CgAddR, CgProfile } from "react-icons/cg";
+import { ImExit } from "react-icons/im";
+import { userInterface } from "../Header";
 
-export const Dropdown = ({
+export const Dropdown = ({ setShowModal,
   userData,
 }: {
   userData: userInterface | boolean;
@@ -47,26 +46,47 @@ export const Dropdown = ({
       <div
         className={
           isOpen
-            ? "w-36 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500"
-            : "w-0 h-16 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500"
+            ? "w-48 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
+            : "w-40 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
         }
         ref={menuRef}
       >
         {isOpen ? (
-          <div className={"flex flex-col "}>
+          <div className={"flex flex-col w-full  "}>
             <NavLink to={"/profile"}>
               <button
                 className={
-                  "text-start font-sans p-2 w-36 hover:bg-blue-400 transition-all duration-500 rounded-lg flex row items-center "
+                  "text-start w-full font-sans p-2 hover:bg-blue-400 transition-all duration-500 rounded-lg flex row items-center "
                 }
               >
                 <CgProfile size={16} />
                 <p className={"px-2"}>Профиль </p>
               </button>
             </NavLink>
+
+            {userData.roles.find((item) => item === "Editor") ? (
+              <NavLink>
+                <div
+                  className={
+                    "w-full hover:bg-orange-400 transition-all duration-500 rounded-lg"
+                  }
+                >
+                  <button className={"text-start p-2 flex row items-center"} onClick={() => {
+                      setShowModal(true)
+                      setIsOpen(false)
+                  }}>
+                    <CgAddR size={16} />
+                    <p className={"px-2"}>Добавить новость </p>
+                  </button>
+                </div>
+              </NavLink>
+            ) : (
+              ""
+            )}
+
             <button
               className={
-                "text-start p-2 w-36 hover:bg-red-600 transition-all duration-500 rounded-lg flex row items-center"
+                "text-start p-2 hover:bg-red-600 transition-all duration-500 rounded-lg flex row items-center"
               }
               onClick={() => {
                 document.cookie = `token=; path=/; max-age=0;`; // clear cookie

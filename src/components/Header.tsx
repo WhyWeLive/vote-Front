@@ -9,10 +9,12 @@ export interface userInterface {
   thirdName: string;
   email?: string;
   password?: string;
-  roles?: Array<object>;
+  grup?: Array<string>;
+  roles?: Array<string>;
 }
 
 export const Header = ({
+  setShowModal,
   toggle,
   userData,
 }: {
@@ -41,8 +43,8 @@ export const Header = ({
                 onClick={() => setHeaderBtn("News")}
                 className={
                   headerBtn === "News"
-                    ? "py-2 px-10 bg-gray-800 rounded-l-lg text-white duration-700"
-                    : "py-2 px-10 bg-gray-500 rounded-l-lg text-white duration-700"
+                    ? "py-2 w-[175px] px-10 bg-gray-800 rounded-l-lg text-white duration-700"
+                    : "py-2 w-[175px] px-10 bg-gray-500 rounded-l-lg text-white duration-700"
                 }
               >
                 Новости
@@ -54,8 +56,8 @@ export const Header = ({
                 onClick={() => setHeaderBtn("Vote")}
                 className={
                   headerBtn === "Vote"
-                    ? "py-2 px-10 bg-gray-800 rounded-r-lg text-white duration-700"
-                    : "py-2 px-10 bg-gray-500 rounded-r-lg text-white duration-700"
+                    ? "py-2 w-[175px] px-10 bg-gray-800 rounded-r-lg text-white duration-700"
+                    : "py-2 w-[175px] px-10 bg-gray-500 rounded-r-lg text-white duration-700"
                 }
               >
                 Голосование
@@ -68,7 +70,7 @@ export const Header = ({
           className="relative inline-block text-left"
           data-headlessui-state=""
         >
-          <Dropdown userData={userData} />
+          <Dropdown userData={userData} setShowModal={setShowModal} />
         </div>
       </div>
     </header>

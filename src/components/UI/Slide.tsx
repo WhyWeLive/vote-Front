@@ -44,7 +44,7 @@ export const Slide = () => {
       <img
         src={slide[currentIndex].url}
         className={
-          "rounded-2xl duration-500 bg-center bg-100 w-full h-full pointer-events-none"
+          "rounded-2xl duration-500 bg-center bg-100 w-full h-full pointer-events-none select-none"
         }
       />
       <div
