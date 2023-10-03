@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import remarkGfm from "remark-gfm";
@@ -15,6 +15,7 @@ export const NewForm = ({
   grup,
   header,
   content,
+  image,
   createdAt,
   userData,
   id,
@@ -22,8 +23,6 @@ export const NewForm = ({
   setShowModalUpdate,
   getNews,
 }) => {
-  const image = 3;
-
   function time() {
     const day = DateTime.fromMillis(DateTime.now() - createdAt * 1000);
     if (day <= 86400000) {
@@ -57,16 +56,18 @@ export const NewForm = ({
   return (
     <div
       className={
-        "my-5 w-300 h-auto border border-2 rounded-lg bg-white flex flex-col "
+        "my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col "
       }
     >
-      <div className={"border-b-2 p-4 flex flex-row items-center z-0"}>
-        <img
+      <div className={"border-b-2 p-4 flex flex-row items-center z-0 h-full w-full"}>
+        <div
           src={
-            "https://i.pinimg.com/736x/4a/3e/0d/4a3e0d42d6624ae55ab94fa69eaa542a.jpg"
+            "https://i.pinimg.com/564x/ed/1f/41/ed1f41959e7e9aa7fb0a18b76c6c2755.jpg"
           }
-          className="h-12 w-12 rounded-3xl select-none"
-        />
+          className="h-12 w-12 rounded-full select-none flex items-center justify-center bg-gradient-to-br from-indigo-500 via-sky-500 via-30% to-emerald-500 text-white font-bold"
+        >
+          {grup}
+        </div>
         <div className={"flex flex-row justify-between items-center w-full"}>
           <div className={"font-medium text-xl ml-2 flex flex-col text-sans"}>
             {grup}
@@ -76,7 +77,9 @@ export const NewForm = ({
             <div className={"flex flex-row items-center gap-2"}>
               <FaPencilAlt
                 size={20}
-                className={"hover:opacity-100 opacity-50 duration-500 cursor-pointer"}
+                className={
+                  "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
+                }
                 onClick={() => {
                   setShowModalUpdate(true);
                   getNews({
@@ -91,7 +94,9 @@ export const NewForm = ({
 
               <TiDelete
                 size={30}
-                className={"hover:opacity-100 opacity-50 duration-500 cursor-pointer"}
+                className={
+                  "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
+                }
                 onClick={() => deleteNews()}
               />
             </div>
@@ -103,7 +108,7 @@ export const NewForm = ({
 
       <div className={"text-sans font-medium px-4"}>
         <div className={"mt-4 prose max-w-full text-sans prose-lg w-full"}>
-          <h1 className={"text-start w-full leading-tight"}>{header}</h1>
+          <h1 className={"text-start w-full leading-tight text-2xl"}>{header}</h1>
           <div className={"whitespace-pre-line not-prose max-w-full"}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {JSON.parse(content)}
@@ -111,18 +116,14 @@ export const NewForm = ({
           </div>
         </div>
       </div>
-      <div className={"px-4 m-auto h-auto w-full py-8"}>
-        {image > 6 ? (
-          <img
-            className={"w-full h-[600px]  rounded-2xl pointer-events-none"}
-            src={
-              "https://i.pinimg.com/736x/2a/16/34/2a16347f21bf569a23094e074fff0f6b.jpg"
-            }
-          />
-        ) : (
-          <Slide />
-        )}
-      </div>
+      { image.length ?
+        <div className={"px-4 m-auto h-auto w-full py-8"}>
+
+          <img className={"w-full h-[600px]  rounded-2xl pointer-events-none"} src={`http://localhost:3000/files/${image}`}/>
+
+        </div>
+        : <div className={"py-4"}> </div>
+      }
     </div>
   );
 };

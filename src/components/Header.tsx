@@ -25,7 +25,7 @@ export const Header = ({
 
   return (
     <header>
-      <div className="px-56 mx-auto py-2 items-center flex">
+      <div className="px-56 mx-auto py-2 items-center flex justify-between">
         <a aria-current="page" className="active" href="/">
           <div className="flex items-center gap-2 whitespace-nowrap ">
             <img
@@ -36,7 +36,7 @@ export const Header = ({
           </div>
         </a>
 
-        <div className="grow flex justify-center items-center gap-4 mr-16">
+        <div className="flex justify-center items-center gap-4 mr-16">
           <div className="py-2">
             <NavLink className="outline-none" to="/">
               <button

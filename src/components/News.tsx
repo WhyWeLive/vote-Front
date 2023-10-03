@@ -2,7 +2,7 @@ import { NewForm } from "./NewForm";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const News = ({ userData, setShowModalUpdate, getNew }) => {
+export const News = ({ userData, setShowModalUpdate, getNew}) => {
   const [news, setNews] = useState([]);
   const [counter, setCounter] = useState(0);
 
@@ -14,7 +14,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
     setCounter((prev) => prev + 1);
   }
 
-  useEffect(() => {
+    useEffect(() => {
     axios
       .get("http://localhost:3000/news", {
         headers: {
@@ -25,7 +25,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
         },
       })
       .then((response) => {
-        setNews(response.data.reverse());
+        setNews(response.data.reverse())
       });
   }, [counter]);
 
@@ -39,6 +39,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
           content={item.content}
           key={item.id}
           id={item.id}
+          image={item.photos}
           userData={userData}
           getCounter={getCounter}
           setShowModalUpdate={setShowModalUpdate}

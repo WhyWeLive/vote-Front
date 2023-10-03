@@ -7,30 +7,34 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
     grup: "",
     header: "",
     content: "",
+    photos: [],
   });
   const [error, setError] = useState(false);
 
+  const [selectedFile, setSelectedFile] = useState(""
+  );
+
   function createNews() {
+
     axios
       .post(
         "http://localhost:3000/news",
         {
+          image: selectedFile,
           grup: news.grup,
           header: news.header,
           content: news.content,
         },
         {
           headers: {
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "POST",
-            "X-Requested-With": "XMLHttpRequest",
-            "Access-Control-Allow-Methods": "POST",
-            "Access-Control-Allow-Headers": "Authorization",
+            accept: "application/json",
+            "Content-Type": `multipart/form-data`,
           },
         },
       )
-      .then(() => console.log(news))
-      .catch(() => console.log("error"));
+      .then(() => console.log('good'))
+      .catch(() => console.log('bad'))
+      ;
   }
 
   if (!isVisable) return null;
@@ -48,7 +52,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-1/2 h-1/2 mb-16 flex justify-center"}>
+      <div className={"w-1/2 h-full inset-0 flex justify-center"}>
         <div
           className={
             "shadow w-full h-auto my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
@@ -72,7 +76,9 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             <div>
               <TiDelete
                 size={30}
-                className={"hover:opacity-100 opacity-50 duration-500"}
+                className={
+                  "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
+                }
                 onClick={() => setShowModal(false)}
               />
             </div>
@@ -95,7 +101,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
 
           <div
             className={
-              "flex outline outline-black/80 rounded-lg w-auto h-1/2 outline-1 focus-within:outline-blue-600 duration-500"
+              "flex outline outline-black/80 rounded-lg w-auto h-[570px] outline-1 focus-within:outline-blue-600 duration-500"
             }
           >
             <textarea
@@ -103,23 +109,24 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                 "w-full h-full p-2 text-xl resize-none rounded-lg focus:outline-none"
               }
               placeholder={"Содержание новости"}
-              maxLength={2000}
+              maxLength={50000}
               onChange={(e) =>
                 setNews({ ...news, content: JSON.stringify(e.target.value) })
               }
             />
           </div>
+          <div className={"flex flex-row justify-between"}>
+            <input
+              type={"file"}
+              multiple={false}
+              onChange={(event) => setSelectedFile(event.target.files[0])}
+            />
 
-          <div className={"flex justify-center items-center"}>
-            {error ? (
-              <div className={"text-lg font-medium font-sans text-red-600"}>
-                {" "}
-                Заполните все поля!{" "}
-              </div>
-            ) : (
-              ""
-            )}
+            <div className={"flex flex-row"}>`
+            </div>
+          </div>
 
+          <div className={"flex justify-center items-center flex-col"}>
             <div
               onClick={() => {
                 if (news.grup && news.header && news.content) {
@@ -134,6 +141,19 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               }
             >
               Подтвердить
+            </div>
+
+            <div>
+              {error ? (
+                <div
+                  className={"text-lg font-medium font-sans text-red-600 my-2 "}
+                >
+                  {" "}
+                  Заполните все поля!{" "}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
