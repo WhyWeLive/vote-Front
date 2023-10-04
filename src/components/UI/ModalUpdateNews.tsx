@@ -35,7 +35,7 @@ export const ModalUpdateNews = ({
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
@@ -117,7 +117,10 @@ export const ModalUpdateNews = ({
               maxLength={2000}
               value={news.content ? JSON.parse(news.content) : news.content}
               onChange={(e) =>
-                setNews({ ...news, content: JSON.stringify(e.target.value) })
+                setNews({
+                  ...news,
+                  content: e.target.value ? JSON.stringify(e.target.value) : "",
+                })
               }
             />
           </div>

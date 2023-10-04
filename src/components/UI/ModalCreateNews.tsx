@@ -11,11 +11,9 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   });
   const [error, setError] = useState(false);
 
-  const [selectedFile, setSelectedFile] = useState(""
-  );
+  const [selectedFile, setSelectedFile] = useState("");
 
   function createNews() {
-
     axios
       .post(
         "http://localhost:3000/news",
@@ -30,11 +28,10 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
-      .then(() => console.log('good'))
-      .catch(() => console.log('bad'))
-      ;
+      .then(() => console.log("good"))
+      .catch(() => console.log("bad"));
   }
 
   if (!isVisable) return null;
@@ -110,9 +107,14 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               }
               placeholder={"Содержание новости"}
               maxLength={50000}
-              onChange={(e) =>
-                setNews({ ...news, content: JSON.stringify(e.target.value) })
-              }
+              onChange={(e) => {
+                setNews({
+                  ...news,
+                  content: e.target.value ? JSON.stringify(e.target.value) : "",
+                });
+
+                console.log(news.content);
+              }}
             />
           </div>
           <div className={"flex flex-row justify-between"}>
@@ -122,8 +124,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               onChange={(event) => setSelectedFile(event.target.files[0])}
             />
 
-            <div className={"flex flex-row"}>`
-            </div>
+            <div className={"flex flex-row"}>`</div>
           </div>
 
           <div className={"flex justify-center items-center flex-col"}>
