@@ -112,7 +112,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                 "w-full h-full p-2 text-xl resize-none rounded-lg focus:outline-none"
               }
               placeholder={"Содержание новости"}
-              maxLength={50000}
+              maxLength={2000}
               onChange={(e) => {
                 setNews({
                   ...news,
@@ -121,6 +121,17 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               }}
             />
           </div>
+
+
+          {
+            urlFile ? <div>
+              <img src={urlFile} className={"w-32 h-32 rounded-xl"}/>
+
+            </div> : ""
+          }
+
+
+
           <div className={"flex flex-row justify-between"}>
             <input
               type={"file"}
@@ -128,13 +139,9 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               onChange={(event) => preview(event)}
             />
 
-            <div className={"flex flex-row"}>`</div>
           </div>
 
-          <div>
-              <img src={urlFile} className={"w-10 h-10"}/>
 
-          </div>
 
           <div className={"flex justify-center items-center flex-col"}>
             <div

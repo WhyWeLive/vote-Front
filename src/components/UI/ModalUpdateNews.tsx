@@ -138,7 +138,7 @@ export const ModalUpdateNews = ({
           </div>
 
           {urlFile ? (
-            <img src={urlFile} className={"w-32 h-32"} />
+            <img src={urlFile} className={"w-32 h-32 rounded-xl"} />
           ) : newsData.photos.length ? (
             <div className={"flex gap-8 flex-col"}>
               {showImage ? (
