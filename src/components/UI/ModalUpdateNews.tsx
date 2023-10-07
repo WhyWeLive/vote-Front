@@ -18,6 +18,10 @@ export const ModalUpdateNews = ({
     setNews({ ...newsData });
   }, [newsData]);
 
+  function deleteImage() {
+    axios.get(`http://localhost:3000/news/deleteImage/${newsData.id}`);
+  }
+
   function updateNews() {
     axios
       .put(
@@ -124,7 +128,14 @@ export const ModalUpdateNews = ({
               }
             />
           </div>
-
+          {newsData.photos.length ? (
+            <div className="flex row justify-between">
+              <input type="file" />
+              <button onClick={() => deleteImage()}>Удалить фото</button>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className={"flex justify-center items-center flex-col"}>
             <div
               onClick={() => {

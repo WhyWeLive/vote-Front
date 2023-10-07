@@ -5,7 +5,8 @@ import { CgAddR, CgProfile } from "react-icons/cg";
 import { ImExit } from "react-icons/im";
 import { userInterface } from "../Header";
 
-export const Dropdown = ({ setShowModal,
+export const Dropdown = ({
+  setShowModal,
   userData,
 }: {
   userData: userInterface | boolean;
@@ -71,10 +72,13 @@ export const Dropdown = ({ setShowModal,
                     "w-full hover:bg-orange-400 transition-all duration-500 rounded-lg"
                   }
                 >
-                  <button className={"text-start p-2 flex row items-center"} onClick={() => {
-                      setShowModal(true)
-                      setIsOpen(false)
-                  }}>
+                  <button
+                    className={"text-start p-2 flex row items-center"}
+                    onClick={() => {
+                      setShowModal(true);
+                      setIsOpen(false);
+                    }}
+                  >
                     <CgAddR size={16} />
                     <p className={"px-2"}>Добавить новость </p>
                   </button>
@@ -86,15 +90,17 @@ export const Dropdown = ({ setShowModal,
 
             <button
               className={
-                "text-start p-2 hover:bg-red-600 transition-all duration-500 rounded-lg flex row items-center"
+                "text-start p-2 hover:bg-red-600 transition-all duration-500 rounded-lg"
               }
               onClick={() => {
                 document.cookie = `token=; path=/; max-age=0;`; // clear cookie
                 window.location.reload(); // reload page
               }}
             >
-              <ImExit size={16} />
-              <p className={"px-2"}>Выйти </p>
+              <NavLink to="/" className="flex row items-center">
+                <ImExit size={16} />
+                <p className={"px-2"}>Выйти </p>
+              </NavLink>
             </button>
           </div>
         ) : (

@@ -112,8 +112,6 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                   ...news,
                   content: e.target.value ? JSON.stringify(e.target.value) : "",
                 });
-
-                console.log(news.content);
               }}
             />
           </div>
