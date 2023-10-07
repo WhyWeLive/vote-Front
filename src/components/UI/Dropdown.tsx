@@ -8,6 +8,7 @@ import { userInterface } from "../Header";
 export const Dropdown = ({
   setShowModal,
   userData,
+  setShowModalProfile,
 }: {
   userData: userInterface | boolean;
 }) => {
@@ -54,16 +55,18 @@ export const Dropdown = ({
       >
         {isOpen ? (
           <div className={"flex flex-col w-full  "}>
-            <NavLink to={"/profile"}>
-              <button
-                className={
-                  "text-start w-full font-sans p-2 hover:bg-blue-400 transition-all duration-500 rounded-lg flex row items-center "
-                }
-              >
-                <CgProfile size={16} />
-                <p className={"px-2"}>Профиль </p>
-              </button>
-            </NavLink>
+            <button
+              className={
+                "text-start w-full font-sans p-2 hover:bg-blue-400 transition-all duration-500 rounded-lg flex row items-center "
+              }
+              onClick={() => {
+                setShowModalProfile(true);
+                setIsOpen(false);
+              }}
+            >
+              <CgProfile size={16} />
+              <p className={"px-2"}>Профиль </p>
+            </button>
 
             {userData.roles.find((item) => item === "Editor") ? (
               <NavLink>

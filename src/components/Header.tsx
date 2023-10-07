@@ -17,6 +17,7 @@ export const Header = ({
   setShowModal,
   toggle,
   userData,
+                         setShowModalProfile
 }: {
   toggle: string;
   userData: userInterface | boolean;
@@ -70,7 +71,7 @@ export const Header = ({
           className="relative inline-block text-left"
           data-headlessui-state=""
         >
-          <Dropdown userData={userData} setShowModal={setShowModal} />
+          <Dropdown userData={userData} setShowModal={setShowModal} setShowModalProfile={setShowModalProfile} />
         </div>
       </div>
     </header>

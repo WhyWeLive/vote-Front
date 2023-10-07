@@ -6,14 +6,15 @@ import { News } from "./components/News";
 import { Vote } from "./components/Vote";
 import { Header } from "./components/Header";
 import { Auth } from "./components/Auth";
-import { Profile } from "./components/Profile";
 import { ModalCreateNews } from "./components/UI/ModalCreateNews";
 import { ModalUpdateNews } from "./components/UI/ModalUpdateNews";
+import {ProfileModal} from "./components/UI/ProfileModal";
 
 export const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [showModalProfile, setShowModalProfile] = useState(true);
   function toAuth(authState: boolean): void {
     setIsAuth(authState);
   }
@@ -62,6 +63,11 @@ export const App = () => {
             setShowModalUpdate={setShowModalUpdate}
             newsData={news}
           />
+          <ProfileModal
+          key={5}
+          isVisable={showModalProfile}
+          setShowProfileUpdate = {setShowModalProfile}
+          />
           <Routes>
             <Route
               path="/"
@@ -71,6 +77,7 @@ export const App = () => {
                   toggle={"News"}
                   userData={isAuth}
                   setShowModal={setShowModal}
+                  setShowModalProfile={setShowModalProfile}
                 />,
                 <News
                   key={2}
@@ -90,19 +97,6 @@ export const App = () => {
                   setShowModal={setShowModal}
                 />,
                 <Vote key={2} />,
-              ]}
-            />
-
-            <Route
-              path="/profile"
-              element={[
-                <Header
-                  key={1}
-                  toggle={""}
-                  userData={isAuth}
-                  setShowModal={setShowModal}
-                />,
-                <Profile key={2} />,
               ]}
             />
           </Routes>
