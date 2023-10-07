@@ -11,7 +11,14 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   });
   const [error, setError] = useState(false);
 
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState( );
+  const [urlFile, setUrlFile] = useState("")
+
+  function preview(event) {
+    setSelectedFile(event.target.files[0])
+    setUrlFile(URL.createObjectURL(event.target.files[0]))
+    console.log(urlFile)
+  }
 
   function createNews() {
     axios
@@ -28,10 +35,9 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
-      .then(() => console.log("good"))
-      .catch(() => console.log("bad"));
+      .then(() => console.log(urlFile))
   }
 
   if (!isVisable) return null;
@@ -119,10 +125,15 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             <input
               type={"file"}
               multiple={false}
-              onChange={(event) => setSelectedFile(event.target.files[0])}
+              onChange={(event) => preview(event)}
             />
 
             <div className={"flex flex-row"}>`</div>
+          </div>
+
+          <div>
+              <img src={urlFile} className={"w-10 h-10"}/>
+
           </div>
 
           <div className={"flex justify-center items-center flex-col"}>

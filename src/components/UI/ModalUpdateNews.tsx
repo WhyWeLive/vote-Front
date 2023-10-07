@@ -13,6 +13,9 @@ export const ModalUpdateNews = ({
     content: "",
   });
   const [error, setError] = useState(false);
+  const [showImage, setShowImage] = useState(true);
+  const [selectedFile, setSelectedFile] = useState();
+  const [urlFile, setUrlFile] = useState("");
 
   useEffect(() => {
     setNews({ ...newsData });
@@ -20,6 +23,13 @@ export const ModalUpdateNews = ({
 
   function deleteImage() {
     axios.get(`http://localhost:3000/news/deleteImage/${newsData.id}`);
+    setShowImage(false);
+  }
+
+  function preview(event) {
+    setSelectedFile(event.target.files[0]);
+    setUrlFile(URL.createObjectURL(event.target.files[0]));
+    console.log(urlFile);
   }
 
   function updateNews() {
@@ -27,19 +37,17 @@ export const ModalUpdateNews = ({
       .put(
         `http://localhost:3000/news/${newsData.id}`,
         {
+          image: selectedFile,
           grup: news.grup,
           header: news.header,
           content: news.content,
         },
         {
           headers: {
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "POST",
-            "X-Requested-With": "XMLHttpRequest",
-            "Access-Control-Allow-Methods": "POST",
-            "Access-Control-Allow-Headers": "Authorization",
+            accept: "application/json",
+            "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
@@ -128,14 +136,44 @@ export const ModalUpdateNews = ({
               }
             />
           </div>
-          {newsData.photos.length ? (
-            <div className="flex row justify-between">
-              <input type="file" />
-              <button onClick={() => deleteImage()}>Удалить фото</button>
+
+          {urlFile ? (
+            <img src={urlFile} className={"w-32 h-32"} />
+          ) : newsData.photos.length ? (
+            <div className={"flex gap-8 flex-col"}>
+              {showImage ? (
+                <div className={"w-full flex justify-start"}>
+                  <div className={"flex flex-row items-center justify-center"}>
+                    <img
+                      src={`http://localhost:3000/files/${newsData.photos}`}
+                      className={"w-32 h-32 rounded-xl"}
+                    />
+                    <button
+                      size={50}
+                      className={
+                        "absolute bg-black/90 w-10 h-10 rounded-full opacity-50 hover:opacity-100 duration-500 text-white"
+                      }
+                      onClick={() => deleteImage()}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
-            <></>
+            ""
           )}
+
+          <div className="flex row justify-between">
+            <input
+              type={"file"}
+              multiple={false}
+              onChange={(event) => preview(event)}
+            />
+          </div>
           <div className={"flex justify-center items-center flex-col"}>
             <div
               onClick={() => {
