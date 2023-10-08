@@ -10,13 +10,17 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
     thirdName: "",
     grup: "",
     profile_picture: "",
+    email: "",
+    password: "",
   });
 
-  useEffect(() => {
-    setProfile({ ...userData });
-  }, [userData]);
-
   const [selectedFile, setSelectedFile] = useState();
+
+  useEffect(() => {
+    setProfile(userData);
+    setSelectedFile(undefined);
+  }, [isVisable, profile]);
+
   const [urlFile, setUrlFile] = useState("");
 
   if (!isVisable) return null;
@@ -44,9 +48,50 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
-      .then((response) => setProfile(response.data));
+      .then(({ data }) =>
+        axios
+          .post(
+            "http://localhost:3000/auth",
+            {
+              email: data.email,
+              password: data.password,
+            },
+            {
+              headers: {
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "POST",
+                "X-Requested-With": "XMLHttpRequest",
+                "Access-Control-Allow-Methods": "POST",
+                "Access-Control-Allow-Headers": "Authorization",
+              },
+            }
+          )
+          .then(({ data }) => {
+            setProfile(data);
+
+            document.cookie = `token=${data.token}; max-age=86400; path=/`;
+
+            setShowProfileUpdate(false);
+
+            axios.post(
+              "http://localhost:3000/auth/decode",
+              {
+                token: `${document.cookie.split("=")[1]}`,
+              },
+              {
+                headers: {
+                  Accept: "application/json",
+                  "Access-Control-Allow-Origin": "POST",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Headers": "Authorization",
+                },
+              }
+            );
+          })
+      );
   }
 
   return (
@@ -156,8 +201,11 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             </div>
           </div>
           <button
+            disabled={selectedFile ? false : true}
             className={
-              "w-full flex justify-center p-2 rounded-lg bg-green-600 hover:bg-green-700 duration-500 font-sans text-white"
+              selectedFile
+                ? "w-full flex justify-center p-2 rounded-lg bg-green-600 hover:bg-green-700 duration-500 font-sans text-white"
+                : "w-full flex justify-center p-2 rounded-lg bg-green-700 font-sans text-white"
             }
             onClick={() => updateAvatar()}
           >

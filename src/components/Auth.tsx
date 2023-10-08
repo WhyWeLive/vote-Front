@@ -27,7 +27,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
 
       .then(({ data }) => {
@@ -47,7 +47,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             toAuth(data);
