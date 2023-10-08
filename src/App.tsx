@@ -8,13 +8,13 @@ import { Header } from "./components/Header";
 import { Auth } from "./components/Auth";
 import { ModalCreateNews } from "./components/UI/ModalCreateNews";
 import { ModalUpdateNews } from "./components/UI/ModalUpdateNews";
-import {ProfileModal} from "./components/UI/ProfileModal";
+import { ProfileModal } from "./components/UI/ProfileModal";
 
 export const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
-  const [showModalProfile, setShowModalProfile] = useState(true);
+  const [showModalProfile, setShowModalProfile] = useState(false);
   function toAuth(authState: boolean): void {
     setIsAuth(authState);
   }
@@ -39,7 +39,7 @@ export const App = () => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        }
+        },
       )
       .then(({ data }) => {
         toAuth(data);
@@ -64,9 +64,10 @@ export const App = () => {
             newsData={news}
           />
           <ProfileModal
-          key={5}
-          isVisable={showModalProfile}
-          setShowProfileUpdate = {setShowModalProfile}
+            key={5}
+            userData={isAuth}
+            isVisable={showModalProfile}
+            setShowProfileUpdate={setShowModalProfile}
           />
           <Routes>
             <Route

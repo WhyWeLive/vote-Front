@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+::-webkit-file-upload-button {
+    display: none;
+}
+
+
+::file-selector-button {
+    display: none;
+}
+
+input[type='file'] {
+    color: transparent;
+}

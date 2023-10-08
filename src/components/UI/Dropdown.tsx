@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useClickOutside } from "./useClickOutside";
 import { CgAddR, CgProfile } from "react-icons/cg";
@@ -15,6 +15,8 @@ export const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => setIsOpen(false));
+
+  function getProfile() {}
 
   return (
     <div className="flex justify-end flex-row duration-700">

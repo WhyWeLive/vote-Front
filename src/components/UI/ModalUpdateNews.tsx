@@ -167,13 +167,36 @@ export const ModalUpdateNews = ({
             ""
           )}
 
-          <div className="flex row justify-between">
-            <input
-              type={"file"}
-              multiple={false}
-              onChange={(event) => preview(event)}
-            />
+          <div className={"flex items-start justify-start "}>
+            <div
+              className={
+                "w-max h-max relative outline rounded-lg outline-1  duration-500"
+              }
+            >
+              <input
+                type={"file"}
+                multiple={false}
+                onChange={(event) => preview(event)}
+                className={
+                  "absolute duration-500 w-full h-full cursor-pointer rounded-lg duration-500 hover:bg-green-500 opacity-20"
+                }
+              />
+              <div
+                className={
+                  "w-max flex flex-row p-4 items-center gap-2 font-semibold"
+                }
+              >
+                <img
+                  src={
+                    "https://cdn-icons-png.flaticon.com/512/3097/3097412.png"
+                  }
+                  className={"w-4 h-4"}
+                />
+                Загрузить
+              </div>
+            </div>
           </div>
+
           <div className={"flex justify-center items-center flex-col"}>
             <div
               onClick={() => {

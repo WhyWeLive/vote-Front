@@ -9,6 +9,7 @@ export interface userInterface {
   thirdName: string;
   email?: string;
   password?: string;
+  profile_picture?: string;
   grup?: Array<string>;
   roles?: Array<string>;
 }
@@ -17,7 +18,7 @@ export const Header = ({
   setShowModal,
   toggle,
   userData,
-                         setShowModalProfile
+  setShowModalProfile,
 }: {
   toggle: string;
   userData: userInterface | boolean;
@@ -71,7 +72,11 @@ export const Header = ({
           className="relative inline-block text-left"
           data-headlessui-state=""
         >
-          <Dropdown userData={userData} setShowModal={setShowModal} setShowModalProfile={setShowModalProfile} />
+          <Dropdown
+            userData={userData}
+            setShowModal={setShowModal}
+            setShowModalProfile={setShowModalProfile}
+          />
         </div>
       </div>
     </header>

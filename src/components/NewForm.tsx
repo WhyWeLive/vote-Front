@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import remarkGfm from "remark-gfm";
-import { DateTime } from "luxon";
 import * as luxon from "luxon";
+import { DateTime } from "luxon";
 import { FaPencilAlt } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
-import { Slide } from "./UI/Slide";
 
 luxon.Settings.defaultLocale = "ru";
 luxon.Settings.defaultZone = "UTC+7";
@@ -35,7 +34,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm"
+        "dd' 'LLL' в 'HH':'mm",
       );
     }
   }
@@ -127,7 +126,7 @@ export const NewForm = ({
         <div className={"px-4 m-auto h-auto w-full py-8"}>
           <img
             className={"w-full h-[600px]  rounded-2xl pointer-events-none"}
-            src={`http://localhost:3000/files/${image}`}
+            src={`http://localhost:3000/files/getNewsPicture/${image}`}
           />
         </div>
       ) : (
