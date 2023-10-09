@@ -33,7 +33,6 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   function preview(event) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
-    console.log(urlFile);
   }
 
   function updateAvatar() {
@@ -48,7 +47,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(({ data }) =>
         axios
@@ -66,7 +65,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             setProfile(data);
@@ -88,9 +87,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              }
+              },
             );
-          })
+          }),
       );
   }
 
@@ -127,7 +126,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 <img
                   src={urlFile}
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover object-center "
+                    "w-96 h-96 rounded-lg pointer-events-none object-cover object-cover "
                   }
                 />
               ) : profile.profile_picture ? (

@@ -3,45 +3,32 @@ import { NavLink } from "react-router-dom";
 import { useClickOutside } from "./useClickOutside";
 import { CgAddR, CgProfile } from "react-icons/cg";
 import { ImExit } from "react-icons/im";
-import { userInterface } from "../Header";
 
-export const Dropdown = ({
-  setShowModal,
-  userData,
-  setShowModalProfile,
-}: {
-  userData: userInterface | boolean;
-}) => {
+export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => setIsOpen(false));
-
-  function getProfile() {}
 
   return (
     <div className="flex justify-end flex-row duration-700">
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
-          <div className="flex items-center place-items-center space-x-4 hover:cursor-pointer">
-            <div className="h-10 w-10 aspect-square bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex justify-center items-center">
-              <div className="font-medium text-md text-white">
-                {typeof userData === "boolean" ? "" : userData.firstName[0]}
-                {typeof userData === "boolean" ? "" : userData.thirdName[0]}
-              </div>
+          <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
+            <div className="">
+              <img
+                src={`http://localhost:3000/files/getProfilePicture/${userData.profile_picture}`}
+                className={"rounded-full h-10 w-10"}
+              />
             </div>
-            <div className="font-medium text-gray-800  flex flex-col items-start">
-              <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
-                <div>
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.secondName + " "}
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.firstName[0] + "."}
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.thirdName[0] + "."}
-                </div>
+            <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
+              <div>
+                {typeof userData === "boolean" ? "" : userData.secondName + " "}
+                {typeof userData === "boolean"
+                  ? ""
+                  : userData.firstName[0] + "."}
+                {typeof userData === "boolean"
+                  ? ""
+                  : userData.thirdName[0] + "."}
               </div>
             </div>
           </div>

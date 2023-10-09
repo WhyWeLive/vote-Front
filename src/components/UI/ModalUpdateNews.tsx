@@ -145,7 +145,7 @@ export const ModalUpdateNews = ({
                 <div className={"w-full flex justify-start"}>
                   <div className={"flex flex-row items-center justify-center"}>
                     <img
-                      src={`http://localhost:3000/files/${newsData.photos}`}
+                      src={`http://localhost:3000/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl"}
                     />
                     <button
