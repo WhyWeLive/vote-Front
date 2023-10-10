@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useClickOutside } from "./useClickOutside";
-import { CgAddR, CgProfile } from "react-icons/cg";
 import { ImExit } from "react-icons/im";
+import { CgAddR, CgProfile } from "react-icons/cg";
+import { useClickOutside } from "./useClickOutside";
 
 export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
   const [isOpen, setIsOpen] = useState(false);

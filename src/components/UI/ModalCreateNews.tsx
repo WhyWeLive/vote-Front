@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
+import axios from "axios";
 
 export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   const [news, setNews] = useState({
@@ -35,7 +35,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => console.log(urlFile));
   }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { FiMail } from "react-icons/fi";
 
 export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [error, setError] = useState(false);

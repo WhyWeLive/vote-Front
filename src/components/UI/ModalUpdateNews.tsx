@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
+import axios from "axios";
 
 export const ModalUpdateNews = ({
   isVisable,
@@ -47,7 +47,7 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));

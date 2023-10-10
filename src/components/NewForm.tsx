@@ -1,11 +1,10 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
-import axios from "axios";
+import { TiDelete } from "react-icons/ti";
 import remarkGfm from "remark-gfm";
+import { FaPencilAlt } from "react-icons/fa";
+import axios from "axios";
 import * as luxon from "luxon";
 import { DateTime } from "luxon";
-import { FaPencilAlt } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
 
 luxon.Settings.defaultLocale = "ru";
 luxon.Settings.defaultZone = "UTC+7";
@@ -34,7 +33,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm",
+        "dd' 'LLL' в 'HH':'mm"
       );
     }
   }

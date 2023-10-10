@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import "./styles/index.css";
+import { useEffect, useState } from "react";
 import { News } from "./components/News";
 import { Vote } from "./components/Vote";
 import { Header } from "./components/Header";
@@ -9,6 +8,7 @@ import { Auth } from "./components/Auth";
 import { ModalCreateNews } from "./components/UI/ModalCreateNews";
 import { ModalUpdateNews } from "./components/UI/ModalUpdateNews";
 import { ProfileModal } from "./components/UI/ProfileModal";
+import "./styles/index.css";
 
 export const App = () => {
   const [isAuth, setIsAuth] = useState(false);

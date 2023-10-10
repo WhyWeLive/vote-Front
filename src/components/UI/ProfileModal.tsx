@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 
