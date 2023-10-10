@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useClickOutside } from "./useClickOutside";
 import { CgAddR, CgProfile } from "react-icons/cg";
@@ -14,10 +14,12 @@ export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
           <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
-            <div className="">
+            <div className="w-10">
               <img
-                src={`http://localhost:3000/files/getProfilePicture/${userData.profile_picture}`}
-                className={"rounded-full h-10 w-10"}
+                src={`http://localhost:3000/files/getProfilePicture/${
+                  userData.profile_picture ?? "stockPicture.png"
+                }`}
+                className={"rounded-full object-cover h-10 w-10"}
               />
             </div>
             <div className="flex flex-row gap-2 whitespace-nowrap items-center ">

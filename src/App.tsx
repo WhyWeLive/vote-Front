@@ -15,6 +15,7 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalProfile, setShowModalProfile] = useState(false);
+
   function toAuth(authState: boolean): void {
     setIsAuth(authState);
   }
@@ -39,12 +40,12 @@ export const App = () => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
       .then(({ data }) => {
         toAuth(data);
       });
-  }, []);
+  }, [showModal, showModalUpdate, showModalProfile]);
 
   return (
     <div className="h-full overflow-x-hidden">

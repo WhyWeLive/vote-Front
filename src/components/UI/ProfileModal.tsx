@@ -12,6 +12,12 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
     profile_picture: "",
     email: "",
     password: "",
+    bio: "",
+  });
+
+  const [bio, setBio] = useState({
+    data: "",
+    isActive: false,
   });
 
   const [selectedFile, setSelectedFile] = useState();
@@ -19,6 +25,8 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   useEffect(() => {
     setProfile(userData);
     setSelectedFile(undefined);
+    setUrlFile("");
+    setBio({ data: userData.bio, isActive: false });
   }, [isVisable, profile]);
 
   const [urlFile, setUrlFile] = useState("");
@@ -37,17 +45,18 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
 
   function updateAvatar() {
     axios
-      .post(
+      .put(
         `http://localhost:3000/users/setProfilePicture/${profile.id}`,
         {
           picture: selectedFile,
+          bio: bio.data,
         },
         {
           headers: {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(({ data }) =>
         axios
@@ -65,11 +74,11 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             setProfile(data);
-
+            setBio(data.bio);
             document.cookie = `token=${data.token}; max-age=86400; path=/`;
 
             setShowProfileUpdate(false);
@@ -87,9 +96,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              },
+              }
             );
-          }),
+          })
       );
   }
 
@@ -126,7 +135,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 <img
                   src={urlFile}
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover object-cover "
+                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
                   }
                 />
               ) : profile.profile_picture ? (
@@ -139,7 +148,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
               ) : (
                 <img
                   src={
-                    "https://i.pinimg.com/564x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg"
+                    "http://localhost:3000/files/getProfilePicture/stockPicture.png"
                   }
                   className={
                     "w-96 h-96 rounded-lg pointer-events-none object-cover"
@@ -195,14 +204,18 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                     "h-full w-full p-2 text-xl resize-none rounded-lg focus:outline-none"
                   }
                   placeholder={"Ваша речь"}
+                  onChange={(e) =>
+                    setBio({ isActive: true, data: e.target.value })
+                  }
+                  value={bio.data ?? ""}
                 />
               </div>
             </div>
           </div>
           <button
-            disabled={selectedFile ? false : true}
+            disabled={selectedFile || bio.isActive ? false : true}
             className={
-              selectedFile
+              selectedFile || bio.isActive
                 ? "w-full flex justify-center p-2 rounded-lg bg-green-600 hover:bg-green-700 duration-500 font-sans text-white"
                 : "w-full flex justify-center p-2 rounded-lg bg-green-700 font-sans text-white"
             }
