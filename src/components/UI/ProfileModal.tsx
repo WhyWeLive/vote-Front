@@ -49,14 +49,14 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
         `http://localhost:3000/users/setProfilePicture/${profile.id}`,
         {
           picture: selectedFile,
-          bio: bio.data,
+          bio: bio.data ?? "",
         },
         {
           headers: {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(({ data }) =>
         axios
@@ -74,7 +74,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             setProfile(data);
@@ -96,9 +96,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              }
+              },
             );
-          })
+          }),
       );
   }
 
@@ -170,7 +170,8 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
 
                 <input
                   type={"file"}
-                  className={`absolute w-full h-full hover:opacity-80 duration-500`}
+                  className={`absolute w-full h-full hover:opacity-80 duration-500 cursor-pointer`}
+                  title={"Изменить фото профиля"}
                   multiple={false}
                   onChange={(event) => preview(event)}
                 />

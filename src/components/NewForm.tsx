@@ -33,7 +33,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm"
+        "dd' 'LLL' в 'HH':'mm",
       );
     }
   }
@@ -54,12 +54,12 @@ export const NewForm = ({
   return (
     <div
       className={
-        "my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col "
+        " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col  "
       }
     >
       <div
         className={
-          "border-b-2 p-4 flex flex-row items-center z-0 h-full w-full"
+          "border-b-2 p-4 flex flex-row items-center z-0 h-full w-full "
         }
       >
         <div
@@ -108,7 +108,6 @@ export const NewForm = ({
           )}
         </div>
       </div>
-
       <div className={"text-sans font-medium px-4"}>
         <div className={"mt-4 prose max-w-full text-sans prose-lg w-full"}>
           <h1 className={"text-start w-full leading-tight text-2xl"}>
@@ -121,10 +120,13 @@ export const NewForm = ({
           </div>
         </div>
       </div>
+
       {image.length ? (
-        <div className={"px-4 m-auto h-auto w-full py-8"}>
+        <div className={"p-4 flex justify-center flex-col items-center"}>
           <img
-            className={"w-full h-[600px]  rounded-2xl pointer-events-none"}
+            className={
+              "w-min object-cover h-max rounded-2xl pointer-events-none "
+            }
             src={`http://localhost:3000/files/getNewsPicture/${image}`}
           />
         </div>

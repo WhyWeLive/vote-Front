@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NewForm } from "./NewForm";
+import loading from "../../public/loading.gif";
 
 export const News = ({ userData, setShowModalUpdate, getNew }) => {
   const [news, setNews] = useState([]);
@@ -13,7 +14,6 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
   function getCounter() {
     setCounter((prev) => prev + 1);
   }
-
   useEffect(() => {
     axios
       .get("http://localhost:3000/news", {
@@ -30,22 +30,35 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
   }, [counter]);
 
   return (
-    <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
-      {news.map((item) => (
-        <NewForm
-          grup={item.grup}
-          createdAt={item.createdAt}
-          header={item.header}
-          content={item.content}
-          key={item.id}
-          id={item.id}
-          image={item.photos}
-          userData={userData}
-          getCounter={getCounter}
-          setShowModalUpdate={setShowModalUpdate}
-          getNews={getNews}
-        />
-      ))}
+    <div
+      className={
+        "w-screen min-h-[92.5vh] max-h-max bg-gray-200 flex items-start flex-col"
+      }
+    >
+      <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
+        {news.length > 0 ? (
+          news.map((item) => (
+            <NewForm
+              grup={item.grup}
+              createdAt={item.createdAt}
+              header={item.header}
+              content={item.content}
+              key={item.id}
+              id={item.id}
+              image={item.photos}
+              userData={userData}
+              getCounter={getCounter}
+              setShowModalUpdate={setShowModalUpdate}
+              getNews={getNews}
+            />
+          ))
+        ) : (
+          <div className={"flex justify-center items-center flex-col my-[8%]"}>
+            <div className={"font-light text-xl"}>Новостей еще нет </div>
+            <img src={loading} className={"pointer-events-none"} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -40,7 +40,7 @@ export const App = () => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        }
+        },
       )
       .then(({ data }) => {
         toAuth(data);
@@ -70,6 +70,7 @@ export const App = () => {
             isVisable={showModalProfile}
             setShowProfileUpdate={setShowModalProfile}
           />
+
           <Routes>
             <Route
               path="/"
@@ -81,6 +82,7 @@ export const App = () => {
                   setShowModal={setShowModal}
                   setShowModalProfile={setShowModalProfile}
                 />,
+
                 <News
                   key={2}
                   userData={isAuth}
@@ -97,6 +99,7 @@ export const App = () => {
                   toggle={"Vote"}
                   userData={isAuth}
                   setShowModal={setShowModal}
+                  setShowModalProfile={setShowModalProfile}
                 />,
                 <Vote key={2} />,
               ]}

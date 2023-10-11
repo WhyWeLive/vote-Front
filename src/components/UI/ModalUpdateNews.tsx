@@ -47,7 +47,7 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
@@ -68,10 +68,10 @@ export const ModalUpdateNews = ({
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-1/2 h-full inset-0 flex justify-center"}>
+      <div className={"w-1/2 h-1/8 inset-0 flex justify-center"}>
         <div
           className={
-            "shadow w-full h-auto my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
+            "shadow w-full h-auto max-h-[900px] my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
           }
         >
           <div className={"flex flex-row justify-between"}>
@@ -167,38 +167,48 @@ export const ModalUpdateNews = ({
             ""
           )}
 
-          <div className={"flex items-start justify-start "}>
+          <div className={"flex justify-between items-center flex-row"}>
+            <div className={"w-1/8"}></div>
             <div
               className={
-                "w-max h-max relative outline rounded-lg outline-1  duration-500"
+                "w-1/8 relative bg-black/80 text-white rounded-lg  duration-500 w-1/2 "
               }
             >
               <input
+                title={"Обновить фотографию"}
                 type={"file"}
                 multiple={false}
                 onChange={(event) => preview(event)}
                 className={
-                  "absolute duration-500 w-full h-full cursor-pointer rounded-lg duration-500 hover:bg-green-500 opacity-20"
+                  "w-full h-full absolute duration-500 cursor-pointer rounded-lg duration-500 hover:bg-green-500 opacity-20"
                 }
               />
+
               <div
                 className={
-                  "w-max flex flex-row p-4 items-center gap-2 font-semibold"
+                  "w-full flex flex-row p-2 items-center justify-center text-center gap-2 font-semibold"
                 }
               >
                 <img
                   src={
-                    "https://cdn-icons-png.flaticon.com/512/3097/3097412.png"
+                    "https://img.icons8.com/?size=128&id=SBxQxlO1ePen&format=png&color=FFFFFF"
                   }
-                  className={"w-4 h-4"}
+                  className={"w-6 h-6"}
                 />
-                Загрузить
+                Загрузить фото
               </div>
             </div>
-          </div>
-
-          <div className={"flex justify-center items-center flex-col"}>
-            <div
+            <div className={"w-full text-center"}>
+              {error ? (
+                <div className={"text-lg font-medium font-sans text-red-600"}>
+                  {" "}
+                  Заполните все поля!{" "}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <button
               onClick={() => {
                 if (news.grup && news.header && news.content) {
                   updateNews();
@@ -208,22 +218,11 @@ export const ModalUpdateNews = ({
                 }
               }}
               className={
-                "w-1/4 p-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
+                "w-1/2 py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
               }
             >
               Подтвердить
-            </div>
-
-            {error ? (
-              <div
-                className={"text-lg font-medium font-sans text-red-600 my-2 "}
-              >
-                {" "}
-                Заполните все поля!{" "}
-              </div>
-            ) : (
-              ""
-            )}
+            </button>
           </div>
         </div>
       </div>
