@@ -138,7 +138,12 @@ export const ModalUpdateNews = ({
           </div>
 
           {urlFile ? (
-            <img src={urlFile} className={"w-32 h-32 rounded-xl"} />
+            <img
+              src={urlFile}
+              className={
+                "w-32 h-32 rounded-xl object-cover pointer-events-none"
+              }
+            />
           ) : newsData.photos.length ? (
             <div className={"flex gap-8 flex-col"}>
               {showImage ? (
@@ -146,7 +151,7 @@ export const ModalUpdateNews = ({
                   <div className={"flex flex-row items-center justify-center"}>
                     <img
                       src={`http://localhost:3000/files/getNewsPicture/${newsData.photos}`}
-                      className={"w-32 h-32 rounded-xl"}
+                      className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button
                       size={50}

@@ -124,7 +124,10 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
 
           {urlFile ? (
             <div>
-              <img src={urlFile} className={"w-32 h-32 rounded-xl"} />
+              <img
+                src={urlFile}
+                className={"w-32 h-32 rounded-xl object-cover"}
+              />
             </div>
           ) : (
             ""
@@ -156,7 +159,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                   src={
                     "https://img.icons8.com/?size=128&id=SBxQxlO1ePen&format=png&color=FFFFFF"
                   }
-                  className={"w-6 h-6"}
+                  className={"w-6 h-6  "}
                 />
                 Загрузить фото
               </div>
