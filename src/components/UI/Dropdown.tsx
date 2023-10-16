@@ -1,10 +1,16 @@
 import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useClickOutside } from "./useClickOutside";
 import { ImExit } from "react-icons/im";
 import { CgAddR, CgProfile } from "react-icons/cg";
-import { useClickOutside } from "./useClickOutside";
+import { LuVote } from "react-icons/lu";
 
-export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
+export const Dropdown = ({
+  setShowModal,
+  userData,
+  setShowModalProfile,
+  setShowModalVote,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => setIsOpen(false));
@@ -39,8 +45,8 @@ export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
       <div
         className={
           isOpen
-            ? "w-48 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
-            : "w-40 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
+            ? "w-56 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
+            : "w-48 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
         }
         ref={menuRef}
       >
@@ -58,6 +64,23 @@ export const Dropdown = ({ setShowModal, userData, setShowModalProfile }) => {
               <CgProfile size={16} />
               <p className={"px-2"}>Профиль </p>
             </button>
+
+            <div
+              className={
+                "w-full hover:bg-green-500 transition-all duration-500 rounded-lg"
+              }
+            >
+              <button
+                className={"text-start p-2 flex row items-center"}
+                onClick={() => {
+                  setShowModalVote(true);
+                  setIsOpen(false);
+                }}
+              >
+                <LuVote size={16} />
+                <p className={"px-2"}>Добавить голосование </p>
+              </button>
+            </div>
 
             {userData.roles.find((item) => item === "Editor") ? (
               <NavLink>

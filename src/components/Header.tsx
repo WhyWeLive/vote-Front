@@ -19,6 +19,7 @@ export const Header = ({
   toggle,
   userData,
   setShowModalProfile,
+  setShowModalVote,
 }: {
   toggle: string;
   userData: userInterface | boolean;
@@ -76,6 +77,7 @@ export const Header = ({
             userData={userData}
             setShowModal={setShowModal}
             setShowModalProfile={setShowModalProfile}
+            setShowModalVote={setShowModalVote}
           />
         </div>
       </div>

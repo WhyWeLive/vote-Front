@@ -131,7 +131,7 @@ export const NewForm = ({
           />
         </div>
       ) : (
-        <div className={"py-4"}> </div>
+        <div className={"py-4"}></div>
       )}
     </div>
   );

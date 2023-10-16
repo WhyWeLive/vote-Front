@@ -10,6 +10,8 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
 
   const [password, setPassword] = useState("");
 
+  const [kostil, setKostil] = useState(false);
+
   async function auth() {
     await axios
       .post(
@@ -26,7 +28,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        }
+        },
       )
 
       .then(({ data }) => {
@@ -46,7 +48,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             toAuth(data);
@@ -56,9 +58,8 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
         setError(true);
       });
   }
-
   return (
-    <div className="w-screen h-screen flex justify-center bg-gray-100">
+    <div className={"w-screen h-screen flex justify-center bg-gray-100"}>
       <div className="p-6 my-48 border shadow w-96 h-[33rem] rounded-lg bg-white flex items-center flex-col">
         <img
           src={"https://collegeschedule.ru/assets/logo-23babd2f.svg"}

@@ -36,7 +36,12 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
       }
     >
       <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
-        {news.length > 0 ? (
+        {!news.length > 0 ? (
+          <div className={"flex justify-center items-center flex-col my-[8%]"}>
+            <div className={"font-light text-xl"}>Новостей еще нет </div>
+            <img src={loading} className={"pointer-events-none"} />
+          </div>
+        ) : (
           news.map((item) => (
             <NewForm
               grup={item.grup}
@@ -52,11 +57,6 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
               getNews={getNews}
             />
           ))
-        ) : (
-          <div className={"flex justify-center items-center flex-col my-[8%]"}>
-            <div className={"font-light text-xl"}>Новостей еще нет </div>
-            <img src={loading} className={"pointer-events-none"} />
-          </div>
         )}
       </div>
     </div>

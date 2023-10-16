@@ -7,6 +7,7 @@ import { Header } from "./components/Header";
 import { Auth } from "./components/Auth";
 import { ModalCreateNews } from "./components/UI/ModalCreateNews";
 import { ModalUpdateNews } from "./components/UI/ModalUpdateNews";
+import { ModalCreateVote } from "./components/UI/ModalCreateVote";
 import { ProfileModal } from "./components/UI/ProfileModal";
 import "./styles/index.css";
 
@@ -15,6 +16,7 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalProfile, setShowModalProfile] = useState(false);
+  const [showModalVote, setShowModalVote] = useState(false);
 
   function toAuth(authState: boolean): void {
     setIsAuth(authState);
@@ -49,14 +51,17 @@ export const App = () => {
 
   return (
     <div className="h-full overflow-x-hidden">
-      {!isAuth ? (
-        <Auth toAuth={toAuth} />
-      ) : (
+      {isAuth ? (
         <Router>
           <ModalCreateNews
             key={3}
             isVisable={showModal}
             setShowModal={setShowModal}
+          />
+          <ModalCreateVote
+            key={6}
+            isVisable={showModalVote}
+            setShowModalVote={setShowModalVote}
           />
           <ModalUpdateNews
             key={4}
@@ -81,6 +86,7 @@ export const App = () => {
                   userData={isAuth}
                   setShowModal={setShowModal}
                   setShowModalProfile={setShowModalProfile}
+                  setShowModalVote={setShowModalVote}
                 />,
 
                 <News
@@ -100,12 +106,15 @@ export const App = () => {
                   userData={isAuth}
                   setShowModal={setShowModal}
                   setShowModalProfile={setShowModalProfile}
+                  setShowModalVote={setShowModalVote}
                 />,
                 <Vote key={2} />,
               ]}
             />
           </Routes>
         </Router>
+      ) : (
+        <Auth toAuth={toAuth} />
       )}
     </div>
   );
