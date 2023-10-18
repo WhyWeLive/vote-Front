@@ -20,9 +20,9 @@ export const VoteForm = ({
     <div>
       {showVoteProfile && (
         <VoteProfile
+          key={id}
           isVisable={showVoteProfile}
           setShowVoteProfile={setShowVoteProfile}
-          key={1}
         />
       )}
       <div
