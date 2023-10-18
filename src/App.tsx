@@ -101,14 +101,14 @@ export const App = () => {
               path="/vote"
               element={[
                 <Header
-                  key={1}
+                  key={7}
                   toggle={"Vote"}
                   userData={isAuth}
                   setShowModal={setShowModal}
                   setShowModalProfile={setShowModalProfile}
                   setShowModalVote={setShowModalVote}
                 />,
-                <Vote key={2} />,
+                <Vote key={8} />,
               ]}
             />
           </Routes>

@@ -24,6 +24,7 @@ export const Vote = () => {
       <div>
         {voteData.map((item) => (
           <VoteForm
+            key={item.id}
             id={item.id}
             header={item.header}
             voteCount={item.voteCount}
