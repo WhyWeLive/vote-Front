@@ -16,7 +16,7 @@ export const Dropdown = ({
   useClickOutside(menuRef, () => setIsOpen(false));
 
   return (
-    <div className="flex justify-end flex-row duration-700">
+    <div className="flex justify-end flex-row duration-700 w-[242px]">
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
           <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
@@ -65,25 +65,25 @@ export const Dropdown = ({
               <p className={"px-2"}>Профиль </p>
             </button>
 
-            <div
-              className={
-                "w-full hover:bg-green-500 transition-all duration-500 rounded-lg"
-              }
-            >
-              <button
-                className={"text-start p-2 flex row items-center"}
-                onClick={() => {
-                  setShowModalVote(true);
-                  setIsOpen(false);
-                }}
-              >
-                <LuVote size={16} />
-                <p className={"px-2"}>Добавить голосование </p>
-              </button>
-            </div>
-
             {userData.roles.find((item) => item === "Editor") ? (
               <NavLink>
+                <div
+                  className={
+                    "w-full hover:bg-green-500 transition-all duration-500 rounded-lg"
+                  }
+                >
+                  <button
+                    className={"text-start p-2 flex row items-center"}
+                    onClick={() => {
+                      setShowModalVote(true);
+                      setIsOpen(false);
+                    }}
+                  >
+                    <LuVote size={16} />
+                    <p className={"px-2"}>Добавить голосование </p>
+                  </button>
+                </div>
+
                 <div
                   className={
                     "w-full hover:bg-orange-400 transition-all duration-500 rounded-lg"

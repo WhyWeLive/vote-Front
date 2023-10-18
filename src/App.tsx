@@ -50,7 +50,7 @@ export const App = () => {
   }, [showModal, showModalUpdate, showModalProfile]);
 
   return (
-    <div className="h-full overflow-x-hidden">
+    <div className="h-full overflow-x-hidden overflow-y-scroll">
       {isAuth ? (
         <Router>
           <ModalCreateNews

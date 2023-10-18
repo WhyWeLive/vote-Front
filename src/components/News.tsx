@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NewForm } from "./NewForm";
-import loading from "../../public/loading.gif";
 
 export const News = ({ userData, setShowModalUpdate, getNew }) => {
   const [news, setNews] = useState([]);
@@ -32,14 +31,13 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
   return (
     <div
       className={
-        "w-screen min-h-[92.5vh] max-h-max bg-gray-200 flex items-start flex-col"
+        "w-screen min-h-[92.5vh] max-h-max bg-gray-200 flex items-start flex-col z-10"
       }
     >
       <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
         {!news.length > 0 ? (
-          <div className={"flex justify-center items-center flex-col my-[8%]"}>
-            <div className={"font-light text-xl"}>Новостей еще нет </div>
-            <img src={loading} className={"pointer-events-none"} />
+          <div className={"flex justify-center items-center flex-col my-4"}>
+            <div className={"font-light text-xl"}>Новостей еще нет.. </div>
           </div>
         ) : (
           news.map((item) => (
