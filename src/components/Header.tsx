@@ -36,7 +36,6 @@ export const Header = ({
           />
           <div className="font-semibold text-lg">Голосование » НКЭиВТ</div>
         </div>
-
         <div className="flex justify-center items-center gap-4">
           <div className="py-2">
             <NavLink className="outline-none" to="/">

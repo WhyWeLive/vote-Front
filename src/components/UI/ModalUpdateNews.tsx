@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
+import { InfoModals } from "./InfoModals";
 
 export const ModalUpdateNews = ({
   isVisable,
@@ -29,7 +30,6 @@ export const ModalUpdateNews = ({
   function preview(event) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
-    console.log(urlFile);
   }
 
   function updateNews() {
@@ -37,7 +37,7 @@ export const ModalUpdateNews = ({
       .put(
         `http://localhost:3000/news/${newsData.id}`,
         {
-          image: selectedFile,
+          image: selectedFile ?? newsData.photos,
           grup: news.grup,
           header: news.header,
           content: news.content,
@@ -205,10 +205,11 @@ export const ModalUpdateNews = ({
             </div>
             <div className={"w-full text-center"}>
               {error ? (
-                <div className={"text-lg font-medium font-sans text-red-600"}>
-                  {" "}
-                  Заполните все поля!{" "}
-                </div>
+                <InfoModals
+                  status={error}
+                  setErrorModal={setError}
+                  inputerror={error}
+                />
               ) : (
                 ""
               )}

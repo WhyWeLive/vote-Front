@@ -39,16 +39,7 @@ export const NewForm = ({
   }
 
   function deleteNews() {
-    axios
-      .delete(`http://localhost:3000/news/${id}`, {
-        headers: {
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "Delete",
-          "X-Requested-With": "XMLHttpRequest",
-          "Access-Control-Allow-Methods": "Delete",
-        },
-      })
-      .then(() => getCounter());
+    axios.delete(`http://localhost:3000/news/${id}`).then(() => getCounter());
   }
 
   return (

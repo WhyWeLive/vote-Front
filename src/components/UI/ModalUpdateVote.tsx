@@ -1,44 +1,66 @@
-import React, { useState } from "react";
-import { TiDelete } from "react-icons/ti";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
+import { TiDelete } from "react-icons/ti";
 import { InfoModals } from "./InfoModals";
 
-export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
-  const [count, setCount] = useState(["Участник"]);
+export const ModalUpdateVote = ({
+  isVisable,
+  id,
+  setModalUpdateVote,
+  header,
+  endedAt,
+  elected,
+  grup,
+}) => {
+  const [count, setCount] = useState([]);
   const [errorModal, setErrorModal] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const [VoteData, setVoteData] = useState({
     header: "",
     grup: "",
     elected: [""],
     endedAt: "",
+    electCount: [""],
   });
+
+  useEffect(() => {
+    setCount([...count, ...elected]);
+    setVoteData({
+      ...VoteData,
+      header: header,
+      elected: [...VoteData.elected, ...elected],
+      endedAt: endedAt,
+      grup: grup,
+    });
+  }, [1]);
 
   if (!isVisable) return null;
   const handleClose = (e) => {
     if (e.target.id === "exit") {
-      setShowModalVote(false);
+      setModalUpdateVote(false);
     }
   };
 
-  function getInputs() {
-    const inputValues = [];
+  const inputValues = [];
 
+  function update() {
     inputValues.push(
-      ...count.map(
-        (item, index) => document.getElementById(index.toString()).value,
-      ),
+      ...count.map((item, index) => {
+        return document.getElementById(index.toString()).value;
+      }),
     );
 
     if (inputValues.includes("")) {
       inputValues.splice(0, -1);
       setErrorModal(true);
+      setInputError(true);
     } else {
       window.location = "/vote";
 
-      axios.post(
-        "http://localhost:3000/vote",
+      axios.put(
+        `http://localhost:3000/vote/${id}`,
         {
           header: VoteData.header,
           grup: VoteData.grup,
@@ -82,6 +104,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                       "w-full h-auto p-2 text-xl resize-none rounded-lg focus:outline-none"
                     }
                     placeholder={"Группа"}
+                    value={VoteData.grup}
                     maxLength={4}
                     onChange={(e) =>
                       setVoteData({ ...VoteData, grup: e.target.value })
@@ -97,6 +120,9 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                     type={"date"}
                     className={"w-full h-full text-xl outline-none"}
                     title={"Дата окончания"}
+                    value={DateTime.fromMillis(
+                      VoteData.endedAt * 1000,
+                    ).toFormat("yyyy-MM-dd")}
                     onChange={async (e) => {
                       const time = new Date(e.target.value).getTime() / 1000;
                       setVoteData({ ...VoteData, endedAt: time.toString() });
@@ -111,7 +137,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                   className={
                     "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                   }
-                  onClick={() => setShowModalVote(false)}
+                  onClick={() => setModalUpdateVote(false)}
                 />
               </div>
             </div>
@@ -127,6 +153,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 }
                 placeholder={"Заголовок"}
                 maxLength={255}
+                value={VoteData.header}
                 onChange={(e) =>
                   setVoteData({ ...VoteData, header: e.target.value })
                 }
@@ -153,6 +180,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                       }
                       id={index.toString()}
                       placeholder={"Ответ / Кандитат"}
+                      defaultValue={item}
                     />
 
                     {!index ? (
@@ -163,7 +191,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                         className={
                           "w-6 cursor-pointer opacity-30 hover:opacity-100 duration-500"
                         }
-                        onClick={() => setCount([...count, "Участник"])}
+                        onClick={() => setCount([...count, ""])}
                         title={"Добавить"}
                       />
                     ) : (
@@ -194,8 +222,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
             <InfoModals
               status={errorModal}
               dateError={dateError}
+              inputerror={inputError}
               setErrorModal={setErrorModal}
-              inputerror={errorModal}
             />
           ) : (
             ""
@@ -210,6 +238,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 if (VoteData.endedAt < DateTime.now() / 1000) {
                   setDateError(true);
                   setErrorModal(true);
+                  setInputError(false);
                   return;
                 }
                 if (
@@ -218,10 +247,11 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                   VoteData.grup &&
                   count.length > 1
                 ) {
-                  getInputs();
+                  update();
                 } else {
                   setErrorModal(true);
                   setDateError(false);
+                  setInputError(true);
                   return;
                 }
               }}

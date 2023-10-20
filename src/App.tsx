@@ -108,7 +108,7 @@ export const App = () => {
                   setShowModalProfile={setShowModalProfile}
                   setShowModalVote={setShowModalVote}
                 />,
-                <Vote key={8} />,
+                <Vote key={8} userData={isAuth} />,
               ]}
             />
           </Routes>
