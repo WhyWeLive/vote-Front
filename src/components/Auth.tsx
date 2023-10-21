@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { InfoModals } from "./UI/InfoModals";
 
 export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [error, setError] = useState(false);
@@ -9,8 +10,6 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
-
-  const [kostil, setKostil] = useState(false);
 
   async function auth() {
     await axios
@@ -118,9 +117,11 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
           </button>
 
           {error ? (
-            <h1 className="text-red-600 font-medium font-sans">
-              Неверный логин или пароль!
-            </h1>
+            <InfoModals
+              setErrorModal={setError}
+              status={error}
+              autherror={error}
+            />
           ) : (
             <></>
           )}

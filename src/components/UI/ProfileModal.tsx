@@ -110,7 +110,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-1/2 h-1/2 inset-0 flex justify-center"}>
+      <div className={"w-max h-[60%] flex justify-center"}>
         <div
           className={
             "shadow w-full h-max my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
@@ -217,8 +217,8 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             disabled={selectedFile || bio.isActive ? false : true}
             className={
               selectedFile || bio.isActive
-                ? "w-full flex justify-center p-2 rounded-lg bg-green-600 hover:bg-green-700 duration-500 font-sans text-white"
-                : "w-full flex justify-center p-2 rounded-lg bg-green-700 font-sans text-white"
+                ? "w-full flex justify-center p-2 rounded-lg bg-black/80 hover:bg-green-800 duration-500 font-sans text-white"
+                : "w-full flex justify-center p-2 rounded-lg bg-black/80 font-sans text-white"
             }
             onClick={() => updateAvatar()}
           >

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
+import { InfoModals } from "./InfoModals";
 
 export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   const [news, setNews] = useState({
@@ -17,27 +18,24 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   function preview(event) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
-    console.log(urlFile);
   }
 
   function createNews() {
-    axios
-      .post(
-        "http://localhost:3000/news",
-        {
-          image: selectedFile,
-          grup: news.grup,
-          header: news.header,
-          content: news.content,
+    axios.post(
+      "http://localhost:3000/news",
+      {
+        image: selectedFile,
+        grup: news.grup,
+        header: news.header,
+        content: news.content,
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "Content-Type": `multipart/form-data`,
         },
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": `multipart/form-data`,
-          },
-        },
-      )
-      .then(() => console.log(urlFile));
+      },
+    );
   }
 
   if (!isVisable) return null;
@@ -166,10 +164,11 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             </div>
             <div className={"w-full text-center"}>
               {error ? (
-                <div className={"text-lg font-medium font-sans text-red-600"}>
-                  {" "}
-                  Заполните все поля!{" "}
-                </div>
+                <InfoModals
+                  status={error}
+                  setErrorModal={setError}
+                  inputerror={error}
+                />
               ) : (
                 ""
               )}

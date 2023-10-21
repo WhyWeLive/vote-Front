@@ -28,18 +28,15 @@ export const Header = ({
 
   return (
     <header>
-      <div className="px-56 mx-auto py-2 items-center flex justify-between">
-        <a aria-current="page" className="active" href="/">
-          <div className="flex items-center gap-2 whitespace-nowrap ">
-            <img
-              src="http://localhost:3000/files/getProfilePicture/header.jpg"
-              className="h-10 w-10 rounded-3xl"
-            />
-            <span className="font-semibold text-lg">Голосование » НКЭиВТ</span>
-          </div>
-        </a>
-
-        <div className="flex justify-center items-center gap-4 mr-16">
+      <div className="px-56 mx-auto py-2 items-center flex justify-between ">
+        <div className="flex items-center gap-2 whitespace-nowrap ">
+          <img
+            src="http://localhost:3000/files/getProfilePicture/header.jpg"
+            className="h-10 w-10 rounded-3xl"
+          />
+          <div className="font-semibold text-lg">Голосование » НКЭиВТ</div>
+        </div>
+        <div className="flex justify-center items-center gap-4">
           <div className="py-2">
             <NavLink className="outline-none" to="/">
               <button

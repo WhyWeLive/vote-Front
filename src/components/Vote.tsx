@@ -1,54 +1,55 @@
 import { VoteForm } from "./VoteForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export const Vote = () => {
-  const [voteData, setVoteData] = useState([
-    {
-      header: "test",
-      voteCount: "51",
-      endedAt: "20.10.23",
-      createdAt: 1697463723,
-      elected: [
-        {
-          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
-          name: "Smirnov Vladislav Andreevich",
-        },
-        {
-          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
-          name: "Smirnov Vladislav Andreevich",
-        },
-      ],
-    },
-    {
-      header: "test",
-      voteCount: "51",
-      endedAt: "20.10.23",
-      createdAt: 1697463723,
-      elected: [
-        {
-          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
-          name: "Smirnov Vladislav Andreevich",
-        },
-        {
-          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
-          name: "Smirnov Vladislav Andreevich",
-        },
-      ],
-    },
-  ]);
+export const Vote = ({ userData }) => {
+  const [voteData, setVoteData] = useState([]);
+  const [counter, setCounter] = useState(0);
 
+  function getCounter() {
+    setCounter((prev) => prev + 1);
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/vote", {
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "GET",
+          "X-Requested-With": "XMLHttpRequest",
+          "Access-Control-Allow-Methods": "GET",
+        },
+      })
+      .then((response) => {
+        setVoteData(response.data.reverse());
+      });
+  }, [counter]);
   return (
     <div className="w-screen min-h-[92.5vh] max-h-max bg-gray-200 flex flex-col items-center">
       <div>
-        {voteData.map((item) => (
-          <VoteForm
-            header={item.header}
-            voteCount={item.voteCount}
-            createdAt={item.createdAt}
-            endedAt={item.endedAt}
-            elected={item.elected}
-          />
-        ))}
+        {voteData.length < 1 ? (
+          <div className={"flex justify-center items-center flex-col my-4"}>
+            <div className={"font-light text-xl"}>Голосований еще нет.. </div>
+          </div>
+        ) : (
+          voteData.map((item) => (
+            <VoteForm
+              key={item.id}
+              id={item.id}
+              votedPersonsId={item.votedPersonsId}
+              header={item.header}
+              voteCount={item.voteCount}
+              createdAt={item.createdAt}
+              endedAt={item.endedAt}
+              elected={item.elected}
+              getCounter={getCounter}
+              counter={counter}
+              userData={userData}
+              grup={item.grup}
+              userData={userData}
+            />
+          ))
+        )}
       </div>
     </div>
   );
