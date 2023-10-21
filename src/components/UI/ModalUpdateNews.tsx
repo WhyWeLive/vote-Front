@@ -47,7 +47,7 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
