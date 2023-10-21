@@ -19,6 +19,22 @@ export const Vote = () => {
         },
       ],
     },
+    {
+      header: "test",
+      voteCount: "51",
+      endedAt: "20.10.23",
+      createdAt: 1697463723,
+      elected: [
+        {
+          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
+          name: "Smirnov Vladislav Andreevich",
+        },
+        {
+          photo: "793e0fecc2076abe744b57ee47f6b6f58962.jpg",
+          name: "Smirnov Vladislav Andreevich",
+        },
+      ],
+    },
   ]);
 
   return (

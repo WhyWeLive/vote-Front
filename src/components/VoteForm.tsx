@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DateTime } from "luxon";
+import { Checkbox } from "./UI/Checkbox";
 
 export const VoteForm = ({
   header,
@@ -127,7 +128,11 @@ export const VoteForm = ({
             ></img>
             <div className={"text-2xl font-semi"}>{item.name}</div>
           </div>
-          <input type={"checkbox"} className={"w-8 h-8"} />
+          <input
+            type="radio"
+            name={`${item}`}
+            className="rounded-lg w-16 h-16 duration-500"
+          />
         </div>
       ))}
       <hr className={"py-2"} />
