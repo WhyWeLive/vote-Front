@@ -9,6 +9,7 @@ export const Elected = ({
   checked,
   id,
   getElect,
+  elect,
 }) => {
   const [name, setName] = useState("");
 
@@ -30,6 +31,7 @@ export const Elected = ({
         onClick={() => {
           setChecked(item);
           getElect(item);
+          console.log(elect);
         }}
       />
       <div />

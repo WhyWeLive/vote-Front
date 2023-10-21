@@ -36,16 +36,17 @@ export const Vote = ({ userData }) => {
             <VoteForm
               key={item.id}
               id={item.id}
+              votedPersonsId={item.votedPersonsId}
               header={item.header}
               voteCount={item.voteCount}
               createdAt={item.createdAt}
               endedAt={item.endedAt}
               elected={item.elected}
               getCounter={getCounter}
+              counter={counter}
               userData={userData}
               grup={item.grup}
               userData={userData}
-              personid={item.votedPersonsId}
             />
           ))
         )}

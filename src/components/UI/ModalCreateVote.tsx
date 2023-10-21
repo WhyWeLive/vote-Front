@@ -8,6 +8,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
   const [count, setCount] = useState(["Участник"]);
   const [errorModal, setErrorModal] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const [VoteData, setVoteData] = useState({
     header: "",
     grup: "",
@@ -34,6 +35,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
     if (inputValues.includes("")) {
       inputValues.splice(0, -1);
       setErrorModal(true);
+      setInputError(true);
+      setDateError(false);
     } else {
       window.location = "/vote";
 
@@ -195,7 +198,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
               status={errorModal}
               dateError={dateError}
               setErrorModal={setErrorModal}
-              inputerror={errorModal}
+              inputerror={inputError}
             />
           ) : (
             ""
@@ -210,6 +213,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 if (VoteData.endedAt < DateTime.now() / 1000) {
                   setDateError(true);
                   setErrorModal(true);
+                  setInputError(false);
                   return;
                 }
                 if (
@@ -222,6 +226,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 } else {
                   setErrorModal(true);
                   setDateError(false);
+                  setInputError(true);
                   return;
                 }
               }}
