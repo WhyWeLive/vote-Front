@@ -110,7 +110,7 @@ export const VoteForm = ({
               {DateTime.fromMillis(endedAt * 1000).toFormat(" dd.MM.yy")}
             </div>
 
-            {userData.roles.find((item) => item === "Editor1") ? (
+            {userData.roles.find((item) => item === "Editor") ? (
               <div className={"flex flex-row items-center gap-2 "}>
                 <FaPencilAlt
                   size={20}
