@@ -97,15 +97,15 @@ export const VoteForm = ({
             : "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col p-6 opacity-60"
         }
       >
-        <div className={"w-full flex justify-end"}></div>
-        <div className={"flex flex-row justify-between items-center"}>
-          <div className={"flex flex-col"}>
+        <div className={"w-full flex justify-end items-center"}></div>
+        <div className={"flex flex-row justify-between"}>
+          <div className={"flex flex-col items-start"}>
             <div className={"text-2xl font-semibold "}> {header}</div>
             <div className={"font-light opacity-30"}>Голосов » {voteCount}</div>
           </div>
 
           <div className={"flex flex-row gap-4 items-center"}>
-            <div className={"font-light opacity-50"}>
+            <div className={"font-light opacity-50 w-max"}>
               {DateTime.fromMillis(createdAt * 1000).toFormat("dd.MM.yy")} -
               {DateTime.fromMillis(endedAt * 1000).toFormat(" dd.MM.yy")}
             </div>

@@ -155,7 +155,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                         "w-full text-xl resize-none rounded-lg focus:outline-none"
                       }
                       id={index.toString()}
-                      placeholder={"Ответ / Кандитат"}
+                      placeholder={"Ответ / Почта кандидата"}
                     />
 
                     {!index ? (

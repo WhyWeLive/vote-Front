@@ -32,23 +32,26 @@ export const Vote = ({ userData }) => {
             <div className={"font-light text-xl"}>Голосований еще нет.. </div>
           </div>
         ) : (
-          voteData.map((item) => (
-            <VoteForm
-              key={item.id}
-              id={item.id}
-              votedPersonsId={item.votedPersonsId}
-              header={item.header}
-              voteCount={item.voteCount}
-              createdAt={item.createdAt}
-              endedAt={item.endedAt}
-              elected={item.elected}
-              getCounter={getCounter}
-              counter={counter}
-              userData={userData}
-              grup={item.grup}
-              userData={userData}
-            />
-          ))
+          voteData.map((item) =>
+            item.grup == userData.grup || item.grup == "NKE" ? (
+              <VoteForm
+                key={item.id}
+                id={item.id}
+                votedPersonsId={item.votedPersonsId}
+                header={item.header}
+                voteCount={item.voteCount}
+                createdAt={item.createdAt}
+                endedAt={item.endedAt}
+                elected={item.elected}
+                getCounter={getCounter}
+                counter={counter}
+                userData={userData}
+                grup={item.grup}
+              />
+            ) : (
+              ""
+            ),
+          )
         )}
       </div>
     </div>

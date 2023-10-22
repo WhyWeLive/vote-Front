@@ -9,7 +9,6 @@ export const Elected = ({
   checked,
   id,
   getElect,
-  elect,
 }) => {
   const [name, setName] = useState("");
 
@@ -31,7 +30,6 @@ export const Elected = ({
         onClick={() => {
           setChecked(item);
           getElect(item);
-          console.log(elect);
         }}
       />
       <div />
@@ -67,12 +65,19 @@ export const Elected = ({
                   onClick={() => setShowVoteProfile(true)}
                 ></button>
               </div>
-              <img
-                className={"w-16 h-16 rounded-full object-cover"}
-                src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
-              />
+              {item === "Да" ||
+              item === "да" ||
+              item === "Нет" ||
+              item === "нет" ? (
+                ""
+              ) : (
+                <img
+                  className={"w-16 h-16 rounded-full object-cover"}
+                  src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
+                />
+              )}
             </div>
-            <div className={"text-2xl font-semi"}>{name}</div>
+            <div className={"text-2xl font-semi"}>{name ? name : item}</div>
           </div>
           <img
             src={"https://cdn-icons-png.flaticon.com/512/1828/1828640.png"}
