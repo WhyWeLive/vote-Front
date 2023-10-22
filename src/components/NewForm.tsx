@@ -45,21 +45,16 @@ export const NewForm = ({
   return (
     <div
       className={
-        " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col  "
+        " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
       }
     >
       <div
-        className={
-          "border-b-2 p-4 flex flex-row items-center z-0 h-full w-full "
-        }
+        className={"border-b-2 p-4 flex flex-row items-center h-full w-full "}
       >
-        <div
-          src={
-            "https://i.pinimg.com/564x/ed/1f/41/ed1f41959e7e9aa7fb0a18b76c6c2755.jpg"
-          }
-          className="h-12 w-12 rounded-full select-none flex items-center justify-center bg-gradient-to-br from-indigo-500 via-sky-500 via-30% to-emerald-500 text-white font-bold"
-        >
-          {grup}
+        <div>
+          <div className=" w-12 h-12 rounded-full select-none flex items-center justify-center bg-gradient-to-br from-indigo-500 via-sky-500 via-30% to-emerald-500 text-white font-bold">
+            {grup}
+          </div>
         </div>
         <div className={"flex flex-row justify-between items-center w-full"}>
           <div className={"font-medium text-xl ml-2 flex flex-col text-sans"}>

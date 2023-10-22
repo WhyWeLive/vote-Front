@@ -28,7 +28,7 @@ export const Header = ({
 
   return (
     <header>
-      <div className="px-56 mx-auto py-2 items-center flex justify-between ">
+      <div className="px-56 mx-auto py-2 items-center flex justify-between">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
             src="http://localhost:3000/files/getProfilePicture/header.jpg"
