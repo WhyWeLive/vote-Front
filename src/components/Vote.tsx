@@ -25,9 +25,9 @@ export const Vote = ({ userData }) => {
       });
   }, [counter]);
   return (
-    <div className="w-screen min-h-[93.2vh] max-h-max bg-gray-200 flex flex-col items-center">
+    <div className="w-screen min-h-full bg-gray-200 flex flex-col items-center">
       <div>
-        {voteData.length < 1 ? (
+        {voteData.length < 0 ? (
           <div className={"flex justify-center items-center flex-col my-4"}>
             <div className={"font-light text-xl"}>Голосований еще нет.. </div>
           </div>

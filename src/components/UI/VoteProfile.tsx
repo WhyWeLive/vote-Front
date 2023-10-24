@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
+import remarkGfm from "remark-gfm";
+import ReactMarkdown from "react-markdown";
 
 export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
   const [profile, setProfile] = useState({
-    id: "",
-    firstName: "",
-    secondName: "",
-    thirdName: "",
-    grup: "",
-    profile_picture: "",
-    email: "",
-    password: "",
-    bio: "",
+    id: "1",
+    firstName: "Смирнов",
+    secondName: "Владислав",
+    thirdName: "Андреевич",
+    grup: "11ИС-273",
+    profile_picture:
+      "https://i.pinimg.com/564x/59/b9/cc/59b9cc2278ef3039505e0afb8a2c337d.jpg",
+    bio: "Бла бла",
+    roles: ["Студент", " Админ"],
   });
 
   if (!isVisable) return null;
@@ -29,89 +31,98 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-1/2 h-min inset-0 flex justify-center"}>
+      <div className={"w-[500px] h-auto flex justify-center"}>
         <div
           className={
-            "shadow w-full h-full my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
+            "shadow w-full h-max my-8 flex flex-col gap-4 p-4 bg-white rounded-lg"
           }
         >
           <div className={"w-full flex items-end justify-end"}>
             <TiDelete
-              size={30}
+              size={25}
               className={
                 "hover:opacity-100 opacity-50 duration-500 cursor-pointer "
               }
               onClick={() => setShowVoteProfile(false)}
             />
           </div>
-          <div className={"flex gap-4"}>
+
+          <div className={"flex flex-col gap-4 items-center"}>
             <div
               className={
-                "w-96 h-96 flex duration-500 justify-center items-center"
+                "w-64 h-64 rounded-full flex relative hover:brightness-[70%] duration-500 justify-center items-center"
               }
             >
               {profile.profile_picture ? (
                 <img
-                  src={`http://localhost:3000/files/getProfilePicture/${profile.profile_picture}`}
+                  src={`${profile.profile_picture}`}
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
                   }
                 />
               ) : (
                 <img
                   src={
-                    "https://i.pinimg.com/736x/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
-                    // "http://localhost:3000/files/getProfilePicture/stockPicture.png"
+                    "http://localhost:3000/files/getProfilePicture/stockPicture.png"
                   }
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
                   }
                 />
               )}
             </div>
 
-            <div className={"flex flex-col w-full gap-4"}>
-              <div
-                className={
-                  "text-2xl outline outline-1 p-2 rounded-lg duration-500"
-                }
-              >
-                {typeof userData === "boolean" ? "" : profile.secondName + " "}
-                {typeof userData === "boolean" ? "" : profile.firstName + " "}
-                {typeof userData === "boolean" ? "" : profile.thirdName + " "}
-                Смирнов Владислав Андреевич
+            <div className={"flex flex-col w-full gap-2"}>
+              <div>
+                <div className={"text-2xl rounded-lg duration-500 text-start"}>
+                  {typeof userData === "boolean" ? "" : profile.firstName + " "}
+                  {typeof userData === "boolean"
+                    ? ""
+                    : profile.secondName + " "}
+                  {typeof userData === "boolean" ? "" : profile.thirdName + " "}
+                </div>
+                <div
+                  className={
+                    "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
+                  }
+                >
+                  {`Группа: ${profile.grup}`}
+                </div>
+                <div
+                  className={
+                    "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
+                  }
+                >
+                  {`Роль: ${profile.roles}`}
+                </div>
               </div>
               <div
                 className={
-                  "text-2xl outline outline-1 p-2 rounded-lg duration-500"
+                  "min-h-32 max-h-72 overflow-y-auto border my-2 overflow-x-hidden w-full"
                 }
               >
-                {"11ИС-273"}
-              </div>
-              <div
-                className={
-                  "text-2xl outline outline-1 p-2 rounded-lg duration-500 text-cyan-500"
-                }
-              >
-                Редактор сайта
-              </div>
-              <div
-                className={
-                  "text-2xl outline outline-1 rounded-lg h-max duration-500 p-2"
-                }
-              >
-                Я в своем познании настолько преисполнился, что я как будто бы
-                уже сто триллионов миллиардов лет проживаю на триллионах и
-                триллионах таких же планет, как эта Земля, мне этот мир
-                абсолютно понятен, и я здесь ищу только одного - покоя,
-                умиротворения и вот этой гармонии, от слияния с бесконечно
-                вечным, от созерцания великого фрактального подобия и от вот
-                этого замечательного всеединства существа, бесконечно вечного,
-                куда ни посмотри, хоть вглубь - бесконечно малое, хоть ввысь -
-                бесконечное большое, понимаешь? А ты мне опять со своим вот
-                этим, иди суетись дальше, это твоё распределение, это твой путь
-                и твой горизонт познания и ощущения твоей природы, он
-                несоизмеримо мелок по сравнению с моим, понимаешь?
+                <div
+                  className={
+                    "p-2 whitespace-normal prose max-w-full break-words"
+                  }
+                >
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    Единый день открытых дверей состоялся🥳 Для абитуриентов и
+                    их родителей была проведена обширная программа, показывающая
+                    преимущества обучения в нашем колледже! более 100 участников
+                    из 6 образовательных организаций 4 организации - партнера 12
+                    волонтеров 3 часа активного погружения в федеральный проект
+                    "Профессионалитет" более 50 заданных вопросов и полученных
+                    ответов🤗 🔸В рамках родительского собрания обсудили вопросы
+                    подготовки специалистов в соответствии с потребностями
+                    работодателей. 🔸Профессиональные пробы по 4 направлениям
+                    успели посетить школьники 8-11 классов. 🔸На Всероссийском
+                    классном часу рассказывали о преимуществах обучения в
+                    колледже по программам Профессионалитета. 🔸И даже успели
+                    посетить экскурсии на предприятия - партнеров проекта.
+                    Подробнее о каждом событии расскажем уже завтра 👋🏻
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           </div>

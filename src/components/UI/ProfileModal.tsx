@@ -110,39 +110,40 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-max h-[60%] flex justify-center"}>
+      <div className={"w-[500px] h-[65%] flex justify-center"}>
         <div
           className={
-            "shadow w-full h-max my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
+            "shadow w-full h-max my-8 flex flex-col gap-4 p-4 bg-white rounded-xl"
           }
         >
           <div className={"w-full flex items-end justify-end"}>
             <TiDelete
-              size={30}
+              size={25}
               className={
                 "hover:opacity-100 opacity-50 duration-500 cursor-pointer "
               }
               onClick={() => setShowProfileUpdate(false)}
             />
           </div>
-          <div className={"flex gap-4"}>
+
+          <div className={"flex flex-col gap-4 items-center"}>
             <div
               className={
-                "w-96 h-96 flex relative hover:brightness-[70%] duration-500 justify-center items-center"
+                "w-64 h-64 rounded-full flex relative hover:brightness-[70%] duration-500 justify-center items-center"
               }
             >
               {urlFile ? (
                 <img
                   src={urlFile}
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
                   }
                 />
               ) : profile.profile_picture ? (
                 <img
                   src={`http://localhost:3000/files/getProfilePicture/${profile.profile_picture}`}
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
                   }
                 />
               ) : (
@@ -151,7 +152,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                     "http://localhost:3000/files/getProfilePicture/stockPicture.png"
                   }
                   className={
-                    "w-96 h-96 rounded-lg pointer-events-none object-cover"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
                   }
                 />
               )}
@@ -165,7 +166,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   src={
                     "https://img.icons8.com/?size=200&id=NjujHWc6iSDE&format=png&color=FFFFFF"
                   }
-                  className={"w-24 h-24"}
+                  className={"w-24 h-24 bg-black/40 p-2 rounded-full"}
                 />
 
                 <input
@@ -179,30 +180,33 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             </div>
 
             <div className={"flex flex-col w-full gap-4"}>
-              <div
-                className={
-                  "text-2xl outline outline-1 p-2 rounded-lg duration-500"
-                }
-              >
-                {typeof userData === "boolean" ? "" : profile.secondName + " "}
-                {typeof userData === "boolean" ? "" : profile.firstName + " "}
-                {typeof userData === "boolean" ? "" : profile.thirdName + " "}
+              <div>
+                <div className={"text-2xl rounded-lg duration-500"}>
+                  {typeof userData === "boolean"
+                    ? ""
+                    : profile.secondName + " "}
+                  {typeof userData === "boolean" ? "" : profile.firstName + " "}
+                  {typeof userData === "boolean" ? "" : profile.thirdName + " "}
+                </div>
+                <div
+                  className={
+                    "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
+                  }
+                >
+                  {`Группа: ${profile.grup}`}
+                </div>
+                <div
+                  className={
+                    "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
+                  }
+                >
+                  {`Роль: ${userData.roles}`}
+                </div>
               </div>
-              <div
-                className={
-                  "text-2xl outline outline-1 p-2 rounded-lg duration-500"
-                }
-              >
-                {profile.grup}
-              </div>
-              <div
-                className={
-                  "text-2xl outline outline-1 rounded-lg h-full duration-500"
-                }
-              >
+              <div className={"text-2xl border h-36 rounded-lg duration-500"}>
                 <textarea
                   className={
-                    "h-full w-full p-2 text-xl resize-none rounded-lg focus:outline-none"
+                    "h-full w-full p-2 text-lg resize-none rounded-lg focus:outline-none"
                   }
                   placeholder={"Ваша речь"}
                   onChange={(e) =>
