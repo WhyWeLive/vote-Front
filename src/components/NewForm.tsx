@@ -64,7 +64,7 @@ export const NewForm = ({
           {userData.roles.find((item) => item === "Editor") ? (
             <div className={"flex flex-row items-center gap-2"}>
               <FaPencilAlt
-                size={20}
+                size={17}
                 className={
                   "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                 }
@@ -82,7 +82,7 @@ export const NewForm = ({
               />
 
               <TiDelete
-                size={30}
+                size={25}
                 className={
                   "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                 }

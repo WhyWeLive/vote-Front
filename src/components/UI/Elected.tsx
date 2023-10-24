@@ -9,6 +9,7 @@ export const Elected = ({
   checked,
   id,
   getElect,
+  voteFinish,
 }) => {
   const [name, setName] = useState("");
 
@@ -47,13 +48,13 @@ export const Elected = ({
             "flex flex-row justify-between items-center rounded-xl px-4 h-16 w-full"
           }
         >
-          <div className={"flex flex-row gap-4 items-center"}>
+          <div className={"flex flex-row gap-4 items-center "}>
             <div
               className={"relative flex duration-500 hover:brightness-[60%] "}
             >
               <div
                 className={
-                  "absolute w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 duration-700"
+                  "absolute w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 duration-700 z-4 "
                 }
               >
                 <TbHandFinger className={"w-8 h-8 text-white "} />
@@ -72,7 +73,7 @@ export const Elected = ({
                 ""
               ) : (
                 <img
-                  className={"w-16 h-16 rounded-full object-cover"}
+                  className={"w-16 h-16 rounded-full object-cover z-4"}
                   src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
                 />
               )}
@@ -82,11 +83,33 @@ export const Elected = ({
           <img
             src={"https://cdn-icons-png.flaticon.com/512/1828/1828640.png"}
             className={
-              checked == item
+              voteFinish
+                ? "hidden"
+                : checked == item
                 ? "h-6 w-6 opacity-70 duration-500 pointer-events-none"
-                : "opacity-0 duration-100 h-2 w-2 "
+                : "opacity-0 duration-100 h-2 w-2"
             }
           />
+          {voteFinish && item != "e4@e.ru" ? (
+            <div className={"flex flex-row items-center justify-center gap-8"}>
+              <div className={"w-24 flex bg-blue-300 rounded-lg items-center"}>
+                <div className={"bg-blue-600 h-2 w-[24%] rounded-lg"}></div>
+              </div>
+              <div>24%</div>
+            </div>
+          ) : (
+            ""
+          )}
+          {item == "e4@e.ru" && voteFinish ? (
+            <div className={"flex flex-row items-center justify-center gap-8"}>
+              <div className={"w-24 flex bg-blue-300 rounded-lg items-center"}>
+                <div className={"bg-blue-600 h-2 w-[86%] rounded-lg"}></div>
+              </div>
+              <div>86%</div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </label>
     </div>

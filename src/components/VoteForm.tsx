@@ -28,6 +28,7 @@ export const VoteForm = ({
   const [name, setName] = useState("");
   const [elect, setElect] = useState("");
   const [votePerm, setVotePerm] = useState(true);
+  const [voteFinish, setVoteFinish] = useState(false);
 
   function checkvote() {
     if (!(votedPersonsId == null)) {
@@ -92,7 +93,9 @@ export const VoteForm = ({
 
       <div
         className={
-          votePerm
+          voteFinish
+            ? "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col  p-6"
+            : votePerm
             ? "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col  p-6"
             : "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col p-6 opacity-60"
         }
@@ -105,15 +108,25 @@ export const VoteForm = ({
           </div>
 
           <div className={"flex flex-row gap-4 items-center"}>
-            <div className={"font-light opacity-50 w-max"}>
-              {DateTime.fromMillis(createdAt * 1000).toFormat("dd.MM.yy")} -
-              {DateTime.fromMillis(endedAt * 1000).toFormat(" dd.MM.yy")}
-            </div>
+            {voteFinish ? (
+              <div className={"font-light opacity-50 w-max"}>Завершено</div>
+            ) : (
+              <div className={"font-light opacity-50 w-max"}>
+                {DateTime.fromMillis(createdAt * 1000).toFormat("dd.MM.yy")} -
+                {DateTime.fromMillis(endedAt * 1000).toFormat(" dd.MM.yy")}
+              </div>
+            )}
 
             {userData.roles.find((item) => item === "Editor") ? (
               <div className={"flex flex-row items-center gap-2 "}>
+                <button
+                  onClick={() => setVoteFinish(true)}
+                  className={"bg-gray-200 rounded-full w-8 h-8 text-sm"}
+                >
+                  dev
+                </button>
                 <FaPencilAlt
-                  size={20}
+                  size={15}
                   className={
                     "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                   }
@@ -121,7 +134,7 @@ export const VoteForm = ({
                 />
 
                 <TiDelete
-                  size={30}
+                  size={23}
                   className={
                     "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                   }
@@ -137,6 +150,7 @@ export const VoteForm = ({
 
         {elected.map((item, index) => (
           <Elected
+            voteFinish={voteFinish}
             key={index}
             setShowVoteProfile={setShowVoteProfile}
             setChecked={votePerm ? setChecked : false}
@@ -149,9 +163,16 @@ export const VoteForm = ({
 
         <hr className={"my-4"} />
 
-        {votePerm ? (
+        {voteFinish ? (
+          <div
+            className={"font-semilight opacity-80 text-blue-500 text-center"}
+          >
+            В голосовании победил: Смирнов Владислав Андреевич
+          </div>
+        ) : votePerm ? (
           <div className={"flex flex-col items-center"}>
             <button
+              disabled={!checked}
               className={
                 checked
                   ? "rounded-lg bg-black/80 border-transparent p-2 w-64 text-base font-medium text-white font-sans hover:bg-blue-600 duration-500"
