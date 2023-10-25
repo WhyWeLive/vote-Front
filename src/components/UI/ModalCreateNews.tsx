@@ -34,7 +34,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
           accept: "application/json",
           "Content-Type": `multipart/form-data`,
         },
-      },
+      }
     );
   }
 
@@ -144,7 +144,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                 multiple={false}
                 onChange={(event) => preview(event)}
                 className={
-                  "w-full h-full absolute duration-500 cursor-pointer rounded-lg duration-500 hover:bg-green-500 opacity-20"
+                  "w-full h-full absolute duration-500 cursor-pointer rounded-lg hover:bg-green-500 opacity-20"
                 }
               />
 

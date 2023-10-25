@@ -137,14 +137,14 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 <img
                   src={urlFile}
                   className={
-                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : profile.profile_picture ? (
                 <img
                   src={`http://localhost:3000/files/getProfilePicture/${profile.profile_picture}`}
                   className={
-                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
@@ -153,7 +153,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                     "http://localhost:3000/files/getProfilePicture/stockPicture.png"
                   }
                   className={
-                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               )}

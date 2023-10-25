@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TbHandFinger } from "react-icons/tb";
 import axios from "axios";
-import { VoteProfile } from "./VoteProfile";
 
 export const Elected = ({
   item,
