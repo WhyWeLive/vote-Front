@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TbHandFinger } from "react-icons/tb";
 import axios from "axios";
+import { VoteProfile } from "./VoteProfile";
 
 export const Elected = ({
   item,
@@ -10,16 +11,48 @@ export const Elected = ({
   id,
   getElect,
   voteFinish,
+  showVoteProfile,
+  giveElectedDataToFather,
 }) => {
+  const [electedData, setElectedData] = useState({
+    firstName: "",
+    secondName: "",
+    thirdName: "",
+    bio: "",
+    grup: [""],
+    roles: [""],
+    profile_picture: "",
+  });
+
+  const [votesCount, setVotesCount] = useState(0);
+
   const [name, setName] = useState("");
+
+  function getElectedData() {
+    axios
+      .get(`http://localhost:3000/users/emailWithoutPass/${item}`)
+      .then(({ data }) => {
+        if (data) {
+          setElectedData(data);
+          giveElectedDataToFather(data);
+          setShowVoteProfile(true);
+        }
+      });
+  }
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/users/getNameByEmail/${item}`)
       .then((response) => {
         setName(response.data);
+      })
+      .then(() => {
+        axios
+          .get(`http://localhost:3000/vote/getVotesCountByEmail/${id}/${item}`)
+          .then(({ data }) => setVotesCount(data));
       });
   }, [1]);
+
   return (
     <div className={"flex flex-col gap-2"}>
       <input
@@ -29,10 +62,14 @@ export const Elected = ({
         className="hidden peer"
         required
         onClick={() => {
-          setChecked(item);
-          getElect(item);
+          if (typeof setChecked != "function") {
+          } else {
+            setChecked(item);
+            getElect(item);
+          }
         }}
       />
+
       <div />
       <label
         htmlFor={`${item + id.toString()}`}
@@ -63,7 +100,9 @@ export const Elected = ({
                   className={
                     "absolute w-full h-full rounded-full cursor-pointer z-10 "
                   }
-                  onClick={() => setShowVoteProfile(true)}
+                  onClick={() => {
+                    getElectedData();
+                  }}
                 ></button>
               </div>
               {item === "Да" ||
@@ -90,22 +129,9 @@ export const Elected = ({
                 : "opacity-0 duration-100 h-2 w-2"
             }
           />
-          {voteFinish && item != "e4@e.ru" ? (
+          {voteFinish ? (
             <div className={"flex flex-row items-center justify-center gap-8"}>
-              <div className={"w-24 flex bg-blue-300 rounded-lg items-center"}>
-                <div className={"bg-blue-600 h-2 w-[24%] rounded-lg"}></div>
-              </div>
-              <div>24%</div>
-            </div>
-          ) : (
-            ""
-          )}
-          {item == "e4@e.ru" && voteFinish ? (
-            <div className={"flex flex-row items-center justify-center gap-8"}>
-              <div className={"w-24 flex bg-blue-300 rounded-lg items-center"}>
-                <div className={"bg-blue-600 h-2 w-[86%] rounded-lg"}></div>
-              </div>
-              <div>86%</div>
+              Проголосовавших: {votesCount}
             </div>
           ) : (
             ""

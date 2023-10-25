@@ -29,6 +29,8 @@ export const VoteForm = ({
   const [elect, setElect] = useState("");
   const [votePerm, setVotePerm] = useState(true);
   const [voteFinish, setVoteFinish] = useState(false);
+  const [electedData, setElectedData] = useState({});
+  const [winner, setWinner] = useState("");
 
   function checkvote() {
     if (!(votedPersonsId == null)) {
@@ -36,6 +38,12 @@ export const VoteForm = ({
         setVotePerm(false);
       }
     }
+  }
+
+  function getWinner(id) {
+    axios
+      .get(`http://localhost:3000/vote/getWinner/${id}`)
+      .then(({ data }) => setWinner(data));
   }
 
   function getElect(item) {
@@ -62,8 +70,21 @@ export const VoteForm = ({
       .then(() => getCounter());
   }
 
+  function giveElectedDataToFather(electedData) {
+    setElectedData(electedData);
+  }
+
   useEffect(() => {
     checkvote();
+
+    if (endedAt * 1000 <= DateTime.now().ts) {
+      setVoteFinish(true);
+      getWinner(id);
+      // setTimeout(
+      //   () => axios.delete(`http://localhost:3000/vote/${id}`),
+      //   86400000
+      // );
+    }
   }, [counter, getCounter]);
 
   return (
@@ -83,21 +104,13 @@ export const VoteForm = ({
         />
       )}
 
-      {showVoteProfile && (
-        <VoteProfile
-          key={id}
-          isVisable={showVoteProfile}
-          setShowVoteProfile={setShowVoteProfile}
-        />
-      )}
-
       <div
         className={
           voteFinish
-            ? "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col  p-6"
+            ? "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col  p-6"
             : votePerm
-            ? "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col  p-6"
-            : "my-5 w-[700px] h-max border border-2 rounded-lg bg-white flex flex-col p-6 opacity-60"
+            ? "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col  p-6"
+            : "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col p-6 opacity-60"
         }
       >
         <div className={"w-full flex justify-end items-center"}></div>
@@ -119,12 +132,6 @@ export const VoteForm = ({
 
             {userData.roles.find((item) => item === "Editor") ? (
               <div className={"flex flex-row items-center gap-2 "}>
-                <button
-                  onClick={() => setVoteFinish(true)}
-                  className={"bg-gray-200 rounded-full w-8 h-8 text-sm"}
-                >
-                  dev
-                </button>
                 <FaPencilAlt
                   size={15}
                   className={
@@ -148,8 +155,18 @@ export const VoteForm = ({
         </div>
         <hr className={"my-2"} />
 
+        {showVoteProfile && (
+          <VoteProfile
+            key={id}
+            isVisable={showVoteProfile}
+            setShowVoteProfile={setShowVoteProfile}
+            userData={electedData}
+          />
+        )}
+
         {elected.map((item, index) => (
           <Elected
+            showVoteProfile={showVoteProfile}
             voteFinish={voteFinish}
             key={index}
             setShowVoteProfile={setShowVoteProfile}
@@ -158,6 +175,7 @@ export const VoteForm = ({
             item={item}
             checked={votePerm ? checked : false}
             getElect={getElect}
+            giveElectedDataToFather={giveElectedDataToFather}
           />
         ))}
 
@@ -167,7 +185,7 @@ export const VoteForm = ({
           <div
             className={"font-semilight opacity-80 text-blue-500 text-center"}
           >
-            В голосовании победил: Смирнов Владислав Андреевич
+            В голосовании победил: {winner}
           </div>
         ) : votePerm ? (
           <div className={"flex flex-col items-center"}>

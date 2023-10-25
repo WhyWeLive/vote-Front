@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
+import { Roles } from "./VoteProfile";
 
 export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   const [profile, setProfile] = useState({
@@ -56,7 +57,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(({ data }) =>
         axios
@@ -74,7 +75,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             setProfile(data);
@@ -96,9 +97,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              },
+              }
             );
-          }),
+          })
       );
   }
 
@@ -200,7 +201,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                     "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
                   }
                 >
-                  {`Роль: ${userData.roles}`}
+                  {`Роль: ${userData.roles
+                    .map((item) => Roles[item])
+                    .join(" ")}`}
                 </div>
               </div>
               <div className={"text-2xl border h-36 rounded-lg duration-500"}>

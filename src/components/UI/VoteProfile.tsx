@@ -1,21 +1,15 @@
-import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 
-export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
-  const [profile, setProfile] = useState({
-    id: "1",
-    firstName: "Смирнов",
-    secondName: "Владислав",
-    thirdName: "Андреевич",
-    grup: "11ИС-273",
-    profile_picture:
-      "https://i.pinimg.com/564x/59/b9/cc/59b9cc2278ef3039505e0afb8a2c337d.jpg",
-    bio: "Бла бла",
-    roles: ["Студент", " Админ"],
-  });
+export enum Roles {
+  Editor = "Редактор",
+  User = "Пользователь",
+  Student = "Студент",
+  Starosta = "Староста",
+}
 
+export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
   if (!isVisable) return null;
   const handleClose = (e) => {
     if (e.target.id === "exit") {
@@ -50,14 +44,14 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
           <div className={"flex flex-col gap-4 items-center"}>
             <div
               className={
-                "w-64 h-64 rounded-full flex relative hover:brightness-[70%] duration-500 justify-center items-center"
+                "w-64 h-64 rounded-full flex relative duration-500 justify-center items-center"
               }
             >
-              {profile.profile_picture ? (
+              {userData.profile_picture ? (
                 <img
-                  src={`${profile.profile_picture}`}
+                  src={`http://localhost:3000/files/getProfilePicture/${userData.profile_picture}`}
                   className={
-                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
@@ -66,7 +60,7 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
                     "http://localhost:3000/files/getProfilePicture/stockPicture.png"
                   }
                   className={
-                    "w-64 h-64 rounded-full pointer-events-none object-cover rounded-full"
+                    "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               )}
@@ -75,25 +69,31 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
             <div className={"flex flex-col w-full gap-2"}>
               <div>
                 <div className={"text-2xl rounded-lg duration-500 text-start"}>
-                  {typeof userData === "boolean" ? "" : profile.firstName + " "}
                   {typeof userData === "boolean"
                     ? ""
-                    : profile.secondName + " "}
-                  {typeof userData === "boolean" ? "" : profile.thirdName + " "}
+                    : userData.firstName + " "}
+                  {typeof userData === "boolean"
+                    ? ""
+                    : userData.secondName + " "}
+                  {typeof userData === "boolean"
+                    ? ""
+                    : userData.thirdName + " "}
                 </div>
                 <div
                   className={
                     "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
                   }
                 >
-                  {`Группа: ${profile.grup}`}
+                  {`Группа: ${userData.grup}`}
                 </div>
                 <div
                   className={
                     "text-lg opacity-50 font-light rounded-lg duration-500 text-start"
                   }
                 >
-                  {`Роль: ${profile.roles}`}
+                  {`Роль: ${userData.roles
+                    .map((item) => Roles[item])
+                    .join(" ")}`}
                 </div>
               </div>
               <div
@@ -107,20 +107,7 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
                   }
                 >
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    Единый день открытых дверей состоялся🥳 Для абитуриентов и
-                    их родителей была проведена обширная программа, показывающая
-                    преимущества обучения в нашем колледже! более 100 участников
-                    из 6 образовательных организаций 4 организации - партнера 12
-                    волонтеров 3 часа активного погружения в федеральный проект
-                    "Профессионалитет" более 50 заданных вопросов и полученных
-                    ответов🤗 🔸В рамках родительского собрания обсудили вопросы
-                    подготовки специалистов в соответствии с потребностями
-                    работодателей. 🔸Профессиональные пробы по 4 направлениям
-                    успели посетить школьники 8-11 классов. 🔸На Всероссийском
-                    классном часу рассказывали о преимуществах обучения в
-                    колледже по программам Профессионалитета. 🔸И даже успели
-                    посетить экскурсии на предприятия - партнеров проекта.
-                    Подробнее о каждом событии расскажем уже завтра 👋🏻
+                    {userData.bio}
                   </ReactMarkdown>
                 </div>
               </div>

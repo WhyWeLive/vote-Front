@@ -21,6 +21,7 @@ export const App = () => {
   function toAuth(authState: boolean): void {
     setIsAuth(authState);
   }
+
   const [news, setNews] = useState({});
 
   function getNew(body) {
@@ -42,7 +43,7 @@ export const App = () => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
       .then(({ data }) => {
         toAuth(data);

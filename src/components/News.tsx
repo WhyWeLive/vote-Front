@@ -37,7 +37,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
       <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
         {!news.length > 0 ? (
           <div className={"flex justify-center items-center flex-col my-4"}>
-            <div className={"font-light text-xl"}>Новостей еще нет.. </div>
+            <div className={"font-light text-xl"}>Новостей еще нет... </div>
           </div>
         ) : (
           news.map((item) => (

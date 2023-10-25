@@ -28,8 +28,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
     inputValues.push(
       ...count.map(
-        (item, index) => document.getElementById(index.toString()).value,
-      ),
+        (item, index) => document.getElementById(index.toString()).value
+      )
     );
 
     if (inputValues.includes("")) {
@@ -48,7 +48,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {},
+        {}
       );
     }
   }
