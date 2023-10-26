@@ -10,7 +10,6 @@ export const Elected = ({
   id,
   getElect,
   voteFinish,
-  showVoteProfile,
   giveElectedDataToFather,
 }) => {
   const [electedData, setElectedData] = useState({
@@ -116,8 +115,42 @@ export const Elected = ({
                 />
               )}
             </div>
-            <div className={"text-2xl font-semi"}>{name ? name : item}</div>
+            <div className={"h-min text-xl"}>{name ? name : item}</div>
           </div>
+          <div>
+            {voteFinish ? (
+              <div
+                className={
+                  "flex flex-row items-center gap-4 w-[135px] h-[24px] justify-between "
+                }
+              >
+                <div
+                  className={
+                    "w-full bg-blue-300 rounded-lg relative flex items-center"
+                  }
+                >
+                  <div
+                    className={
+                      "absolute text-sm w-full text-center pointer-events-none"
+                    }
+                  >
+                    {Number(votesCount) ? votesCount + "%" : "0%"}
+                  </div>
+                  <div
+                    style={
+                      Number(votesCount)
+                        ? { width: `${votesCount}%` }
+                        : { width: `0%` }
+                    }
+                    className={"h-4 bg-blue-500 rounded-lg"}
+                  ></div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
           <img
             src={"https://cdn-icons-png.flaticon.com/512/1828/1828640.png"}
             className={
@@ -128,13 +161,6 @@ export const Elected = ({
                 : "opacity-0 duration-100 h-2 w-2"
             }
           />
-          {voteFinish ? (
-            <div className={"flex flex-row items-center justify-center gap-8"}>
-              Проголосовавших: {votesCount}
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </label>
     </div>

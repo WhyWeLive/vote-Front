@@ -77,7 +77,7 @@ export const VoteForm = ({
   useEffect(() => {
     checkvote();
 
-    if (endedAt * 1000 <= DateTime.now().ts) {
+    if (true) {
       setVoteFinish(true);
       getWinner(id);
       // setTimeout(
