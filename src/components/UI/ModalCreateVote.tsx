@@ -28,8 +28,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
     inputValues.push(
       ...count.map(
-        (item, index) => document.getElementById(index.toString()).value
-      )
+        (item, index) => document.getElementById(index.toString()).value,
+      ),
     );
 
     if (inputValues.includes("")) {
@@ -48,7 +48,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {}
+        {},
       );
     }
   }
@@ -70,19 +70,34 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
         >
           <div
             className={
-              "w-full h-auto flex flex-col gap-8 p-2 bg-white rounded-lg "
+              "w-full h-auto flex flex-col gap-4 p-2 bg-white rounded-lg "
             }
           >
+            <div className={"flex justify-between items-center"}>
+              <div className={"text-xl font-semibold opacity-70"}>
+                Создание голосования
+              </div>
+              <div>
+                <TiDelete
+                  size={30}
+                  className={
+                    "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
+                  }
+                  onClick={() => setShowModalVote(false)}
+                />
+              </div>
+            </div>
+
             <div className={"flex flex-row justify-between"}>
               <div className={"flex flex-row items-center w-full gap-4"}>
                 <div
                   className={
-                    "flex outline outline-black/80 rounded-lg w-1/4 h-12 outline-1 focus-within:outline-blue-600 duration-500"
+                    "flex border border-black/20 rounded-lg w-1/4 h-12 outline-1 focus-within:border-blue-600 duration-500"
                   }
                 >
                   <textarea
                     className={
-                      "w-full h-auto p-2 text-xl resize-none rounded-lg focus:outline-none"
+                      "w-full h-auto p-2 text-xl resize-none rounded-lg outline-none"
                     }
                     placeholder={"Группа"}
                     maxLength={4}
@@ -93,7 +108,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 </div>
                 <div
                   className={
-                    "w-1/4 h-full outline outline-1 outline-black/80 rounded-lg flex items-center p-2"
+                    "w-1/4 h-full border border-black/20 rounded-lg flex items-center p-2 focus-within:border-blue-600 duration-500"
                   }
                 >
                   <input
@@ -107,26 +122,16 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                   />
                 </div>
               </div>
-
-              <div>
-                <TiDelete
-                  size={30}
-                  className={
-                    "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
-                  }
-                  onClick={() => setShowModalVote(false)}
-                />
-              </div>
             </div>
 
             <div
               className={
-                "flex outline outline-black/80 rounded-lg w-full outline-1 h-12 focus-within:outline-blue-600 duration-500"
+                "flex border border-black/20 rounded-lg w-full h-12 focus-within:border-blue-600 duration-500"
               }
             >
               <textarea
                 className={
-                  "h-full w-full p-2 text-xl resize-none rounded-lg focus:outline-none"
+                  "h-full w-full p-2 text-xl resize-none rounded-lg outline-none"
                 }
                 placeholder={"Заголовок"}
                 maxLength={255}
@@ -136,13 +141,13 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
               />
             </div>
             <div
-              className={"h-auto max-h-64  gap-8 flex flex-col overflow-y-auto"}
+              className={"h-auto max-h-64  gap-4 flex flex-col overflow-y-auto"}
             >
               {count.map((item, index) => (
                 <div
                   key={index}
                   className={
-                    "flex border border-black/80 rounded-lg w-full h-min focus-within:border-blue-600 duration-500"
+                    "flex border border-black/20 rounded-lg w-full h-min focus-within:border-blue-600 duration-500"
                   }
                 >
                   <div

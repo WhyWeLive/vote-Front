@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { InfoModals } from "./InfoModals";
@@ -34,7 +34,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
           accept: "application/json",
           "Content-Type": `multipart/form-data`,
         },
-      }
+      },
     );
   }
 
@@ -56,23 +56,12 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
       <div className={"w-1/2 h-1/8 inset-0 flex justify-center"}>
         <div
           className={
-            "shadow w-full h-auto max-h-[900px] my-8 flex flex-col gap-8 p-4 bg-white rounded-lg"
+            "shadow w-full h-auto max-h-[900px] my-8 flex flex-col gap-4 p-4 bg-white rounded-lg"
           }
         >
-          <div className={"flex flex-row justify-between"}>
-            <div
-              className={
-                "flex outline outline-black/80 rounded-lg w-1/4 h-12 outline-1 focus-within:outline-blue-600 duration-500"
-              }
-            >
-              <textarea
-                className={
-                  "w-full h-auto p-2 text-xl resize-none rounded-lg focus:outline-none"
-                }
-                placeholder={"Группа"}
-                maxLength={4}
-                onChange={(e) => setNews({ ...news, grup: e.target.value })}
-              />
+          <div className={"flex items-center justify-between"}>
+            <div className={"text-xl font-semibold opacity-70"}>
+              Создание новости
             </div>
             <div>
               <TiDelete
@@ -84,15 +73,31 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               />
             </div>
           </div>
+          <div className={"flex flex-row justify-between"}>
+            <div
+              className={
+                "flex border border-black/20 rounded-lg w-1/4 h-12 focus-within:border-blue-600 duration-500"
+              }
+            >
+              <textarea
+                className={
+                  "w-full h-auto p-2 text-xl resize-none rounded-lg outline-none"
+                }
+                placeholder={"Группа"}
+                maxLength={4}
+                onChange={(e) => setNews({ ...news, grup: e.target.value })}
+              />
+            </div>
+          </div>
 
           <div
             className={
-              "flex outline outline-black/80 rounded-lg w-full outline-1 h-12 focus-within:outline-blue-600 duration-500"
+              "flex border border-black/20 rounded-lg w-full h-12 focus-within:border-blue-600 duration-500"
             }
           >
             <textarea
               className={
-                "h-full w-full p-2 text-xl resize-none rounded-lg focus:outline-none"
+                "h-full w-full p-2 text-xl resize-none rounded-lg outline-none"
               }
               placeholder={"Заголовок"}
               maxLength={255}
@@ -102,12 +107,12 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
 
           <div
             className={
-              "flex outline outline-black/80 rounded-lg w-auto h-[570px] outline-1 focus-within:outline-blue-600 duration-500"
+              "flex border border-black/20 rounded-lg w-auto h-[400px] focus-within:border-blue-600 duration-500"
             }
           >
             <textarea
               className={
-                "w-full h-full p-2 text-xl resize-none rounded-lg focus:outline-none"
+                "w-full h-full p-2 text-xl resize-none rounded-lg outline-none"
               }
               placeholder={"Содержание новости"}
               maxLength={2000}

@@ -48,9 +48,7 @@ export const NewForm = ({
         " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
       }
     >
-      <div
-        className={"border-b-2 p-4 flex flex-row items-center h-full w-full "}
-      >
+      <div className={"border-b p-4 flex flex-row items-center h-full w-full "}>
         <div>
           <div className=" w-12 h-12 rounded-full select-none flex items-center justify-center bg-gradient-to-br from-indigo-500 via-sky-500 via-30% to-emerald-500 text-white font-bold">
             {grup}
