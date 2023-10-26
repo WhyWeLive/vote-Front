@@ -31,6 +31,7 @@ export const VoteForm = ({
   const [voteFinish, setVoteFinish] = useState(false);
   const [electedData, setElectedData] = useState({});
   const [winner, setWinner] = useState("");
+  const [remadeVote, setRemadeVote] = useState(false);
 
   function checkvote() {
     if (!(votedPersonsId == null)) {
@@ -41,9 +42,10 @@ export const VoteForm = ({
   }
 
   function getWinner(id) {
-    axios
-      .get(`http://localhost:3000/vote/getWinner/${id}`)
-      .then(({ data }) => setWinner(data));
+    axios.get(`http://localhost:3000/vote/getWinner/${id}`).then(({ data }) => {
+      setWinner(data);
+      setRemadeVote(!data);
+    });
   }
 
   function getElect(item) {
@@ -78,14 +80,20 @@ export const VoteForm = ({
     checkvote();
 
     if (true) {
-      setVoteFinish(true);
       getWinner(id);
+
+      if (remadeVote) {
+        setTimeout(() => console.log(`sfsa ${id}`), 500);
+      }
+
+      setVoteFinish(!remadeVote);
+
       // setTimeout(
       //   () => axios.delete(`http://localhost:3000/vote/${id}`),
       //   86400000
       // );
     }
-  }, [counter, getCounter]);
+  }, [counter, getCounter, remadeVote]);
 
   return (
     <div>
@@ -121,7 +129,13 @@ export const VoteForm = ({
           </div>
 
           <div className={"flex flex-row gap-4 items-center"}>
-            {voteFinish ? (
+            {remadeVote && !voteFinish ? (
+              <div className={"font-light opacity-50 w-max"}>Продлено</div>
+            ) : (
+              ""
+            )}
+
+            {voteFinish && remadeVote ? (
               <div className={"font-light opacity-50 w-max"}>Завершено</div>
             ) : (
               <div className={"font-light opacity-50 w-max"}>
@@ -185,7 +199,7 @@ export const VoteForm = ({
           <div
             className={"font-semilight opacity-80 text-blue-500 text-center"}
           >
-            В голосовании победил: {winner}
+            В голосовании победил: {winner} {String(remadeVote)}
           </div>
         ) : votePerm ? (
           <div className={"flex flex-col items-center"}>
