@@ -57,7 +57,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(({ data }) =>
         axios
@@ -75,7 +75,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             setProfile(data);
@@ -97,9 +97,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              }
+              },
             );
-          })
+          }),
       );
   }
 
@@ -111,7 +111,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-[500px] h-[65%] flex justify-center"}>
+      <div className={"w-[500px] h-[70%] flex justify-center"}>
         <div
           className={
             "shadow w-full h-max my-8 flex flex-col gap-4 p-4 bg-white rounded-xl"

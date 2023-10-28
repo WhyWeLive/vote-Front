@@ -131,7 +131,7 @@ export const Elected = ({
                 >
                   <div
                     className={
-                      "absolute text-sm w-full text-center pointer-events-none"
+                      "absolute text-sm w-full text-center pointer-events-none text-black/80 font-semibold"
                     }
                   >
                     {Number(votesCount) ? votesCount + "%" : "0%"}

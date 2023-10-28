@@ -25,7 +25,7 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
       id="exit"
       onClick={handleClose}
     >
-      <div className={"w-[500px] h-auto flex justify-center"}>
+      <div className={"w-[500px] h-[70%] flex justify-center"}>
         <div
           className={
             "shadow w-full h-max my-8 flex flex-col gap-4 p-4 bg-white rounded-lg"
