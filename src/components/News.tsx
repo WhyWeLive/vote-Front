@@ -53,6 +53,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
               getCounter={getCounter}
               setShowModalUpdate={setShowModalUpdate}
               getNews={getNews}
+              likes={item.likes}
             />
           ))
         )}

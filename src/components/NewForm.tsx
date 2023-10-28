@@ -6,6 +6,7 @@ import axios from "axios";
 import * as luxon from "luxon";
 import { DateTime } from "luxon";
 import { useState } from "react";
+import { Likes } from "./UI/Likes";
 
 luxon.Settings.defaultLocale = "ru";
 luxon.Settings.defaultZone = "UTC+7";
@@ -21,6 +22,7 @@ export const NewForm = ({
   getCounter,
   setShowModalUpdate,
   getNews,
+  likes,
 }) => {
   function time() {
     const day = DateTime.fromMillis(DateTime.now() - createdAt * 1000);
@@ -34,7 +36,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm",
+        "dd' 'LLL' в 'HH':'mm"
       );
     }
   }
@@ -158,6 +160,7 @@ export const NewForm = ({
       ) : (
         <div className={"py-4"}></div>
       )}
+      <Likes likes={likes} />
     </div>
   );
 };

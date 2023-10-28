@@ -19,6 +19,7 @@ export const VoteForm = ({
   userData,
   grup,
   counter,
+  extended,
 }) => {
   const [successfulModal, setSuccessfulModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
@@ -30,7 +31,7 @@ export const VoteForm = ({
   const [votePerm, setVotePerm] = useState(true);
   const [voteFinish, setVoteFinish] = useState(false);
   const [electedData, setElectedData] = useState({});
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState(true);
   const [voteDelete, setVoteDelete] = useState(false);
 
   function checkvote() {
@@ -47,12 +48,15 @@ export const VoteForm = ({
       .then(({ data }) => {
         setWinner(data);
         setVoteFinish(!!data);
-      })
-      .then(() => {
-        if (!winner) {
-          console.log(endedAt);
+
+        if (!data) {
+          axios.put(`http://localhost:3000/vote/${id}`, {
+            endedAt: String(+endedAt + 86400),
+            extended: true,
+          });
         }
-      });
+      })
+      .then(() => {});
   }
 
   function getElect(item) {
@@ -130,7 +134,7 @@ export const VoteForm = ({
           </div>
 
           <div className={"flex flex-row gap-4 items-center"}>
-            {!winner ? (
+            {extended && !voteFinish ? (
               <div className={"font-light opacity-50 w-max"}>Продлено</div>
             ) : (
               ""

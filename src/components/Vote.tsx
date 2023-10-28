@@ -62,6 +62,7 @@ export const Vote = ({ userData }) => {
               counter={counter}
               userData={userData}
               grup={item.grup}
+              extended={item.extended}
             />
           ))
         )}
