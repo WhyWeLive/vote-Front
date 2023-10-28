@@ -32,6 +32,7 @@ export const VoteForm = ({
   const [electedData, setElectedData] = useState({});
   const [winner, setWinner] = useState("");
   const [remadeVote, setRemadeVote] = useState(false);
+  const [voteDelete, setVoteDelete] = useState(false);
 
   function checkvote() {
     if (!(votedPersonsId == null)) {
@@ -159,7 +160,7 @@ export const VoteForm = ({
                   className={
                     "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                   }
-                  onClick={() => deleteVote(id)}
+                  onClick={() => setVoteDelete(true)}
                 />
               </div>
             ) : (
@@ -307,6 +308,47 @@ export const VoteForm = ({
               >
                 Ок
               </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {voteDelete ? (
+        <div
+          className={
+            "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10 "
+          }
+        >
+          <div
+            className={
+              "bg-white rounded-lg w-max h-max flex flex-col items-center justify-center p-8"
+            }
+          >
+            <div className={"flex flex-col gap-4"}>
+              <div className={"text-xl font-semibold"}>
+                Удаление голосования
+              </div>
+              <div className={"font text-xl"}>Хотите удалить голосование?</div>
+              <div className={"flex flex-row justify-between gap-4 w-full"}>
+                <button
+                  className={
+                    "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
+                  }
+                  onClick={() => deleteVote(id)}
+                >
+                  Да, удалить
+                </button>
+                <button
+                  className={
+                    "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
+                  }
+                  onClick={() => setVoteDelete(false)}
+                >
+                  Нет,отменить
+                </button>
+              </div>
             </div>
           </div>
         </div>

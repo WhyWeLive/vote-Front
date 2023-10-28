@@ -57,7 +57,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
       className={
         "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
       }
-      id="exit"
+      id="exit1"
       onClick={handleClose}
     >
       <div
@@ -196,23 +196,10 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {errorModal ? (
-            <InfoModals
-              status={errorModal}
-              dateError={dateError}
-              setErrorModal={setErrorModal}
-              inputerror={inputError}
-            />
-          ) : (
-            ""
-          )}
-
-          <div className={"flex items-center justify-center flex-row"}>
             <button
               className={
-                "mt-[2rem] w-1/2 py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
+                "w-full py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600" +
+                " duration-500 text-center cursor-pointer"
               }
               onClick={() => {
                 if (VoteData.endedAt < DateTime.now() / 1000) {
@@ -239,6 +226,17 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
               Подтвердить
             </button>
           </div>
+
+          {errorModal ? (
+            <InfoModals
+              status={errorModal}
+              dateError={dateError}
+              setErrorModal={setErrorModal}
+              inputerror={inputError}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

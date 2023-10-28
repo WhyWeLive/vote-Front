@@ -50,7 +50,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
       className={
         "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
       }
-      id="exit"
+      id="exit1"
       onClick={handleClose}
     >
       <div className={"w-1/2 h-1/8 inset-0 flex justify-center"}>

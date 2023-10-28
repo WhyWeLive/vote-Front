@@ -5,6 +5,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
 import * as luxon from "luxon";
 import { DateTime } from "luxon";
+import { useState } from "react";
 
 luxon.Settings.defaultLocale = "ru";
 luxon.Settings.defaultZone = "UTC+7";
@@ -38,6 +39,8 @@ export const NewForm = ({
     }
   }
 
+  const [deleteModal, setdeleteModal] = useState(false);
+
   function deleteNews() {
     axios.delete(`http://localhost:3000/news/${id}`).then(() => getCounter());
   }
@@ -48,6 +51,44 @@ export const NewForm = ({
         " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
       }
     >
+      {deleteModal ? (
+        <div
+          className={
+            "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10 "
+          }
+        >
+          <div
+            className={
+              "bg-white rounded-lg w-max h-max flex flex-col items-center justify-center p-8"
+            }
+          >
+            <div className={"flex flex-col gap-4"}>
+              <div className={"text-xl font-semibold"}>Удаление новости</div>
+              <div className={"font text-xl"}>Хотите удалить новость?</div>
+              <div className={"flex flex-row justify-between gap-4 w-full"}>
+                <button
+                  className={
+                    "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
+                  }
+                  onClick={() => deleteNews()}
+                >
+                  Да, удалить
+                </button>
+                <button
+                  className={
+                    "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
+                  }
+                  onClick={() => setdeleteModal(false)}
+                >
+                  Нет,отменить
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className={"border-b p-4 flex flex-row items-center h-full w-full "}>
         <div>
           <div className=" w-12 h-12 rounded-full select-none flex items-center justify-center bg-gradient-to-br from-indigo-500 via-sky-500 via-30% to-emerald-500 text-white font-bold">
@@ -84,7 +125,7 @@ export const NewForm = ({
                 className={
                   "hover:opacity-100 opacity-50 duration-500 cursor-pointer"
                 }
-                onClick={() => deleteNews()}
+                onClick={() => setdeleteModal(true)}
               />
             </div>
           ) : (
