@@ -16,7 +16,7 @@ export const Dropdown = ({
   useClickOutside(menuRef, () => setIsOpen(false));
 
   return (
-    <div className="flex justify-center sm:justify-end flex-row duration-700 xl:w-[242px] w-full absolute top-[-20px] md:w-[273px] md:px-10 left-[35px] sm:static ">
+    <div className="flex justify-center sm:justify-end flex-row duration-700 lg:w-[321px] w-full absolute top-[-20px] md:w-[289px] md:px-10 left-[35px] sm:static ">
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
           <div className="flex items-center text-center place-items-center gap-2 hover:cursor-pointer">
