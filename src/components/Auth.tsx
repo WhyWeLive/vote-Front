@@ -59,7 +59,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   }
   return (
     <div className={"w-screen h-screen flex justify-center bg-gray-100"}>
-      <div className="p-6 my-48 border shadow w-96 h-[33rem] rounded-lg bg-white flex items-center flex-col">
+      <div className="p-6 sm:my-48 my-auto border shadow w-96 h-[33rem] rounded-lg bg-white flex items-center flex-col">
         <img
           src={"https://collegeschedule.ru/assets/logo-23babd2f.svg"}
           className={"w-16 h-16 rounded-lg my-4"}

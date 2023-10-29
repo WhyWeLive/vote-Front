@@ -51,7 +51,7 @@ export const NewForm = ({
   return (
     <div
       className={
-        " my-5 w-screen sm:w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
+        " my-2 w-screen sm:w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
       }
     >
       {deleteModal ? (

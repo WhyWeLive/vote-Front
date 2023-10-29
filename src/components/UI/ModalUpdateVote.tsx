@@ -79,10 +79,12 @@ export const ModalUpdateVote = ({
       id="exit1"
       onClick={handleClose}
     >
-      <div className={"w-1/2 min-h-1/2 max-h-auto flex justify-center"}>
+      <div
+        className={"w-full sm:w-1/2 min-h-1/2 max-h-auto flex justify-center"}
+      >
         <div
           className={
-            "shadow w-full h-auto flex p-4 flex-col bg-white rounded-lg"
+            "shadow w-full h-1/2 sm:h-auto flex p-4 flex-col bg-white rounded-lg"
           }
         >
           <div
@@ -108,7 +110,7 @@ export const ModalUpdateVote = ({
               <div className={"flex flex-row items-center w-full gap-4"}>
                 <div
                   className={
-                    "flex border-black/20 border rounded-lg w-1/4 h-12 focus-within:border-blue-600 duration-500"
+                    "flex border-black/20 border rounded-lg w-1/2 h-12 focus-within:border-blue-600 duration-500"
                   }
                 >
                   <textarea
@@ -125,7 +127,7 @@ export const ModalUpdateVote = ({
                 </div>
                 <div
                   className={
-                    "w-1/4 h-full border-black/20 border focus-within:border-blue-600 duration-500 rounded-lg flex items-center p-2"
+                    "w-1/2 h-full border-black/20 border focus-within:border-blue-600 duration-500 rounded-lg flex items-center p-2"
                   }
                 >
                   <input

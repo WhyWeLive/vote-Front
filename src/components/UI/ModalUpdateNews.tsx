@@ -68,10 +68,10 @@ export const ModalUpdateNews = ({
       id="exit1"
       onClick={handleClose}
     >
-      <div className={"w-screen sm:w-1/2 h-1/8 inset-0 flex justify-center"}>
+      <div className={"w-screen 2xl:w-1/2 h-1/8 inset-0 flex justify-center"}>
         <div
           className={
-            "shadow w-full  h-screen sm:h-auto sm:max-h-[900px] my-8 flex flex-col gap-4 p-4 bg-white rounded-lg"
+            "shadow w-full 2xl:h-auto sm:h-[400px] sm:max-h-[900px] my-8 flex flex-col gap-4 p-4 bg-white rounded-lg xl:overflow-none overflow-y-auto"
           }
         >
           <div className={"flex items-center justify-between"}>
@@ -155,7 +155,11 @@ export const ModalUpdateNews = ({
             <div className={"flex gap-8 flex-col"}>
               {showImage ? (
                 <div className={"w-full flex justify-start"}>
-                  <div className={"flex flex-row items-center justify-center"}>
+                  <div
+                    className={
+                      "flex flex-row items-center justify-center relative"
+                    }
+                  >
                     <img
                       src={`http://localhost:3000/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl object-cover"}

@@ -52,7 +52,7 @@ export const Elected = ({
   }, [1]);
 
   return (
-    <div className={"flex flex-col gap-2"}>
+    <div className={"flex flex-col gap-2 w-full sm:w-auto"}>
       <input
         type="radio"
         id={`${item + id.toString()}`}
@@ -103,19 +103,21 @@ export const Elected = ({
                   }}
                 ></button>
               </div>
-              {item === "Да" ||
-              item === "да" ||
-              item === "Нет" ||
-              item === "нет" ? (
-                ""
-              ) : (
-                <img
-                  className={"w-16 h-16 rounded-full object-cover z-4"}
-                  src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
-                />
-              )}
+              <div className={"h-max w-max"}>
+                {item === "Да" ||
+                item === "да" ||
+                item === "Нет" ||
+                item === "нет" ? (
+                  ""
+                ) : (
+                  <img
+                    className={"w-16 h-16 rounded-full object-cover z-4"}
+                    src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
+                  />
+                )}
+              </div>
             </div>
-            <div className={"h-min text-xl"}>{name ? name : item}</div>
+            <div className={"h-min sm:text-xl"}>{name ? name : item}</div>
           </div>
           <div>
             {voteFinish ? (

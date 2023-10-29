@@ -53,10 +53,10 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
       id="exit1"
       onClick={handleClose}
     >
-      <div className={"w-1/2 h-1/8 inset-0 flex justify-center"}>
+      <div className={"w-full sm:w-1/2 h-1/8 inset-0 flex justify-center"}>
         <div
           className={
-            "shadow w-full h-auto max-h-[900px] my-8 flex flex-col gap-4 p-4 bg-white rounded-lg"
+            "shadow w-full 2xl:h-auto sm:h-[400px] sm:max-h-[900px] my-8 flex flex-col gap-4 p-4 bg-white rounded-lg xl:overflow-none overflow-y-auto"
           }
         >
           <div className={"flex items-center justify-between"}>
@@ -76,7 +76,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
           <div className={"flex flex-row justify-between"}>
             <div
               className={
-                "flex border border-black/20 rounded-lg w-1/4 h-12 focus-within:border-blue-600 duration-500"
+                "flex border border-black/20 rounded-lg w-1/3 sm:w-max h-12 focus-within:border-blue-600 duration-500"
               }
             >
               <textarea
@@ -136,11 +136,14 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             ""
           )}
 
-          <div className={"flex justify-between items-center flex-row"}>
-            <div className={"w-1/8"}></div>
+          <div
+            className={
+              "flex justify-between items-center flex-row gap-8 sm:gap-0"
+            }
+          >
             <div
               className={
-                "w-1/8 relative bg-black/80 text-white rounded-lg  duration-500 w-1/2 "
+                "w-1/8 relative bg-black/80 text-white rounded-lg  duration-500 "
               }
             >
               <input
@@ -155,7 +158,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
 
               <div
                 className={
-                  "w-full flex flex-row p-2 items-center justify-center text-center gap-2 font-semibold"
+                  "w-max sm:w-full flex flex-row p-2 items-center justify-center text-center gap-2 font-semibold"
                 }
               >
                 <img
@@ -167,17 +170,15 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                 Загрузить фото
               </div>
             </div>
-            <div className={"w-full text-center"}>
-              {error ? (
-                <InfoModals
-                  status={error}
-                  setErrorModal={setError}
-                  inputerror={error}
-                />
-              ) : (
-                ""
-              )}
-            </div>
+            {error ? (
+              <InfoModals
+                status={error}
+                setErrorModal={setError}
+                inputerror={error}
+              />
+            ) : (
+              ""
+            )}
             <button
               onClick={() => {
                 if (news.grup && news.header && news.content) {
@@ -188,7 +189,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                 }
               }}
               className={
-                "w-1/2 py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
+                "w-[191px] sm:w-1/8 py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
               }
             >
               Подтвердить
