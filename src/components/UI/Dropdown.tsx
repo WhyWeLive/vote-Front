@@ -16,11 +16,11 @@ export const Dropdown = ({
   useClickOutside(menuRef, () => setIsOpen(false));
 
   return (
-    <div className="flex justify-end flex-row duration-700 w-[242px]">
+    <div className="flex justify-center sm:justify-end flex-row duration-700 w-[242px]">
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
-          <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
-            <div className="w-10">
+          <div className="flex items-center text-center place-items-center gap-2 hover:cursor-pointer">
+            <div className="sm:w-10 hidden sm:block">
               <img
                 src={`http://localhost:3000/files/getProfilePicture/${
                   userData.profile_picture ?? "stockPicture.png"

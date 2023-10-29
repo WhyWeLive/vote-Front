@@ -37,7 +37,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm"
+        "dd' 'LLL' в 'HH':'mm",
       );
     }
   }
@@ -62,29 +62,32 @@ export const NewForm = ({
         >
           <div
             className={
-              "bg-white rounded-lg w-max h-max flex flex-col items-center justify-center p-8"
+              "bg-white rounded-b-lg w-max h-max flex flex-col items-center justify-center"
             }
           >
-            <div className={"flex flex-col gap-4"}>
-              <div className={"text-xl font-semibold"}>Удаление новости</div>
-              <div className={"font text-xl"}>Хотите удалить новость?</div>
-              <div className={"flex flex-row justify-between gap-4 w-full"}>
-                <button
-                  className={
-                    "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
-                  }
-                  onClick={() => deleteNews()}
-                >
-                  Да, удалить
-                </button>
-                <button
-                  className={
-                    "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
-                  }
-                  onClick={() => setdeleteModal(false)}
-                >
-                  Нет,отменить
-                </button>
+            <div className={"w-full h-1 bg-red-500"}></div>
+            <div className={"p-4"}>
+              <div className={"flex flex-col gap-4"}>
+                <div className={"text-xl font-semibold"}>Удаление новости</div>
+                <div className={"font text-xl"}>Хотите удалить новость?</div>
+                <div className={"flex flex-row justify-between gap-4 w-full"}>
+                  <button
+                    className={
+                      "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
+                    }
+                    onClick={() => deleteNews()}
+                  >
+                    Да, удалить
+                  </button>
+                  <button
+                    className={
+                      "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
+                    }
+                    onClick={() => setdeleteModal(false)}
+                  >
+                    Нет,отменить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
