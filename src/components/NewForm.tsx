@@ -23,6 +23,7 @@ export const NewForm = ({
   setShowModalUpdate,
   getNews,
   likes,
+  dislikes,
 }) => {
   function time() {
     const day = DateTime.fromMillis(DateTime.now() - createdAt * 1000);
@@ -160,7 +161,7 @@ export const NewForm = ({
       ) : (
         <div className={"py-4"}></div>
       )}
-      <Likes likes={likes} />
+      <Likes likes={likes} dislikes={dislikes} id={id} userData={userData} />
     </div>
   );
 };

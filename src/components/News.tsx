@@ -54,6 +54,8 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
               setShowModalUpdate={setShowModalUpdate}
               getNews={getNews}
               likes={item.likes}
+              dislikes={item.dislikes}
+              userData={userData}
             />
           ))
         )}
