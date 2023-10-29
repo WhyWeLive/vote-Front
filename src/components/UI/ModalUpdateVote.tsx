@@ -79,9 +79,7 @@ export const ModalUpdateVote = ({
       id="exit1"
       onClick={handleClose}
     >
-      <div
-        className={"w-1/2 min-h-1/2 max-h-auto  inset-0 flex justify-center"}
-      >
+      <div className={"w-1/2 min-h-1/2 max-h-auto flex justify-center"}>
         <div
           className={
             "shadow w-full h-auto flex p-4 flex-col bg-white rounded-lg"

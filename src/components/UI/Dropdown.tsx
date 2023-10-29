@@ -20,7 +20,7 @@ export const Dropdown = ({
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
           <div className="flex items-center text-center place-items-center gap-2 hover:cursor-pointer">
-            <div className="sm:w-10 hidden sm:block">
+            <div className="w-10">
               <img
                 src={`http://localhost:3000/files/getProfilePicture/${
                   userData.profile_picture ?? "stockPicture.png"

@@ -32,13 +32,15 @@ export const Header = ({
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
             src="http://localhost:3000/files/getProfilePicture/header.jpg"
-            className="h-10 w-10 rounded-3xl"
+            className="h-10 w-10 rounded-3xl hidden sm:block"
           />
-          <div className="font-semibold text-lg">Голосование » НКЭиВТ</div>
+          <div className="font-semibold text-lg sm:block hidden">
+            Голосование » НКЭиВТ
+          </div>
         </div>
 
         <div className="flex justify-center items-center flex-row gap-4 w-full sm:w-auto">
-          <div className="sm:py-1 sm:static absolute bottom-0 sm:bottom-0 z-20 w-full sm:w-auto">
+          <div className="sm:py-1 sm:static absolute bottom-0 sm:bottom-0 w-full sm:w-auto">
             <NavLink className="outline-none" to="/">
               <button
                 onClick={() => setHeaderBtn("News")}

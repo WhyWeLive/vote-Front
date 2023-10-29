@@ -51,7 +51,7 @@ export const NewForm = ({
   return (
     <div
       className={
-        " my-5 w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
+        " my-5 w-screen sm:w-[800px] h-auto border border-2 rounded-lg bg-white flex flex-col"
       }
     >
       {deleteModal ? (
@@ -62,11 +62,11 @@ export const NewForm = ({
         >
           <div
             className={
-              "bg-white rounded-b-lg w-max h-max flex flex-col items-center justify-center"
+              "bg-white rounded-b-lg w-screen sm:w-max h-max flex flex-col items-center justify-center"
             }
           >
             <div className={"w-full h-1 bg-red-500"}></div>
-            <div className={"p-4"}>
+            <div className={"p-4 w-full"}>
               <div className={"flex flex-col gap-4"}>
                 <div className={"text-xl font-semibold"}>Удаление новости</div>
                 <div className={"font text-xl"}>Хотите удалить новость?</div>
