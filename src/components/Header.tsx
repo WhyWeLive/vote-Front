@@ -31,15 +31,10 @@ export const Header = ({
       <div className="2xl:px-56 md:px-8 flex-row items-center flex justify-center sm:justify-between py-1">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
-<<<<<<< HEAD
             src={`http://${
               import.meta.env.VITE_HOST
             }:3000/files/getProfilePicture/header.jpg`}
-            className="h-10 w-10 rounded-3xl"
-=======
-            src="http://localhost:3000/files/getProfilePicture/header.jpg"
             className="h-10 w-10 rounded-3xl hidden sm:block"
->>>>>>> 351a5fd05f3b3831ff7b20dbdd21b4c8d82912ff
           />
           <div className="font-semibold md:w-[273px] xl:text-lg sm:block hidden">
             Голосование » НКЭиВТ
