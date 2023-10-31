@@ -128,16 +128,19 @@ export const VoteForm = ({
       <div
         className={
           voteFinish
-            ? "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col  p-6"
+            ? "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col p-2 sm:p-6"
             : votePerm
-            ? "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col  p-6"
-            : "my-5 w-[700px] h-max border-2 rounded-lg bg-white flex flex-col p-6 opacity-60"
+            ? "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col  p-2 sm:p-6"
+            : "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col p-2 sm:p-6 opacity-60"
         }
       >
         <div className={"w-full flex justify-end items-center"}></div>
         <div className={"flex flex-row justify-between"}>
           <div className={"flex flex-col items-start"}>
-            <div className={"text-2xl font-semibold "}> {header}</div>
+            <div className={"text-xl sm:text-2xl font-semibold "}>
+              {" "}
+              {header}
+            </div>
             <div className={"font-light opacity-30"}>Голосов » {voteCount}</div>
           </div>
 
@@ -220,8 +223,8 @@ export const VoteForm = ({
               disabled={!checked}
               className={
                 checked
-                  ? "rounded-lg bg-black/80 border-transparent p-2 w-64 text-base font-medium text-white font-sans hover:bg-blue-600 duration-500"
-                  : "rounded-lg bg-black/60 border-transparent p-2 w-64 text-base font-medium text-white font-sans duration-500"
+                  ? "rounded-lg bg-black/80 border-transparent p-2 sm:w-64 text-base font-medium text-white font-sans hover:bg-blue-600 duration-500"
+                  : "rounded-lg bg-black/60 border-transparent p-2 sm:w-64 text-base font-medium text-white font-sans duration-500"
               }
               onClick={async () => {
                 await vote();
@@ -335,31 +338,36 @@ export const VoteForm = ({
         >
           <div
             className={
-              "bg-white rounded-lg w-max h-max flex flex-col items-center justify-center p-8"
+              "bg-white rounded-b-lg w-screen sm:w-max h-max flex flex-col items-center justify-center"
             }
           >
-            <div className={"flex flex-col gap-4"}>
-              <div className={"text-xl font-semibold"}>
-                Удаление голосования
-              </div>
-              <div className={"font text-xl"}>Хотите удалить голосование?</div>
-              <div className={"flex flex-row justify-between gap-4 w-full"}>
-                <button
-                  className={
-                    "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
-                  }
-                  onClick={() => deleteVote(id)}
-                >
-                  Да, удалить
-                </button>
-                <button
-                  className={
-                    "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
-                  }
-                  onClick={() => setVoteDelete(false)}
-                >
-                  Нет,отменить
-                </button>
+            <div className={"w-full h-1 bg-red-500"}></div>
+            <div className={"p-4 p-4 w-full"}>
+              <div className={"flex flex-col gap-4"}>
+                <div className={"text-xl font-semibold"}>
+                  Удаление голосования
+                </div>
+                <div className={"font text-xl"}>
+                  Хотите удалить голосование?
+                </div>
+                <div className={"flex flex-row justify-between gap-4 w-full"}>
+                  <button
+                    className={
+                      "w-[250px] p-2 bg-black/80 text-white rounded-lg hover:bg-red-500 duration-500"
+                    }
+                    onClick={() => deleteVote(id)}
+                  >
+                    Да, удалить
+                  </button>
+                  <button
+                    className={
+                      "w-[250px] p-2 bg-black/80 rounded-lg text-white hover:bg-blue-500 duration-500"
+                    }
+                    onClick={() => setVoteDelete(false)}
+                  >
+                    Нет,отменить
+                  </button>
+                </div>
               </div>
             </div>
           </div>

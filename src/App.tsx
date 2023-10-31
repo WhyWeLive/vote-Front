@@ -31,7 +31,7 @@ export const App = () => {
   useEffect(() => {
     axios
       .post(
-        "http://localhost:3000/auth/decode",
+        `http://${import.meta.env.VITE_HOST}:3000/auth/decode`,
         {
           token: `${document.cookie.split("=")[1]}`,
         },

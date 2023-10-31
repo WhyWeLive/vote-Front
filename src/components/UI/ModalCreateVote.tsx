@@ -61,7 +61,9 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
       onClick={handleClose}
     >
       <div
-        className={"w-1/2 min-h-1/2 max-h-auto  inset-0 flex justify-center"}
+        className={
+          "w-full sm:w-1/2 min-h-1/2 max-h-auto  inset-0 flex justify-center"
+        }
       >
         <div
           className={
@@ -92,7 +94,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
               <div className={"flex flex-row items-center w-full gap-4"}>
                 <div
                   className={
-                    "flex border border-black/20 rounded-lg w-1/4 h-12 outline-1 focus-within:border-blue-600 duration-500"
+                    "flex border border-black/20 rounded-lg w-1/2 sm:w-1/4 h-12 outline-1 focus-within:border-blue-600 duration-500"
                   }
                 >
                   <textarea
@@ -108,7 +110,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 </div>
                 <div
                   className={
-                    "w-1/4 h-full border border-black/20 rounded-lg flex items-center p-2 focus-within:border-blue-600 duration-500"
+                    "w-1/2 sm:w-1/4 h-full border border-black/20 rounded-lg flex items-center p-2 focus-within:border-blue-600 duration-500"
                   }
                 >
                   <input

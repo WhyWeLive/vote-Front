@@ -39,7 +39,11 @@ export const InfoModals = ({
               )}
 
               {dateError && (
-                <div className={"font-base text-lg opacity-50"}>
+                <div
+                  className={
+                    "font-base text-lg text-center sm:text-start opacity-50"
+                  }
+                >
                   Дата окончания не может быть раньше даты начала.
                 </div>
               )}

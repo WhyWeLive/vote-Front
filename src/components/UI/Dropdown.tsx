@@ -16,10 +16,10 @@ export const Dropdown = ({
   useClickOutside(menuRef, () => setIsOpen(false));
 
   return (
-    <div className="flex justify-end flex-row duration-700 w-[242px]">
+    <div className="flex justify-center sm:justify-end flex-row duration-700 lg:w-[321px] w-full absolute top-[-20px] md:w-[289px] md:px-10 left-[35px] sm:static ">
       <div className="relative flex flex-col items-center">
         <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
-          <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
+          <div className="flex items-center text-center place-items-center gap-2 hover:cursor-pointer">
             <div className="w-10">
               <img
                 src={`http://${
@@ -30,7 +30,7 @@ export const Dropdown = ({
                 className={"rounded-full object-cover h-10 w-10"}
               />
             </div>
-            <div className="flex flex-row gap-2 whitespace-nowrap items-center ">
+            <div className="flex flex-row gap-2 whitespace-nowrap items-center hidden sm:block ">
               <div>
                 {typeof userData === "boolean" ? "" : userData.secondName + " "}
                 {typeof userData === "boolean"
@@ -47,8 +47,8 @@ export const Dropdown = ({
       <div
         className={
           isOpen
-            ? "w-56 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
-            : "w-48 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
+            ? "w-56 mr-36 sm:mr-0 flex opacity-100 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
+            : "w-48 mr-0 sm:mr-0 opacity-0 bg-gray-300 absolute mt-14 rounded-lg transition-all duration-500 whitespace-nowrap z-20"
         }
         ref={menuRef}
       >

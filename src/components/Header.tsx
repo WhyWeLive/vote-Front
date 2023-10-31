@@ -28,25 +28,33 @@ export const Header = ({
 
   return (
     <header>
-      <div className="px-56 mx-auto py-2 items-center flex justify-between">
+      <div className="2xl:px-56 md:px-8 flex-row items-center flex justify-center sm:justify-between py-1">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
+<<<<<<< HEAD
             src={`http://${
               import.meta.env.VITE_HOST
             }:3000/files/getProfilePicture/header.jpg`}
             className="h-10 w-10 rounded-3xl"
+=======
+            src="http://localhost:3000/files/getProfilePicture/header.jpg"
+            className="h-10 w-10 rounded-3xl hidden sm:block"
+>>>>>>> 351a5fd05f3b3831ff7b20dbdd21b4c8d82912ff
           />
-          <div className="font-semibold text-lg">Голосование » НКЭиВТ</div>
+          <div className="font-semibold md:w-[273px] xl:text-lg sm:block hidden">
+            Голосование » НКЭиВТ
+          </div>
         </div>
-        <div className="flex justify-center items-center gap-4">
-          <div className="py-2">
+
+        <div className="flex justify-center items-center flex-row gap-4 w-max lg:w-auto">
+          <div className="lg:py-1 flex items-center justify-center w-full sm:w-auto">
             <NavLink className="outline-none" to="/">
               <button
                 onClick={() => setHeaderBtn("News")}
                 className={
                   headerBtn === "News"
-                    ? "py-2 w-[175px] px-10 bg-gray-800 rounded-l-lg text-white duration-700"
-                    : "py-2 w-[175px] px-10 bg-gray-500 rounded-l-lg text-white duration-700"
+                    ? "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-800  text-white duration-700"
+                    : "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-500  text-white duration-700"
                 }
               >
                 Новости
@@ -58,8 +66,8 @@ export const Header = ({
                 onClick={() => setHeaderBtn("Vote")}
                 className={
                   headerBtn === "Vote"
-                    ? "py-2 w-[175px] px-10 bg-gray-800 rounded-r-lg text-white duration-700"
-                    : "py-2 w-[175px] px-10 bg-gray-500 rounded-r-lg text-white duration-700"
+                    ? "py-2 w-[130px] xl:w-[175px] md:w-[136.5px]  text-center rounded-r-lg bg-gray-800 text-white duration-700"
+                    : "py-2 w-[130px] xl:w-[175px] md:w-[136.5px] text-center rounded-r-lg bg-gray-500 text-white duration-700"
                 }
               >
                 Голосование
@@ -69,7 +77,7 @@ export const Header = ({
         </div>
 
         <div
-          className="relative inline-block text-left"
+          className="relative inline-block my-2 sm:my-0"
           data-headlessui-state=""
         >
           <Dropdown
