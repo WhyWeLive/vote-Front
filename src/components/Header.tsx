@@ -31,7 +31,9 @@ export const Header = ({
       <div className="px-56 mx-auto py-2 items-center flex justify-between">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
-            src="http://localhost:3000/files/getProfilePicture/header.jpg"
+            src={`http://${
+              import.meta.env.VITE_HOST
+            }:3000/files/getProfilePicture/header.jpg`}
             className="h-10 w-10 rounded-3xl"
           />
           <div className="font-semibold text-lg">Голосование » НКЭиВТ</div>

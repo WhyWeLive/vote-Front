@@ -44,19 +44,26 @@ export const VoteForm = ({
 
   function getWinner(id) {
     axios
-      .get(`http://localhost:3000/vote/getWinner/${id}`)
+      .get(`http://${import.meta.env.VITE_HOST}:3000/vote/getWinner/${id}`)
       .then(({ data }) => {
         setWinner(data);
         setVoteFinish(!!data);
 
         if (!data) {
-          axios.put(`http://localhost:3000/vote/${id}`, {
+          axios.put(`http://${import.meta.env.VITE_HOST}:3000/vote/${id}`, {
             endedAt: String(+endedAt + 86400),
             extended: true,
           });
+        } else {
+          setTimeout(
+            () =>
+              axios.delete(
+                `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`
+              ),
+            86400000
+          );
         }
-      })
-      .then(() => {});
+      });
   }
 
   function getElect(item) {
@@ -65,7 +72,9 @@ export const VoteForm = ({
 
   function getName(name) {
     axios
-      .get(`http://localhost:3000/users/getNameByEmail/${name}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${name}`
+      )
       .then((response) => {
         setName(response.data);
       });
@@ -73,13 +82,17 @@ export const VoteForm = ({
 
   function deleteVote(idVote) {
     axios
-      .delete(`http://localhost:3000/vote/${idVote}`)
+      .delete(`http://${import.meta.env.VITE_HOST}:3000/vote/${idVote}`)
       .then(() => getCounter());
   }
 
   function vote() {
     axios
-      .get(`http://localhost:3000/vote/toVote/${id}/${userData.id}/${elect}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/vote/toVote/${id}/${
+          userData.id
+        }/${elect}`
+      )
       .then(() => getCounter());
   }
 
@@ -90,13 +103,8 @@ export const VoteForm = ({
   useEffect(() => {
     checkvote();
 
-    if (true) {
+    if (endedAt * 1000 <= DateTime.now().ts) {
       getWinner(id);
-
-      // setTimeout(
-      //   () => axios.delete(`http://localhost:3000/vote/${id}`),
-      //   86400000
-      // );
     }
   }, [counter, getCounter]);
 

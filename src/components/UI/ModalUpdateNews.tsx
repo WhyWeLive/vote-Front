@@ -23,7 +23,9 @@ export const ModalUpdateNews = ({
   }, [newsData]);
 
   function deleteImage() {
-    axios.get(`http://localhost:3000/news/deleteImage/${newsData.id}`);
+    axios.get(
+      `http://${import.meta.env.VITE_HOST}:3000/news/deleteImage/${newsData.id}`
+    );
     setShowImage(false);
   }
 
@@ -35,7 +37,7 @@ export const ModalUpdateNews = ({
   function updateNews() {
     axios
       .put(
-        `http://localhost:3000/news/${newsData.id}`,
+        `http://${import.meta.env.VITE_HOST}:3000/news/${newsData.id}`,
         {
           image: selectedFile ?? newsData.photos,
           grup: news.grup,
@@ -47,7 +49,7 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
@@ -157,7 +159,9 @@ export const ModalUpdateNews = ({
                 <div className={"w-full flex justify-start"}>
                   <div className={"flex flex-row items-center justify-center"}>
                     <img
-                      src={`http://localhost:3000/files/getNewsPicture/${newsData.photos}`}
+                      src={`http://${
+                        import.meta.env.VITE_HOST
+                      }:3000/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button

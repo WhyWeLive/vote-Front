@@ -22,7 +22,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
 
   function createNews() {
     axios.post(
-      "http://localhost:3000/news",
+      `http://${import.meta.env.VITE_HOST}:3000/news`,
       {
         image: selectedFile,
         grup: news.grup,
@@ -34,7 +34,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
           accept: "application/json",
           "Content-Type": `multipart/form-data`,
         },
-      },
+      }
     );
   }
 

@@ -22,7 +22,9 @@ export const Dropdown = ({
           <div className="flex items-center place-items-center gap-2 hover:cursor-pointer">
             <div className="w-10">
               <img
-                src={`http://localhost:3000/files/getProfilePicture/${
+                src={`http://${
+                  import.meta.env.VITE_HOST
+                }:3000/files/getProfilePicture/${
                   userData.profile_picture ?? "stockPicture.png"
                 }`}
                 className={"rounded-full object-cover h-10 w-10"}

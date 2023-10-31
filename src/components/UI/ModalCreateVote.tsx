@@ -28,8 +28,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
     inputValues.push(
       ...count.map(
-        (item, index) => document.getElementById(index.toString()).value,
-      ),
+        (item, index) => document.getElementById(index.toString()).value
+      )
     );
 
     if (inputValues.includes("")) {
@@ -41,14 +41,14 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
       window.location = "/vote";
 
       axios.post(
-        "http://localhost:3000/vote",
+        `http://${import.meta.env.VITE_HOST}:3000/vote`,
         {
           header: VoteData.header,
           grup: VoteData.grup,
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {},
+        {}
       );
     }
   }

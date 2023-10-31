@@ -49,7 +49,7 @@ export const ModalUpdateVote = ({
     inputValues.push(
       ...count.map((item, index) => {
         return document.getElementById(index.toString()).value;
-      }),
+      })
     );
 
     if (inputValues.includes("")) {
@@ -60,14 +60,14 @@ export const ModalUpdateVote = ({
       window.location = "/vote";
 
       axios.put(
-        `http://localhost:3000/vote/${id}`,
+        `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`,
         {
           header: VoteData.header,
           grup: VoteData.grup,
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {},
+        {}
       );
     }
   }
@@ -135,7 +135,7 @@ export const ModalUpdateVote = ({
                     className={"w-full h-full text-xl outline-none"}
                     title={"Дата окончания"}
                     value={DateTime.fromMillis(
-                      VoteData.endedAt * 1000,
+                      VoteData.endedAt * 1000
                     ).toFormat("yyyy-MM-dd")}
                     onChange={async (e) => {
                       const time = new Date(e.target.value).getTime() / 1000;

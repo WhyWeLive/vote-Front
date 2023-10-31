@@ -49,16 +49,18 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
             >
               {userData.profile_picture ? (
                 <img
-                  src={`http://localhost:3000/files/getProfilePicture/${userData.profile_picture}`}
+                  src={`http://${
+                    import.meta.env.VITE_HOST
+                  }:3000/files/getProfilePicture/${userData.profile_picture}`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
                 <img
-                  src={
-                    "http://localhost:3000/files/getProfilePicture/stockPicture.png"
-                  }
+                  src={`http://${
+                    import.meta.env.VITE_HOST
+                  }:3000/files/getProfilePicture/stockPicture.png`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
