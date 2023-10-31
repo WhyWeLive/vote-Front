@@ -29,7 +29,11 @@ export const Elected = ({
 
   function getElectedData() {
     axios
-      .get(`http://localhost:3000/users/emailWithoutPass/${item}`)
+      .get(
+        `http://${
+          import.meta.env.VITE_HOST
+        }:3000/users/emailWithoutPass/${item}`
+      )
       .then(({ data }) => {
         if (data) {
           setElectedData(data);
@@ -41,13 +45,19 @@ export const Elected = ({
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/users/getNameByEmail/${item}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${item}`
+      )
       .then((response) => {
         setName(response.data);
       })
       .then(() => {
         axios
-          .get(`http://localhost:3000/vote/getVotesCountByEmail/${id}/${item}`)
+          .get(
+            `http://${
+              import.meta.env.VITE_HOST
+            }:3000/vote/getVotesCountByEmail/${id}/${item}`
+          )
           .then(({ data }) => setVotesCount(data));
       });
   }, [1]);
@@ -104,19 +114,19 @@ export const Elected = ({
                   }}
                 ></button>
               </div>
-              <div className={"h-max w-max"}>
-                {item === "Да" ||
-                item === "да" ||
-                item === "Нет" ||
-                item === "нет" ? (
-                  ""
-                ) : (
-                  <img
-                    className={"w-16 h-16 rounded-full object-cover z-4"}
-                    src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
-                  />
-                )}
-              </div>
+              {item === "Да" ||
+              item === "да" ||
+              item === "Нет" ||
+              item === "нет" ? (
+                ""
+              ) : (
+                <img
+                  className={"w-16 h-16 rounded-full object-cover z-4"}
+                  src={`http://${
+                    import.meta.env.VITE_HOST
+                  }:3000/users/getPhotoByEmail/${item}`}
+                />
+              )}
             </div>
             <div className={"h-min sm:text-xl"}>{name ? name : item}</div>
           </div>

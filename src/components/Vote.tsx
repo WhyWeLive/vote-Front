@@ -13,7 +13,7 @@ export const Vote = ({ userData }) => {
   useEffect(() => {
     if (userData.roles.find((item) => item === "Editor")) {
       axios
-        .get(`http://localhost:3000/vote`, {
+        .get(`http://${import.meta.env.VITE_HOST}:3000/vote`, {
           headers: {
             Accept: "application/json",
             "Access-Control-Allow-Origin": "GET",
@@ -26,14 +26,19 @@ export const Vote = ({ userData }) => {
         });
     } else {
       axios
-        .get(`http://localhost:3000/vote/getAllByGrup/${userData.grup}`, {
-          headers: {
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "GET",
-            "X-Requested-With": "XMLHttpRequest",
-            "Access-Control-Allow-Methods": "GET",
-          },
-        })
+        .get(
+          `http://${import.meta.env.VITE_HOST}:3000/vote/getAllByGrup/${
+            userData.grup
+          }`,
+          {
+            headers: {
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "GET",
+              "X-Requested-With": "XMLHttpRequest",
+              "Access-Control-Allow-Methods": "GET",
+            },
+          }
+        )
         .then((response) => {
           setVoteData(response.data.reverse());
         });

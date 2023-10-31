@@ -17,7 +17,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   async function auth() {
     await axios
       .post(
-        "http://localhost:3000/auth",
+        `http://${import.meta.env.VITE_HOST}:3000/auth`,
         {
           email,
           password,
@@ -30,7 +30,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
 
       .then(({ data }) => {
@@ -38,7 +38,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
 
         axios
           .post(
-            "http://localhost:3000/auth/decode",
+            `http://${import.meta.env.VITE_HOST}:3000/auth/decode`,
             {
               token: `${document.cookie.split("=")[1]}`,
             },
@@ -50,7 +50,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             toAuth(data);

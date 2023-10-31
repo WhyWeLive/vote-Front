@@ -8,17 +8,27 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/news/marked/${id}/${userData.id}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/news/marked/${id}/${
+          userData.id
+        }`
+      )
       .then(({ data }) => setMarked(data));
   }, [statistics]);
 
   function toLike() {
     axios
-      .get(`http://localhost:3000/news/toLike/${id}/${userData.id}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/news/toLike/${id}/${
+          userData.id
+        }`
+      )
       .then(({ data }) => {
         if (data) {
           axios
-            .get(`http://localhost:3000/news/statistics/${id}`)
+            .get(
+              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`
+            )
             .then(({ data }) => setStatistics(data));
         }
       });
@@ -26,11 +36,17 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
 
   function toDislike() {
     axios
-      .get(`http://localhost:3000/news/toDislike/${id}/${userData.id}`)
+      .get(
+        `http://${import.meta.env.VITE_HOST}:3000/news/toDislike/${id}/${
+          userData.id
+        }`
+      )
       .then(({ data }) => {
         if (data) {
           axios
-            .get(`http://localhost:3000/news/statistics/${id}`)
+            .get(
+              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`
+            )
             .then(({ data }) => setStatistics(data));
         }
       });

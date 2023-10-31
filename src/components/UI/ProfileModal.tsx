@@ -48,7 +48,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   function updateAvatar() {
     axios
       .put(
-        `http://localhost:3000/users/setProfilePicture/${profile.id}`,
+        `http://${import.meta.env.VITE_HOST}:3000/users/setProfilePicture/${
+          profile.id
+        }`,
         {
           picture: selectedFile,
           bio: bio.data ?? "",
@@ -58,12 +60,12 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(({ data }) =>
         axios
           .post(
-            "http://localhost:3000/auth",
+            `http://${import.meta.env.VITE_HOST}:3000/auth`,
             {
               email: data.email,
               password: data.password,
@@ -76,7 +78,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             setProfile(data);
@@ -86,7 +88,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             setShowProfileUpdate(false);
 
             axios.post(
-              "http://localhost:3000/auth/decode",
+              `http://${import.meta.env.VITE_HOST}:3000/auth/decode`,
               {
                 token: `${document.cookie.split("=")[1]}`,
               },
@@ -98,9 +100,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              },
+              }
             );
-          }),
+          })
       );
   }
 
@@ -143,16 +145,18 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 />
               ) : profile.profile_picture ? (
                 <img
-                  src={`http://localhost:3000/files/getProfilePicture/${profile.profile_picture}`}
+                  src={`http://${
+                    import.meta.env.VITE_HOST
+                  }:3000/files/getProfilePicture/${profile.profile_picture}`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
                 <img
-                  src={
-                    "http://localhost:3000/files/getProfilePicture/stockPicture.png"
-                  }
+                  src={`http://${
+                    import.meta.env.VITE_HOST
+                  }:3000/files/getProfilePicture/stockPicture.png`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }

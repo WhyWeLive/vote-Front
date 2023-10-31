@@ -15,7 +15,7 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
   }
   useEffect(() => {
     axios
-      .get("http://localhost:3000/news", {
+      .get(`http://${import.meta.env.VITE_HOST}:3000/news`, {
         headers: {
           Accept: "application/json",
           "Access-Control-Allow-Origin": "GET",
@@ -55,7 +55,6 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
               getNews={getNews}
               likes={item.likes}
               dislikes={item.dislikes}
-              userData={userData}
             />
           ))
         )}
