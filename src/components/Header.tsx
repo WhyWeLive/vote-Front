@@ -42,14 +42,14 @@ export const Header = ({
         </div>
 
         <div className="flex justify-center items-center flex-row gap-4 w-max lg:w-auto">
-          <div className="lg:py-1 flex items-center justify-center w-full sm:w-auto">
+          <div className="lg:py-1 flex items-center justify-center w-auto sm:w-auto">
             <NavLink className="outline-none" to="/">
               <button
                 onClick={() => setHeaderBtn("News")}
                 className={
                   headerBtn === "News"
-                    ? "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-800  text-white duration-500"
-                    : "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-500  text-white duration-500"
+                    ? "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-800 text-white duration-700"
+                    : "py-2 w-[130px] md:w-[136.5px] xl:w-[175px] rounded-l-lg px-5 bg-gray-500 text-white duration-700"
                 }
               >
                 Новости
