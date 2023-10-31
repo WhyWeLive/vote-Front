@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { InfoModals } from "./InfoModals";
+import photoupload from "../UI/Images/photoupload.png";
 
 export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   const [news, setNews] = useState({
@@ -161,12 +162,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
                   "w-max sm:w-full flex flex-row p-2 items-center justify-center text-center gap-2 font-semibold"
                 }
               >
-                <img
-                  src={
-                    "https://img.icons8.com/?size=128&id=SBxQxlO1ePen&format=png&color=FFFFFF"
-                  }
-                  className={"w-6 h-6  "}
-                />
+                <img src={`${photoupload}`} className={"w-6 h-6  "} />
                 Загрузить фото
               </div>
             </div>

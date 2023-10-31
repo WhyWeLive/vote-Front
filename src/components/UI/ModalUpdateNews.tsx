@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { InfoModals } from "./InfoModals";
+import photoupload from "../UI/Images/photoupload.png";
 
 export const ModalUpdateNews = ({
   isVisable,
@@ -65,8 +66,8 @@ export const ModalUpdateNews = ({
       className={
         "fixed inset-0 w-screen h-screen bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
       }
-      id="exit1"
-      onClick={handleClose}
+      id="exit"
+      onDoubleClick={handleClose}
     >
       <div className={"w-screen 2xl:w-1/2 h-1/8 inset-0 flex justify-center"}>
         <div
@@ -208,12 +209,7 @@ export const ModalUpdateNews = ({
                   "w-max sm:w-full flex flex-row p-2 items-center justify-center text-center gap-2 font-semibold"
                 }
               >
-                <img
-                  src={
-                    "https://img.icons8.com/?size=128&id=SBxQxlO1ePen&format=png&color=FFFFFF"
-                  }
-                  className={"w-6 h-6"}
-                />
+                <img src={`${photoupload}`} className={"w-6 h-6"} />
                 Загрузить фото
               </div>
             </div>

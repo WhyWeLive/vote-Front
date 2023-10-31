@@ -1,4 +1,5 @@
 import React from "react";
+import Error from "./Images/Error.png";
 
 export const InfoModals = ({
   dateError,
@@ -24,10 +25,7 @@ export const InfoModals = ({
             }
           >
             <div className={"flex flex-col items-center gap-2 w-auto h-auto"}>
-              <img
-                src={"https://cdn-icons-png.flaticon.com/512/463/463612.png"}
-                className={"w-24 h-24"}
-              />
+              <img src={Error} className={"w-24 h-24"} />
               <div className={"font-semibold text-[#e04f5f] text-xl"}>
                 Ошибка!
               </div>

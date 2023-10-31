@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { Roles } from "./VoteProfile";
+import upload from "../UI/Images/upload.png";
 
 export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   const [profile, setProfile] = useState({
@@ -109,7 +110,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
         "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
       }
       id="exit"
-      onClick={handleClose}
+      onDoubleClick={handleClose}
     >
       <div className={"w-[500px] sm:h-[70%] flex justify-center"}>
         <div
@@ -164,9 +165,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 }
               >
                 <img
-                  src={
-                    "https://img.icons8.com/?size=200&id=NjujHWc6iSDE&format=png&color=FFFFFF"
-                  }
+                  src={`${upload}`}
                   className={"w-24 h-24 bg-black/40 p-2 rounded-full"}
                 />
 

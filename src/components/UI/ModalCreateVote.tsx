@@ -3,6 +3,8 @@ import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { DateTime } from "luxon";
 import { InfoModals } from "./InfoModals";
+import add from "../UI/Images/add.png";
+import remove from "../UI/Images/remove.png";
 
 export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
   const [count, setCount] = useState(["Участник"]);
@@ -57,8 +59,8 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
       className={
         "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
       }
-      id="exit1"
-      onClick={handleClose}
+      id="exit"
+      onDoubleClick={handleClose}
     >
       <div
         className={
@@ -167,9 +169,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
                     {!index ? (
                       <img
-                        src={
-                          "https://cdn-icons-png.flaticon.com/512/992/992651.png"
-                        }
+                        src={`${add}`}
                         className={
                           "w-6 cursor-pointer opacity-30 hover:opacity-100 duration-500"
                         }
@@ -182,9 +182,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
                     {index ? (
                       <img
-                        src={
-                          "https://cdn-icons-png.flaticon.com/512/1828/1828945.png"
-                        }
+                        src={`${remove}`}
                         className={
                           "w-6 cursor-pointer opacity-30 hover:opacity-100 duration-500"
                         }

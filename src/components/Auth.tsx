@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { InfoModals } from "./UI/InfoModals";
+import logo from "./UI/Images/logo.png";
+import closed from "./UI/Images/closed.png";
+import opened from "./UI/Images/opened.png";
 
 export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   const [error, setError] = useState(false);
@@ -60,10 +63,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
   return (
     <div className={"w-screen h-screen flex justify-center bg-gray-100"}>
       <div className="p-6 sm:my-48 my-auto border shadow w-96 h-[33rem] rounded-lg bg-white flex items-center flex-col">
-        <img
-          src={"https://collegeschedule.ru/assets/logo-23babd2f.svg"}
-          className={"w-16 h-16 rounded-lg my-4"}
-        />
+        <img src={logo} className={"w-16 h-16 rounded-lg my-4"} />
 
         <h1 className="text-center font-bold font-sans text-3xl my-6 text-black/80">
           Авторизация
@@ -96,11 +96,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
 
               <button onClick={() => setEye((prev) => !prev)}>
                 <img
-                  src={
-                    eye
-                      ? "https://cdn-icons-png.flaticon.com/512/2767/2767146.png"
-                      : "https://cdn-icons-png.flaticon.com/512/709/709612.png"
-                  }
+                  src={eye ? `${closed}` : `${opened}`}
                   className="h-6 w-6 outline-none opacity-50"
                 />
               </button>

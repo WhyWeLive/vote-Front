@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TbHandFinger } from "react-icons/tb";
 import axios from "axios";
+import Selected from "./Images/Selected.png";
 
 export const Elected = ({
   item,
@@ -154,7 +155,7 @@ export const Elected = ({
           </div>
 
           <img
-            src={"https://cdn-icons-png.flaticon.com/512/1828/1828640.png"}
+            src={Selected}
             className={
               voteFinish
                 ? "hidden"
