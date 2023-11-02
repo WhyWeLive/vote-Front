@@ -50,17 +50,15 @@ export const VoteForm = ({
         setVoteFinish(!!data);
 
         if (!data) {
-          axios.put(`http://${import.meta.env.VITE_HOST}:3000/vote/${id}`, {
-            endedAt: String(+endedAt + 86400),
-            extended: true,
-          });
+          axios
+            .put(`http://${import.meta.env.VITE_HOST}:3000/vote/${id}`, {
+              endedAt: String(+endedAt + 86400),
+              extended: true,
+            })
+            .then(() => getCounter());
         } else {
-          setTimeout(
-            () =>
-              axios.delete(
-                `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`
-              ),
-            86400000
+          axios.delete(
+            `http://${import.meta.env.VITE_HOST}:3000/vote/delForHour/${id}`
           );
         }
       });
@@ -342,7 +340,7 @@ export const VoteForm = ({
             }
           >
             <div className={"w-full h-1 bg-red-500"}></div>
-            <div className={"p-4 p-4 w-full"}>
+            <div className={"p-4 w-full"}>
               <div className={"flex flex-col gap-4"}>
                 <div className={"text-xl font-semibold"}>
                   Удаление голосования
