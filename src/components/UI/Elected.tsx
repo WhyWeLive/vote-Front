@@ -32,7 +32,7 @@ export const Elected = ({
       .get(
         `http://${
           import.meta.env.VITE_HOST
-        }:3000/users/emailWithoutPass/${item}`
+        }:3000/users/emailWithoutPass/${item}`,
       )
       .then(({ data }) => {
         if (data) {
@@ -46,7 +46,7 @@ export const Elected = ({
   useEffect(() => {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${item}`
+        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${item}`,
       )
       .then((response) => {
         setName(response.data);
@@ -56,7 +56,7 @@ export const Elected = ({
           .get(
             `http://${
               import.meta.env.VITE_HOST
-            }:3000/vote/getVotesCountByEmail/${id}/${item}`
+            }:3000/vote/getVotesCountByEmail/${id}/${item}`,
           )
           .then(({ data }) => setVotesCount(data));
       });
@@ -114,19 +114,19 @@ export const Elected = ({
                   }}
                 ></button>
               </div>
-              {item === "Да" ||
-              item === "да" ||
-              item === "Нет" ||
-              item === "нет" ? (
-                ""
-              ) : (
-                <img
-                  className={"w-16 h-16 rounded-full object-cover z-4"}
-                  src={`http://${
-                    import.meta.env.VITE_HOST
-                  }:3000/users/getPhotoByEmail/${item}`}
-                />
-              )}
+              <div className={"h-max w-max"}>
+                {item === "Да" ||
+                item === "да" ||
+                item === "Нет" ||
+                item === "нет" ? (
+                  ""
+                ) : (
+                  <img
+                    className={"w-16 h-16 rounded-full object-cover z-4"}
+                    src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
+                  />
+                )}
+              </div>
             </div>
             <div className={"h-min sm:text-xl"}>{name ? name : item}</div>
           </div>
@@ -139,7 +139,7 @@ export const Elected = ({
               >
                 <div
                   className={
-                    "w-full bg-blue-300 rounded-lg relative flex items-center"
+                    "w-full bg-blue-300 relative rounded-sm flex items-center"
                   }
                 >
                   <div
@@ -155,7 +155,7 @@ export const Elected = ({
                         ? { width: `${votesCount}%` }
                         : { width: `0%` }
                     }
-                    className={"h-4 bg-blue-500 rounded-lg"}
+                    className={"h-4 rounded-sm bg-blue-500"}
                   ></div>
                 </div>
               </div>

@@ -28,7 +28,7 @@ export const Header = ({
 
   return (
     <header>
-      <div className="2xl:px-56 md:px-8 flex-row items-center flex justify-center sm:justify-between py-1">
+      <div className="2xl:px-56 md:px-8 flex-row items-center flex justify-center sm:justify-between py-2">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
             src={`http://${

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 
 export const Likes = ({ likes, dislikes, id, userData }) => {
   const [statistics, setStatistics] = useState(likes - dislikes);
@@ -11,7 +11,7 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
       .get(
         `http://${import.meta.env.VITE_HOST}:3000/news/marked/${id}/${
           userData.id
-        }`
+        }`,
       )
       .then(({ data }) => setMarked(data));
   }, [statistics]);
@@ -21,13 +21,13 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
       .get(
         `http://${import.meta.env.VITE_HOST}:3000/news/toLike/${id}/${
           userData.id
-        }`
+        }`,
       )
       .then(({ data }) => {
         if (data) {
           axios
             .get(
-              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`
+              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`,
             )
             .then(({ data }) => setStatistics(data));
         }
@@ -39,13 +39,13 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
       .get(
         `http://${import.meta.env.VITE_HOST}:3000/news/toDislike/${id}/${
           userData.id
-        }`
+        }`,
       )
       .then(({ data }) => {
         if (data) {
           axios
             .get(
-              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`
+              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`,
             )
             .then(({ data }) => setStatistics(data));
         }
@@ -65,7 +65,7 @@ export const Likes = ({ likes, dislikes, id, userData }) => {
       />
       <h1
         className={
-          `font-semibold text-lg border rounded-lg w-[30px] text-center ` +
+          `font-semibold text-lg border rounded-lg min-w-[30px] px-1 text-center ` +
           (statistics > 0
             ? "text-green-500"
             : statistics == 0
