@@ -64,8 +64,7 @@ export const ModalUpdateNews = ({
           },
         },
       )
-      .then(() => console.log(news))
-      .catch(() => console.log("error"));
+      .then(() => (window.location.href = "/"));
   }
 
   if (!isVisable) return null;
@@ -243,7 +242,6 @@ export const ModalUpdateNews = ({
               onClick={() => {
                 if (news.grup && news.header && news.content) {
                   updateNews();
-                  window.location.href = "/";
                 } else {
                   setError(true);
                 }

@@ -28,21 +28,23 @@ export const ModalCreateNews = ({
   }
 
   function createNews() {
-    axios.post(
-      `http://${import.meta.env.VITE_HOST}:3000/news`,
-      {
-        image: selectedFile,
-        grup: news.grup,
-        header: news.header,
-        content: news.content,
-      },
-      {
-        headers: {
-          accept: "application/json",
-          "Content-Type": `multipart/form-data`,
+    axios
+      .post(
+        `http://${import.meta.env.VITE_HOST}:3000/news`,
+        {
+          image: selectedFile,
+          grup: news.grup,
+          header: news.header,
+          content: news.content,
         },
-      },
-    );
+        {
+          headers: {
+            accept: "application/json",
+            "Content-Type": `multipart/form-data`,
+          },
+        },
+      )
+      .then(() => (window.location.href = "/"));
   }
 
   if (!isVisable) return null;
@@ -183,10 +185,9 @@ export const ModalCreateNews = ({
               ""
             )}
             <button
-              onClick={() => {
+              onClick={async () => {
                 if (news.grup && news.header && news.content) {
-                  createNews();
-                  window.location.href = "/";
+                  await createNews();
                 } else {
                   setError(true);
                 }

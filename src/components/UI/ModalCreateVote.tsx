@@ -31,7 +31,7 @@ export const ModalCreateVote = ({
     }
   };
 
-  function getInputs() {
+  async function getInputs() {
     const inputValues = [];
 
     inputValues.push(
@@ -47,18 +47,18 @@ export const ModalCreateVote = ({
       setInputError(true);
       setDateError(false);
     } else {
-      window.location.href = "/vote";
-
-      axios.post(
-        `http://${import.meta.env.VITE_HOST}:3000/vote`,
-        {
-          header: VoteData.header,
-          grup: VoteData.grup,
-          elected: inputValues,
-          endedAt: VoteData.endedAt,
-        },
-        {},
-      );
+      axios
+        .post(
+          `http://${import.meta.env.VITE_HOST}:3000/vote`,
+          {
+            header: VoteData.header,
+            grup: VoteData.grup,
+            elected: inputValues,
+            endedAt: VoteData.endedAt,
+          },
+          {},
+        )
+        .then(() => (window.location.href = "/vote"));
     }
   }
   return (

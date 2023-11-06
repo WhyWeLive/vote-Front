@@ -68,18 +68,18 @@ export const ModalUpdateVote = ({
       setErrorModal(true);
       setInputError(true);
     } else {
-      window.location.href = "/vote";
-
-      axios.put(
-        `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`,
-        {
-          header: VoteData.header,
-          grup: VoteData.grup,
-          elected: inputValues,
-          endedAt: VoteData.endedAt,
-        },
-        {},
-      );
+      axios
+        .put(
+          `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`,
+          {
+            header: VoteData.header,
+            grup: VoteData.grup,
+            elected: inputValues,
+            endedAt: VoteData.endedAt,
+          },
+          {},
+        )
+        .then(() => (window.location.href = "/vote"));
     }
   }
   return (
