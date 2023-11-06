@@ -1,19 +1,31 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
+import { userInterface } from "../Header";
 
-export const Likes = ({ likes, dislikes, id, userData }) => {
+export const Likes = ({
+  likes,
+  dislikes,
+  id,
+  userData,
+}: {
+  likes: number;
+  dislikes: number;
+  id: number;
+  userData: userInterface;
+}) => {
   const [statistics, setStatistics] = useState(likes - dislikes);
   const [marked, setMarked] = useState("");
 
   useEffect(() => {
-    axios
-      .get(
-        `http://${import.meta.env.VITE_HOST}:3000/news/marked/${id}/${
-          userData.id
-        }`,
-      )
-      .then(({ data }) => setMarked(data));
+    if (id != -1)
+      axios
+        .get(
+          `http://${import.meta.env.VITE_HOST}:3000/news/marked/${id}/${
+            userData.id
+          }`,
+        )
+        .then(({ data }) => setMarked(data));
   }, [statistics]);
 
   function toLike() {

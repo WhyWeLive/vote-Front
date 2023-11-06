@@ -1,5 +1,7 @@
 FROM node:18-alpine3.17 as build
 
+ENV VITE_HOST=212.233.99.195
+
 WORKDIR /app
 COPY . /app
 

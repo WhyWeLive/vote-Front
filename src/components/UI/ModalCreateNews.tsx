@@ -4,7 +4,13 @@ import axios from "axios";
 import { InfoModals } from "./InfoModals";
 import photoupload from "../UI/Images/photoupload.png";
 
-export const ModalCreateNews = ({ isVisable, setShowModal }) => {
+export const ModalCreateNews = ({
+  isVisable,
+  setShowModal,
+}: {
+  isVisable: boolean;
+  setShowModal: (arg0: boolean) => void;
+}) => {
   const [news, setNews] = useState({
     grup: "",
     header: "",
@@ -16,7 +22,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
   const [selectedFile, setSelectedFile] = useState();
   const [urlFile, setUrlFile] = useState("");
 
-  function preview(event) {
+  function preview(event: any) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
   }
@@ -35,12 +41,12 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
           accept: "application/json",
           "Content-Type": `multipart/form-data`,
         },
-      }
+      },
     );
   }
 
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setShowModal(false);
     }
@@ -168,9 +174,10 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
             </div>
             {error ? (
               <InfoModals
-                status={error}
                 setErrorModal={setError}
                 inputerror={error}
+                dateError={false}
+                autherror={false}
               />
             ) : (
               ""
@@ -179,7 +186,7 @@ export const ModalCreateNews = ({ isVisable, setShowModal }) => {
               onClick={() => {
                 if (news.grup && news.header && news.content) {
                   createNews();
-                  window.location = "/";
+                  window.location.href = "/";
                 } else {
                   setError(true);
                 }

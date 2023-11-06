@@ -1,9 +1,10 @@
 import { VoteForm } from "./VoteForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { userInterface } from "./Header";
 
-export const Vote = ({ userData }) => {
-  const [voteData, setVoteData] = useState([]);
+export const Vote = ({ userData }: { userData: userInterface }) => {
+  const [voteData, setVoteData] = useState<any>([]);
   const [counter, setCounter] = useState(0);
 
   function getCounter() {
@@ -37,7 +38,7 @@ export const Vote = ({ userData }) => {
               "X-Requested-With": "XMLHttpRequest",
               "Access-Control-Allow-Methods": "GET",
             },
-          }
+          },
         )
         .then((response) => {
           setVoteData(response.data.reverse());
@@ -53,7 +54,7 @@ export const Vote = ({ userData }) => {
             <div className={"font-light text-xl"}>Голосований еще нет...</div>
           </div>
         ) : (
-          voteData.map((item) => (
+          voteData.map((item: any) => (
             <VoteForm
               key={item.id}
               id={item.id}

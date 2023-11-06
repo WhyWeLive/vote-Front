@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TbHandFinger } from "react-icons/tb";
 import axios from "axios";
 import Selected from "./Images/Selected.png";
@@ -12,17 +12,16 @@ export const Elected = ({
   getElect,
   voteFinish,
   giveElectedDataToFather,
+}: {
+  item: string | boolean;
+  setShowVoteProfile: (arg0: boolean) => void;
+  setChecked: any;
+  checked: string | boolean;
+  id: number;
+  getElect: (arg0: string | boolean) => void;
+  voteFinish: boolean;
+  giveElectedDataToFather: (arg0: object) => void;
 }) => {
-  const [electedData, setElectedData] = useState({
-    firstName: "",
-    secondName: "",
-    thirdName: "",
-    bio: "",
-    grup: [""],
-    roles: [""],
-    profile_picture: "",
-  });
-
   const [votesCount, setVotesCount] = useState(0);
 
   const [name, setName] = useState("");
@@ -36,7 +35,6 @@ export const Elected = ({
       )
       .then(({ data }) => {
         if (data) {
-          setElectedData(data);
           giveElectedDataToFather(data);
           setShowVoteProfile(true);
         }
@@ -71,8 +69,7 @@ export const Elected = ({
         className="hidden peer"
         required
         onClick={() => {
-          if (typeof setChecked != "function") {
-          } else {
+          if (!(typeof setChecked != "function")) {
             setChecked(item);
             getElect(item);
           }
@@ -123,7 +120,9 @@ export const Elected = ({
                 ) : (
                   <img
                     className={"w-16 h-16 rounded-full object-cover z-4"}
-                    src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
+                    src={`http://${
+                      import.meta.env.VITE_HOST
+                    }:3000/users/getPhotoByEmail/${item}`}
                   />
                 )}
               </div>

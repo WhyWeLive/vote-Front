@@ -4,17 +4,37 @@ import axios from "axios";
 import { Roles } from "./VoteProfile";
 import upload from "../UI/Images/upload.png";
 
-export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
+export const ProfileModal = ({
+  isVisable,
+  setShowProfileUpdate,
+  userData,
+}: {
+  isVisable: boolean;
+  setShowProfileUpdate: (arg0: boolean) => void;
+  userData: {
+    id: number;
+    firstName: string;
+    secondName: string;
+    thirdName: string;
+    bio: string;
+    email: string;
+    password: string;
+    profile_picture: string;
+    grup: Array<string>;
+    roles: Array<string>;
+  };
+}) => {
   const [profile, setProfile] = useState({
-    id: "",
+    id: -1,
     firstName: "",
     secondName: "",
     thirdName: "",
-    grup: "",
-    profile_picture: "",
+    bio: "",
     email: "",
     password: "",
-    bio: "",
+    profile_picture: "",
+    grup: [""],
+    roles: [""],
   });
 
   const [bio, setBio] = useState({
@@ -34,13 +54,13 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
   const [urlFile, setUrlFile] = useState("");
 
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setShowProfileUpdate(false);
     }
   };
 
-  function preview(event) {
+  function preview(event: any) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
   }
@@ -60,7 +80,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(({ data }) =>
         axios
@@ -78,7 +98,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             setProfile(data);
@@ -100,9 +120,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Authorization",
                 },
-              }
+              },
             );
-          })
+          }),
       );
   }
 
@@ -186,11 +206,9 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
             <div className={"flex flex-col w-full gap-4"}>
               <div>
                 <div className={"text-2xl rounded-lg duration-500"}>
-                  {typeof userData === "boolean"
-                    ? ""
-                    : profile.secondName + " "}
-                  {typeof userData === "boolean" ? "" : profile.firstName + " "}
-                  {typeof userData === "boolean" ? "" : profile.thirdName + " "}
+                  {profile.secondName + " "}
+                  {profile.firstName + " "}
+                  {profile.thirdName + " "}
                 </div>
                 <div
                   className={
@@ -205,7 +223,7 @@ export const ProfileModal = ({ isVisable, setShowProfileUpdate, userData }) => {
                   }
                 >
                   {`Роль: ${userData.roles
-                    .map((item) => Roles[item])
+                    .map((item) => Roles[item as keyof typeof Roles])
                     .join(" ")}`}
                 </div>
               </div>

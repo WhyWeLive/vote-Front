@@ -4,8 +4,13 @@ import { InfoModals } from "./UI/InfoModals";
 import logo from "./UI/Images/logo.png";
 import closed from "./UI/Images/closed.png";
 import opened from "./UI/Images/opened.png";
+import { userInterface } from "./Header";
 
-export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
+export const Auth = ({
+  toAuth,
+}: {
+  toAuth: (authState: userInterface) => void;
+}) => {
   const [error, setError] = useState(false);
 
   const [eye, setEye] = useState(true);
@@ -30,7 +35,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        }
+        },
       )
 
       .then(({ data }) => {
@@ -50,7 +55,7 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            }
+            },
           )
           .then(({ data }) => {
             toAuth(data);
@@ -115,8 +120,9 @@ export const Auth = ({ toAuth }: { toAuth: (authState: boolean) => void }) => {
           {error ? (
             <InfoModals
               setErrorModal={setError}
-              status={error}
               autherror={error}
+              dateError={false}
+              inputerror={false}
             />
           ) : (
             <></>

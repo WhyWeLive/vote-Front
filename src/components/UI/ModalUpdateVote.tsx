@@ -14,8 +14,16 @@ export const ModalUpdateVote = ({
   endedAt,
   elected,
   grup,
+}: {
+  isVisable: boolean;
+  id: number;
+  setModalUpdateVote: (arg0: boolean) => void;
+  header: string;
+  endedAt: string;
+  elected: any;
+  grup: any;
 }) => {
-  const [count, setCount] = useState([]);
+  const [count, setCount] = useState<any>([]);
   const [errorModal, setErrorModal] = useState(false);
   const [dateError, setDateError] = useState(false);
   const [inputError, setInputError] = useState(false);
@@ -39,19 +47,20 @@ export const ModalUpdateVote = ({
   }, [1]);
 
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setModalUpdateVote(false);
     }
   };
 
-  const inputValues = [];
+  const inputValues: any = [];
 
   function update() {
     inputValues.push(
-      ...count.map((item, index) => {
-        return document.getElementById(index.toString()).value;
-      })
+      ...count.map((item: any, index: any) => {
+        return (document.getElementById(index.toString()) as HTMLInputElement)
+          .value;
+      }),
     );
 
     if (inputValues.includes("")) {
@@ -59,7 +68,7 @@ export const ModalUpdateVote = ({
       setErrorModal(true);
       setInputError(true);
     } else {
-      window.location = "/vote";
+      window.location.href = "/vote";
 
       axios.put(
         `http://${import.meta.env.VITE_HOST}:3000/vote/${id}`,
@@ -69,7 +78,7 @@ export const ModalUpdateVote = ({
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {}
+        {},
       );
     }
   }
@@ -137,7 +146,7 @@ export const ModalUpdateVote = ({
                     className={"w-full h-full text-xl outline-none"}
                     title={"Дата окончания"}
                     value={DateTime.fromMillis(
-                      VoteData.endedAt * 1000
+                      +VoteData.endedAt * 1000,
                     ).toFormat("yyyy-MM-dd")}
                     onChange={async (e) => {
                       const time = new Date(e.target.value).getTime() / 1000;
@@ -168,7 +177,7 @@ export const ModalUpdateVote = ({
             <div
               className={"h-auto max-h-64  gap-4 flex flex-col overflow-y-auto"}
             >
-              {count.map((item, index) => (
+              {count.map((item: any, index: any) => (
                 <div
                   key={index}
                   className={
@@ -223,7 +232,7 @@ export const ModalUpdateVote = ({
                 "w-full py-2 rounded-lg bg-black/80 border-transparent text-base font-medium text-white font-sans hover:bg-blue-600 duration-500 text-center cursor-pointer"
               }
               onClick={() => {
-                if (VoteData.endedAt < DateTime.now() / 1000) {
+                if (+VoteData.endedAt < +DateTime.now() / 1000) {
                   setDateError(true);
                   setErrorModal(true);
                   setInputError(false);
@@ -253,6 +262,7 @@ export const ModalUpdateVote = ({
               dateError={dateError}
               inputerror={inputError}
               setErrorModal={setErrorModal}
+              autherror={false}
             />
           ) : (
             ""

@@ -1,12 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NewForm } from "./NewForm";
+import { userInterface } from "./Header";
 
-export const News = ({ userData, setShowModalUpdate, getNew }) => {
-  const [news, setNews] = useState([]);
+export const News = ({
+  userData,
+  setShowModalUpdate,
+  getNew,
+}: {
+  userData: userInterface;
+  setShowModalUpdate: (arg0: boolean) => void;
+  getNew: (arg0: object) => void;
+}) => {
+  const [news, setNews] = useState<any>([]);
   const [counter, setCounter] = useState(0);
 
-  function getNews(newsboddy) {
+  function getNews(newsboddy: object) {
     getNew(newsboddy);
   }
 
@@ -35,26 +44,26 @@ export const News = ({ userData, setShowModalUpdate, getNew }) => {
       }
     >
       <div className="w-screen min-h-full max-h-max bg-gray-200 flex items-center flex-col">
-        {!news.length > 0 ? (
+        {!news.length ? (
           <div className={"flex justify-center items-center flex-col my-4"}>
             <div className={"font-light text-xl"}>Новостей еще нет... </div>
           </div>
         ) : (
-          news.map((item) => (
+          news.map((item: any) => (
             <NewForm
-              grup={item.grup}
-              createdAt={item.createdAt}
-              header={item.header}
-              content={item.content}
+              grup={item.grup ? item.grup : ""}
+              createdAt={item.createdAt ? item.createdAt : 0}
+              header={item.header ? item.header : ""}
+              content={item.content ? item.content : ""}
               key={item.id}
-              id={item.id}
-              image={item.photos}
+              id={item.id ? item.id : -1}
+              image={item.photos ? item.photos : undefined}
               userData={userData}
               getCounter={getCounter}
               setShowModalUpdate={setShowModalUpdate}
               getNews={getNews}
-              likes={item.likes}
-              dislikes={item.dislikes}
+              likes={item.likes ? item.likes : 0}
+              dislikes={item.dislikes ? item.dislikes : 0}
             />
           ))
         )}

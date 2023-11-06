@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import axios from "axios";
 import { DateTime } from "luxon";
@@ -6,7 +6,13 @@ import { InfoModals } from "./InfoModals";
 import add from "../UI/Images/add.png";
 import remove from "../UI/Images/remove.png";
 
-export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
+export const ModalCreateVote = ({
+  isVisable,
+  setShowModalVote,
+}: {
+  isVisable: boolean;
+  setShowModalVote: (arg0: boolean) => void;
+}) => {
   const [count, setCount] = useState(["Участник"]);
   const [errorModal, setErrorModal] = useState(false);
   const [dateError, setDateError] = useState(false);
@@ -19,7 +25,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
   });
 
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setShowModalVote(false);
     }
@@ -30,8 +36,9 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
     inputValues.push(
       ...count.map(
-        (item, index) => document.getElementById(index.toString()).value
-      )
+        (item, index) =>
+          (document.getElementById(index.toString()) as HTMLInputElement).value,
+      ),
     );
 
     if (inputValues.includes("")) {
@@ -40,7 +47,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
       setInputError(true);
       setDateError(false);
     } else {
-      window.location = "/vote";
+      window.location.href = "/vote";
 
       axios.post(
         `http://${import.meta.env.VITE_HOST}:3000/vote`,
@@ -50,7 +57,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
           elected: inputValues,
           endedAt: VoteData.endedAt,
         },
-        {}
+        {},
       );
     }
   }
@@ -202,7 +209,7 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
                 " duration-500 text-center cursor-pointer"
               }
               onClick={() => {
-                if (VoteData.endedAt < DateTime.now() / 1000) {
+                if (+VoteData.endedAt < +DateTime.now() / 1000) {
                   setDateError(true);
                   setErrorModal(true);
                   setInputError(false);
@@ -229,10 +236,10 @@ export const ModalCreateVote = ({ isVisable, setShowModalVote }) => {
 
           {errorModal ? (
             <InfoModals
-              status={errorModal}
               dateError={dateError}
               setErrorModal={setErrorModal}
               inputerror={inputError}
+              autherror={false}
             />
           ) : (
             ""
