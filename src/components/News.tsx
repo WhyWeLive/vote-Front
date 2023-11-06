@@ -12,31 +12,7 @@ export const News = ({
   setShowModalUpdate: (arg0: boolean) => void;
   getNew: (arg0: object) => void;
 }) => {
-  const [news, setNews] = useState<
-    [
-      {
-        grup?: string | number;
-        createdAt?: number;
-        header?: string;
-        content?: string;
-        id?: number;
-        photos?: string[];
-        likes?: number;
-        dislikes?: number;
-      },
-    ]
-  >([
-    {
-      grup: "",
-      createdAt: 0,
-      header: "",
-      content: "",
-      id: 0,
-      photos: undefined,
-      likes: 0,
-      dislikes: 0,
-    },
-  ]);
+  const [news, setNews] = useState<any>([]);
   const [counter, setCounter] = useState(0);
 
   function getNews(newsboddy: object) {
@@ -73,7 +49,7 @@ export const News = ({
             <div className={"font-light text-xl"}>Новостей еще нет... </div>
           </div>
         ) : (
-          news.map((item) => (
+          news.map((item: any) => (
             <NewForm
               grup={item.grup ? item.grup : ""}
               createdAt={item.createdAt ? item.createdAt : 0}
