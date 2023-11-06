@@ -141,12 +141,18 @@ export const VoteForm = ({
             ? "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col p-2 sm:p-6"
             : votePerm
             ? "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col  p-2 sm:p-6"
-            : "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col p-2 sm:p-6 opacity-60"
+            : "my-2 sm:w-[700px] w-screen h-max border-2 rounded-lg bg-white flex flex-col p-2 sm:p-6 "
         }
       >
-        <div className={"w-full flex justify-end items-center"}></div>
-        <div className={"flex flex-row justify-between"}>
-          <div className={"flex flex-col items-start"}>
+        <div className={"w-full flex justify-end items-center  "}></div>
+        <div
+          className={
+            votePerm
+              ? "flex flex-row justify-between"
+              : "flex flex-row justify-between opacity-60 "
+          }
+        >
+          <div className={"flex flex-col items-start "}>
             <div className={"text-xl sm:text-2xl font-semibold "}>
               {" "}
               {header}
@@ -208,6 +214,7 @@ export const VoteForm = ({
           <Elected
             voteFinish={voteFinish}
             key={index}
+            votePerm={votePerm}
             setShowVoteProfile={setShowVoteProfile}
             setChecked={votePerm ? setChecked : false}
             id={id}

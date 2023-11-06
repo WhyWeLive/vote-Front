@@ -12,6 +12,7 @@ export const Elected = ({
   getElect,
   voteFinish,
   giveElectedDataToFather,
+  votePerm,
 }: {
   item: string | boolean;
   setShowVoteProfile: (arg0: boolean) => void;
@@ -21,6 +22,7 @@ export const Elected = ({
   getElect: (arg0: string | boolean) => void;
   voteFinish: boolean;
   giveElectedDataToFather: (arg0: object) => void;
+  votePerm: any;
 }) => {
   const [votesCount, setVotesCount] = useState(0);
 
@@ -61,7 +63,13 @@ export const Elected = ({
   }, [1]);
 
   return (
-    <div className={"flex flex-col gap-2 w-full sm:w-auto"}>
+    <div
+      className={
+        votePerm
+          ? "flex flex-col gap-2 w-full sm:w-auto"
+          : "flex flex-col gap-2 w-full sm:w-auto opacity-60"
+      }
+    >
       <input
         type="radio"
         id={`${item + id.toString()}`}
