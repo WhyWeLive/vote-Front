@@ -6,6 +6,7 @@ import axios from "axios";
 import { VoteProfile } from "./UI/VoteProfile";
 import { ModalUpdateVote } from "./UI/ModalUpdateVote";
 import { Elected } from "./UI/Elected";
+import { userInterface } from "./Header";
 
 export const VoteForm = ({
   header,
@@ -20,6 +21,19 @@ export const VoteForm = ({
   grup,
   counter,
   extended,
+}: {
+  header: string;
+  votedPersonsId: string[];
+  voteCount: any;
+  createdAt: number;
+  endedAt: string;
+  elected: string[];
+  id: number;
+  getCounter: () => void;
+  userData: userInterface;
+  grup: string;
+  counter: number;
+  extended: boolean;
 }) => {
   const [successfulModal, setSuccessfulModal] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
@@ -36,13 +50,13 @@ export const VoteForm = ({
 
   function checkvote() {
     if (!(votedPersonsId == null)) {
-      if (votedPersonsId.find((item) => item == userData.id)) {
+      if (votedPersonsId.find((item: any) => item == userData.id)) {
         setVotePerm(false);
       }
     }
   }
 
-  function getWinner(id) {
+  function getWinner(id: number) {
     axios
       .get(`http://${import.meta.env.VITE_HOST}:3000/vote/getWinner/${id}`)
       .then(({ data }) => {
@@ -58,27 +72,27 @@ export const VoteForm = ({
             .then(() => getCounter());
         } else {
           axios.delete(
-            `http://${import.meta.env.VITE_HOST}:3000/vote/delForHour/${id}`
+            `http://${import.meta.env.VITE_HOST}:3000/vote/delForHour/${id}`,
           );
         }
       });
   }
 
-  function getElect(item) {
+  function getElect(item: any) {
     setElect(item);
   }
 
-  function getName(name) {
+  function getName(name: string) {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${name}`
+        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${name}`,
       )
       .then((response) => {
         setName(response.data);
       });
   }
 
-  function deleteVote(idVote) {
+  function deleteVote(idVote: number) {
     axios
       .delete(`http://${import.meta.env.VITE_HOST}:3000/vote/${idVote}`)
       .then(() => getCounter());
@@ -89,19 +103,19 @@ export const VoteForm = ({
       .get(
         `http://${import.meta.env.VITE_HOST}:3000/vote/toVote/${id}/${
           userData.id
-        }/${elect}`
+        }/${elect}`,
       )
       .then(() => getCounter());
   }
 
-  function giveElectedDataToFather(electedData) {
+  function giveElectedDataToFather(electedData: object) {
     setElectedData(electedData);
   }
 
   useEffect(() => {
     checkvote();
 
-    if (endedAt * 1000 <= DateTime.now().ts) {
+    if (+endedAt * 1000 <= +Object.values(DateTime.now())[0]) {
       getWinner(id);
     }
   }, [counter, getCounter]);
@@ -113,8 +127,6 @@ export const VoteForm = ({
           key={id}
           id={id}
           header={header}
-          voteCount={voteCount}
-          createdAt={createdAt}
           endedAt={endedAt}
           elected={elected}
           grup={grup}
@@ -154,7 +166,7 @@ export const VoteForm = ({
             ) : (
               <div className={"font-light opacity-50 w-max"}>
                 {DateTime.fromMillis(createdAt * 1000).toFormat("dd.MM.yy")} -
-                {DateTime.fromMillis(endedAt * 1000).toFormat(" dd.MM.yy")}
+                {DateTime.fromMillis(+endedAt * 1000).toFormat(" dd.MM.yy")}
               </div>
             )}
 
@@ -194,7 +206,6 @@ export const VoteForm = ({
 
         {elected.map((item, index) => (
           <Elected
-            showVoteProfile={showVoteProfile}
             voteFinish={voteFinish}
             key={index}
             setShowVoteProfile={setShowVoteProfile}

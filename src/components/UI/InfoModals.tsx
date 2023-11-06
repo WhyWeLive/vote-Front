@@ -1,4 +1,3 @@
-import React from "react";
 import Error from "./Images/Error.png";
 
 export const InfoModals = ({
@@ -6,6 +5,11 @@ export const InfoModals = ({
   setErrorModal,
   autherror,
   inputerror,
+}: {
+  dateError: boolean;
+  setErrorModal: (arg0: boolean) => void;
+  autherror: boolean;
+  inputerror: boolean;
 }) => {
   return (
     <div>

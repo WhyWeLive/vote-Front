@@ -7,6 +7,7 @@ import * as luxon from "luxon";
 import { DateTime } from "luxon";
 import { useState } from "react";
 import { Likes } from "./UI/Likes";
+import { userInterface } from "./Header";
 
 luxon.Settings.defaultLocale = "ru";
 luxon.Settings.defaultZone = "UTC+7";
@@ -24,14 +25,27 @@ export const NewForm = ({
   getNews,
   likes,
   dislikes,
+}: {
+  grup: string | number;
+  header: string;
+  content: JSON | string;
+  image: string[] | undefined;
+  createdAt: number;
+  userData: userInterface;
+  id: number;
+  getCounter: () => void;
+  setShowModalUpdate: (arg0: boolean) => void;
+  getNews: (arg0: object) => void;
+  likes: number;
+  dislikes: number;
 }) => {
   function time() {
-    const day = DateTime.fromMillis(DateTime.now() - createdAt * 1000);
-    if (day <= 86400000) {
+    const day = DateTime.fromMillis(+DateTime.now() - createdAt * 1000);
+    if (+day <= 86400000) {
       return (
         "Сегодня в " + DateTime.fromMillis(createdAt * 1000).toFormat("HH:mm ")
       );
-    } else if (day < 172800000) {
+    } else if (+day < 172800000) {
       return (
         "Вчера в " + DateTime.fromMillis(createdAt * 1000).toFormat("HH:mm ")
       );
@@ -108,7 +122,9 @@ export const NewForm = ({
             {grup}
             <div className={"text-xs text-gray-700 text-sans "}> {time()}</div>
           </div>
-          {userData.roles.find((item) => item === "Editor") ? (
+          {typeof userData !== "boolean" &&
+          userData.roles &&
+          userData.roles.find((item) => item === "Editor") ? (
             <div className={"flex flex-row items-center gap-2"}>
               <FaPencilAlt
                 size={17}
@@ -148,13 +164,15 @@ export const NewForm = ({
           </h1>
           <div className={"whitespace-pre-line not-prose max-w-full"}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {JSON.parse(content)}
+              {typeof content != "string" &&
+                content &&
+                JSON.parse(content.toString())}
             </ReactMarkdown>
           </div>
         </div>
       </div>
 
-      {image.length ? (
+      {typeof image != "undefined" && image.length > 0 ? (
         <div className={"p-4 flex justify-center flex-col items-center"}>
           <img
             className={

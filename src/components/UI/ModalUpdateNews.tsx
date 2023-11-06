@@ -8,6 +8,16 @@ export const ModalUpdateNews = ({
   isVisable,
   setShowModalUpdate,
   newsData,
+}: {
+  isVisable: boolean;
+  setShowModalUpdate: (arg0: boolean) => void;
+  newsData: {
+    photos: any;
+    id: number;
+    content: string;
+    grup: string;
+    header: string;
+  };
 }) => {
   const [news, setNews] = useState({
     grup: "",
@@ -25,12 +35,14 @@ export const ModalUpdateNews = ({
 
   function deleteImage() {
     axios.get(
-      `http://${import.meta.env.VITE_HOST}:3000/news/deleteImage/${newsData.id}`
+      `http://${import.meta.env.VITE_HOST}:3000/news/deleteImage/${
+        newsData.id
+      }`,
     );
     setShowImage(false);
   }
 
-  function preview(event) {
+  function preview(event: any) {
     setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
   }
@@ -50,14 +62,14 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        }
+        },
       )
       .then(() => console.log(news))
       .catch(() => console.log("error"));
   }
 
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setShowModalUpdate(false);
     }
@@ -170,7 +182,7 @@ export const ModalUpdateNews = ({
                       className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button
-                      size={50}
+                      data-size={50}
                       className={
                         "absolute bg-black/90 w-10 h-10 rounded-full opacity-50 hover:opacity-100 duration-500 text-white"
                       }
@@ -219,9 +231,10 @@ export const ModalUpdateNews = ({
             </div>
             {error ? (
               <InfoModals
-                status={error}
                 setErrorModal={setError}
                 inputerror={error}
+                autherror={false}
+                dateError={false}
               />
             ) : (
               ""
@@ -230,7 +243,7 @@ export const ModalUpdateNews = ({
               onClick={() => {
                 if (news.grup && news.header && news.content) {
                   updateNews();
-                  window.location = "/";
+                  window.location.href = "/";
                 } else {
                   setError(true);
                 }

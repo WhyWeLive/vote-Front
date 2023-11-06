@@ -3,15 +3,16 @@ import { NavLink } from "react-router-dom";
 import { Dropdown } from "./UI/Dropdown";
 
 export interface userInterface {
-  id?: number;
+  id: number;
   firstName: string;
   secondName: string;
   thirdName: string;
-  email?: string;
-  password?: string;
-  profile_picture?: string;
-  grup?: Array<string>;
-  roles?: Array<string>;
+  bio: string;
+  email: string;
+  password: string;
+  profile_picture: string;
+  grup: Array<string>;
+  roles: Array<string>;
 }
 
 export const Header = ({
@@ -22,7 +23,10 @@ export const Header = ({
   setShowModalVote,
 }: {
   toggle: string;
-  userData: userInterface | boolean;
+  userData: userInterface;
+  setShowModal: (arg0: boolean) => void;
+  setShowModalProfile: (arg0: boolean) => void;
+  setShowModalVote: (arg0: boolean) => void;
 }) => {
   const [headerBtn, setHeaderBtn] = useState(toggle);
 

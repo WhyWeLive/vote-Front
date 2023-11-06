@@ -4,12 +4,18 @@ import { useClickOutside } from "./useClickOutside";
 import { ImExit } from "react-icons/im";
 import { CgAddR, CgProfile } from "react-icons/cg";
 import { LuVote } from "react-icons/lu";
+import { userInterface } from "../Header";
 
 export const Dropdown = ({
   setShowModal,
   userData,
   setShowModalProfile,
   setShowModalVote,
+}: {
+  setShowModal: (arg0: boolean) => void;
+  userData: userInterface;
+  setShowModalProfile: (arg0: boolean) => void;
+  setShowModalVote: (arg0: boolean) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -25,20 +31,17 @@ export const Dropdown = ({
                 src={`http://${
                   import.meta.env.VITE_HOST
                 }:3000/files/getProfilePicture/${
-                  userData.profile_picture ?? "stockPicture.png"
+                  (userData.profile_picture && userData.profile_picture) ??
+                  "stockPicture.png"
                 }`}
                 className={"rounded-full object-cover h-10 w-10"}
               />
             </div>
             <div className="flex flex-row gap-2 whitespace-nowrap items-center hidden sm:block ">
               <div>
-                {typeof userData === "boolean" ? "" : userData.secondName + " "}
-                {typeof userData === "boolean"
-                  ? ""
-                  : userData.firstName[0] + "."}
-                {typeof userData === "boolean"
-                  ? ""
-                  : userData.thirdName[0] + "."}
+                {userData.secondName + " "}
+                {userData.firstName[0] + "."}
+                {userData.thirdName[0] + "."}
               </div>
             </div>
           </div>
@@ -67,8 +70,9 @@ export const Dropdown = ({
               <p className={"px-2"}>Профиль </p>
             </button>
 
-            {userData.roles.find((item) => item === "Editor") ? (
-              <NavLink>
+            {userData.roles &&
+            userData.roles.find((item) => item === "Editor") ? (
+              <NavLink to="">
                 <div
                   className={
                     "w-full hover:bg-green-500 transition-all duration-500 rounded-lg"

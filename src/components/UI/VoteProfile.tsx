@@ -9,9 +9,17 @@ export enum Roles {
   Starosta = "Староста",
 }
 
-export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
+export const VoteProfile = ({
+  isVisable,
+  setShowVoteProfile,
+  userData,
+}: {
+  isVisable: boolean;
+  setShowVoteProfile: (arg0: boolean) => void;
+  userData: any;
+}) => {
   if (!isVisable) return null;
-  const handleClose = (e) => {
+  const handleClose = (e: any) => {
     if (e.target.id === "exit") {
       setShowVoteProfile(false);
     }
@@ -71,15 +79,9 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
             <div className={"flex flex-col w-full gap-2"}>
               <div>
                 <div className={"text-2xl rounded-lg duration-500 text-start"}>
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.firstName + " "}
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.secondName + " "}
-                  {typeof userData === "boolean"
-                    ? ""
-                    : userData.thirdName + " "}
+                  {userData.firstName + " "}
+                  {userData.secondName + " "}
+                  {userData.thirdName + " "}
                 </div>
                 <div
                   className={
@@ -94,7 +96,7 @@ export const VoteProfile = ({ isVisable, setShowVoteProfile, userData }) => {
                   }
                 >
                   {`Роль: ${userData.roles
-                    .map((item) => Roles[item])
+                    .map((item: string) => Roles[item as keyof typeof Roles])
                     .join(" ")}`}
                 </div>
               </div>
