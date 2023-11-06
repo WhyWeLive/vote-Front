@@ -120,7 +120,9 @@ export const Elected = ({
                 ) : (
                   <img
                     className={"w-16 h-16 rounded-full object-cover z-4"}
-                    src={`http://localhost:3000/users/getPhotoByEmail/${item}`}
+                    src={`http://${
+                      import.meta.env.VITE_HOST
+                    }:3000/users/getPhotoByEmail/${item}`}
                   />
                 )}
               </div>

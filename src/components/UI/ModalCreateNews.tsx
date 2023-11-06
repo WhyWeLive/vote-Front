@@ -19,11 +19,11 @@ export const ModalCreateNews = ({
   });
   const [error, setError] = useState(false);
 
-  const [selectedFile, setSelectedFile] = useState<File | Blob>();
+  const [selectedFile, setSelectedFile] = useState();
   const [urlFile, setUrlFile] = useState("");
 
-  function preview(event: React.ChangeEvent<HTMLInputElement> | any) {
-    setSelectedFile(event?.target?.files?.[0]);
+  function preview(event: any) {
+    setSelectedFile(event.target.files[0]);
     setUrlFile(URL.createObjectURL(event.target.files[0]));
   }
 
