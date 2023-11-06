@@ -28,7 +28,7 @@ export const NewForm = ({
 }: {
   grup: string | number;
   header: string;
-  content: JSON | string;
+  content: any;
   image: string[] | undefined;
   createdAt: number;
   userData: userInterface;
@@ -122,8 +122,7 @@ export const NewForm = ({
             {grup}
             <div className={"text-xs text-gray-700 text-sans "}> {time()}</div>
           </div>
-          {typeof userData !== "boolean" &&
-          userData.roles &&
+          {userData.roles &&
           userData.roles.find((item) => item === "Editor") ? (
             <div className={"flex flex-row items-center gap-2"}>
               <FaPencilAlt
@@ -164,9 +163,7 @@ export const NewForm = ({
           </h1>
           <div className={"whitespace-pre-line not-prose max-w-full"}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {typeof content != "string" &&
-                content &&
-                JSON.parse(content.toString())}
+              {content && JSON.parse(content.toString())}
             </ReactMarkdown>
           </div>
         </div>

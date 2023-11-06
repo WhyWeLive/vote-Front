@@ -51,19 +51,19 @@ export const News = ({
         ) : (
           news.map((item: any) => (
             <NewForm
-              grup={item.grup ? item.grup : ""}
-              createdAt={item.createdAt ? item.createdAt : 0}
-              header={item.header ? item.header : ""}
-              content={item.content ? item.content : ""}
+              grup={item.grup}
+              createdAt={item.createdAt}
+              header={item.header}
+              content={item.content}
               key={item.id}
-              id={item.id ? item.id : -1}
-              image={item.photos ? item.photos : undefined}
+              id={item.id}
+              image={item.photos}
               userData={userData}
               getCounter={getCounter}
               setShowModalUpdate={setShowModalUpdate}
               getNews={getNews}
-              likes={item.likes ? item.likes : 0}
-              dislikes={item.dislikes ? item.dislikes : 0}
+              likes={item.likes}
+              dislikes={item.dislikes}
             />
           ))
         )}
