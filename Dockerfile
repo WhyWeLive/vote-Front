@@ -5,6 +5,7 @@ ENV VITE_HOST=212.233.99.195
 
 WORKDIR /app
 COPY . ./
+RUN yarn
 RUN yarn build
 
 # Stage 2 - the production environment
