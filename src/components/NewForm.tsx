@@ -41,7 +41,10 @@ export const NewForm = ({
 }) => {
   function time() {
     const day = DateTime.fromMillis(+DateTime.now() - createdAt * 1000);
-    if (+day <= 86400000) {
+    const createdAtDay = +DateTime.fromMillis(createdAt * 1000).toFormat("dd");
+    const currentDay = +DateTime.fromMillis(+DateTime.now()).toFormat("dd");
+
+    if (+day <= 86400000 && createdAtDay == currentDay) {
       return (
         "Сегодня в " + DateTime.fromMillis(createdAt * 1000).toFormat("HH:mm ")
       );
@@ -51,7 +54,7 @@ export const NewForm = ({
       );
     } else {
       return DateTime.fromMillis(createdAt * 1000).toFormat(
-        "dd' 'LLL' в 'HH':'mm",
+        "dd' 'LLL' в 'HH':'mm"
       );
     }
   }
