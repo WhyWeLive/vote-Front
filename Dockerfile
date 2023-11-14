@@ -1,7 +1,7 @@
 # Stage 1
 FROM node:18-alpine3.17 as build
 
-ENV VITE_HOST=212.233.99.195
+ENV VITE_HOST=https://vote-api.whywelive.me
 
 WORKDIR /app
 COPY . ./
