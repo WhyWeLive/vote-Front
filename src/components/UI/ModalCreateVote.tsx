@@ -49,9 +49,7 @@ export const ModalCreateVote = ({
     } else {
       axios
         .post(
-          `http://${import.meta.env.VITE_HOST}:${
-            import.meta.env.VITE_PORT
-          }/vote`,
+          `/vote`,
           {
             header: VoteData.header,
             grup: VoteData.grup,

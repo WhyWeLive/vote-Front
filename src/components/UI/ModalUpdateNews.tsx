@@ -35,9 +35,7 @@ export const ModalUpdateNews = ({
 
   function deleteImage() {
     axios.get(
-      `http://${import.meta.env.VITE_HOST}:${
-        import.meta.env.VITE_PORT
-      }/news/deleteImage/${newsData.id}`
+      `/news/deleteImage/${newsData.id}`
     );
     setShowImage(false);
   }
@@ -50,9 +48,7 @@ export const ModalUpdateNews = ({
   function updateNews() {
     axios
       .put(
-        `http://${import.meta.env.VITE_HOST}:${
-          import.meta.env.VITE_PORT
-        }/news/${newsData.id}`,
+        `/news/${newsData.id}`,
         {
           image: selectedFile ?? newsData.photos,
           grup: news.grup,
@@ -177,9 +173,7 @@ export const ModalUpdateNews = ({
                     }
                   >
                     <img
-                      src={`http://${import.meta.env.VITE_HOST}:${
-                        import.meta.env.VITE_PORT
-                      }/files/getNewsPicture/${newsData.photos}`}
+                      src={`/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button

@@ -57,18 +57,14 @@ export const VoteProfile = ({
             >
               {userData.profile_picture ? (
                 <img
-                  src={`http://${import.meta.env.VITE_HOST}:${
-                    import.meta.env.VITE_PORT
-                  }/files/getProfilePicture/${userData.profile_picture}`}
+                  src={`/files/getProfilePicture/${userData.profile_picture}`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
                 <img
-                  src={`http://${import.meta.env.VITE_HOST}:${
-                    import.meta.env.VITE_PORT
-                  }/files/getProfilePicture/stockPicture.png`}
+                  src={`/files/getProfilePicture/stockPicture.png`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }

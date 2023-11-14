@@ -70,7 +70,7 @@ export const ModalUpdateVote = ({
     } else {
       axios
         .put(
-          `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/${id}`,
+          `/vote/${id}`,
           {
             header: VoteData.header,
             grup: VoteData.grup,

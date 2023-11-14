@@ -25,7 +25,7 @@ export const News = ({
   useEffect(() => {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/news`,
+        `/news`,
         {
           headers: {
             Accept: "application/json",

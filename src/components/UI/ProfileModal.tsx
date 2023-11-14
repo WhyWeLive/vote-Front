@@ -68,9 +68,7 @@ export const ProfileModal = ({
   function updateAvatar() {
     axios
       .put(
-        `http://${import.meta.env.VITE_HOST}:${
-          import.meta.env.VITE_PORT
-        }/users/setProfilePicture/${profile.id}`,
+        `/users/setProfilePicture/${profile.id}`,
         {
           picture: selectedFile,
           bio: bio.data ?? "",
@@ -85,9 +83,7 @@ export const ProfileModal = ({
       .then(({ data }) =>
         axios
           .post(
-            `http://${import.meta.env.VITE_HOST}:${
-              import.meta.env.VITE_PORT
-            }/auth`,
+            `/auth`,
             {
               email: data.email,
               password: data.password,
@@ -110,9 +106,7 @@ export const ProfileModal = ({
             setShowProfileUpdate(false);
 
             axios.post(
-              `http://${import.meta.env.VITE_HOST}:${
-                import.meta.env.VITE_PORT
-              }/auth/decode`,
+              `/auth/decode`,
               {
                 token: `${document.cookie.split("=")[1]}`,
               },
@@ -169,18 +163,14 @@ export const ProfileModal = ({
                 />
               ) : profile.profile_picture ? (
                 <img
-                  src={`http://${import.meta.env.VITE_HOST}:${
-                    import.meta.env.VITE_PORT
-                  }/files/getProfilePicture/${profile.profile_picture}`}
+                  src={`/files/getProfilePicture/${profile.profile_picture}`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
                 <img
-                  src={`http://${import.meta.env.VITE_HOST}:${
-                    import.meta.env.VITE_PORT
-                  }/files/getProfilePicture/stockPicture.png`}
+                  src={`/files/getProfilePicture/stockPicture.png`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }

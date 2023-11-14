@@ -30,7 +30,7 @@ export const ModalCreateNews = ({
   function createNews() {
     axios
       .post(
-        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/news`,
+        `/news`,
         {
           image: selectedFile,
           grup: news.grup,

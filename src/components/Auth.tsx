@@ -22,7 +22,7 @@ export const Auth = ({
   async function auth() {
     await axios
       .post(
-        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/auth`,
+        `/auth`,
         {
           email,
           password,

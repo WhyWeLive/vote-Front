@@ -15,9 +15,7 @@ export const Vote = ({ userData }: { userData: userInterface }) => {
     if (userData.roles.find((item) => item === "Editor")) {
       axios
         .get(
-          `http://${import.meta.env.VITE_HOST}:${
-            import.meta.env.VITE_PORT
-          }/vote`,
+          `/vote`,
           {
             headers: {
               Accept: "application/json",
@@ -33,9 +31,7 @@ export const Vote = ({ userData }: { userData: userInterface }) => {
     } else {
       axios
         .get(
-          `http://${import.meta.env.VITE_HOST}:${
-            import.meta.env.VITE_PORT
-          }/vote/getAllByGrup/${userData.grup}`,
+          `/vote/getAllByGrup/${userData.grup}`,
           {
             headers: {
               Accept: "application/json",

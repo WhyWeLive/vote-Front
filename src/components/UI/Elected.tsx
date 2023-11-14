@@ -31,9 +31,7 @@ export const Elected = ({
   function getElectedData() {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:${
-          import.meta.env.VITE_PORT
-        }/users/emailWithoutPass/${item}`
+        `/users/emailWithoutPass/${item}`
       )
       .then(({ data }) => {
         if (data) {
@@ -46,9 +44,7 @@ export const Elected = ({
   useEffect(() => {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:${
-          import.meta.env.VITE_PORT
-        }/users/getNameByEmail/${item}`
+        `/users/getNameByEmail/${item}`
       )
       .then((response) => {
         setName(response.data);
@@ -56,9 +52,7 @@ export const Elected = ({
       .then(() => {
         axios
           .get(
-            `http://${import.meta.env.VITE_HOST}:${
-              import.meta.env.VITE_PORT
-            }/vote/getVotesCountByEmail/${id}/${item}`
+            `/vote/getVotesCountByEmail/${id}/${item}`
           )
           .then(({ data }) => setVotesCount(data));
       });
@@ -130,9 +124,7 @@ export const Elected = ({
                 ) : (
                   <img
                     className={"w-16 h-16 rounded-full object-cover z-4"}
-                    src={`http://${import.meta.env.VITE_HOST}:${
-                      import.meta.env.VITE_PORT
-                    }/users/getPhotoByEmail/${item}`}
+                    src={`/users/getPhotoByEmail/${item}`}
                   />
                 )}
               </div>
