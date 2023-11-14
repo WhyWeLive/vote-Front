@@ -24,14 +24,17 @@ export const News = ({
   }
   useEffect(() => {
     axios
-      .get(`http://${import.meta.env.VITE_HOST}:3000/news`, {
-        headers: {
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "GET",
-          "X-Requested-With": "XMLHttpRequest",
-          "Access-Control-Allow-Methods": "GET",
-        },
-      })
+      .get(
+        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/news`,
+        {
+          headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "GET",
+            "X-Requested-With": "XMLHttpRequest",
+            "Access-Control-Allow-Methods": "GET",
+          },
+        }
+      )
       .then((response) => {
         setNews(response.data.reverse());
       });

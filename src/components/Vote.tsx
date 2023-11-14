@@ -14,23 +14,10 @@ export const Vote = ({ userData }: { userData: userInterface }) => {
   useEffect(() => {
     if (userData.roles.find((item) => item === "Editor")) {
       axios
-        .get(`http://${import.meta.env.VITE_HOST}:3000/vote`, {
-          headers: {
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "GET",
-            "X-Requested-With": "XMLHttpRequest",
-            "Access-Control-Allow-Methods": "GET",
-          },
-        })
-        .then((response) => {
-          setVoteData(response.data.reverse());
-        });
-    } else {
-      axios
         .get(
-          `http://${import.meta.env.VITE_HOST}:3000/vote/getAllByGrup/${
-            userData.grup
-          }`,
+          `http://${import.meta.env.VITE_HOST}:${
+            import.meta.env.VITE_PORT
+          }/vote`,
           {
             headers: {
               Accept: "application/json",
@@ -38,7 +25,25 @@ export const Vote = ({ userData }: { userData: userInterface }) => {
               "X-Requested-With": "XMLHttpRequest",
               "Access-Control-Allow-Methods": "GET",
             },
-          },
+          }
+        )
+        .then((response) => {
+          setVoteData(response.data.reverse());
+        });
+    } else {
+      axios
+        .get(
+          `http://${import.meta.env.VITE_HOST}:${
+            import.meta.env.VITE_PORT
+          }/vote/getAllByGrup/${userData.grup}`,
+          {
+            headers: {
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "GET",
+              "X-Requested-With": "XMLHttpRequest",
+              "Access-Control-Allow-Methods": "GET",
+            },
+          }
         )
         .then((response) => {
           setVoteData(response.data.reverse());

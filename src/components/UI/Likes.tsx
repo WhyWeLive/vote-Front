@@ -21,9 +21,9 @@ export const Likes = ({
     if (id != -1)
       axios
         .get(
-          `http://${import.meta.env.VITE_HOST}:3000/news/marked/${id}/${
-            userData.id
-          }`,
+          `http://${import.meta.env.VITE_HOST}:${
+            import.meta.env.VITE_PORT
+          }/news/marked/${id}/${userData.id}`
         )
         .then(({ data }) => setMarked(data));
   }, [statistics]);
@@ -31,15 +31,17 @@ export const Likes = ({
   function toLike() {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/news/toLike/${id}/${
-          userData.id
-        }`,
+        `http://${import.meta.env.VITE_HOST}:${
+          import.meta.env.VITE_PORT
+        }/news/toLike/${id}/${userData.id}`
       )
       .then(({ data }) => {
         if (data) {
           axios
             .get(
-              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`,
+              `http://${import.meta.env.VITE_HOST}:${
+                import.meta.env.VITE_PORT
+              }/news/statistics/${id}`
             )
             .then(({ data }) => setStatistics(data));
         }
@@ -49,15 +51,17 @@ export const Likes = ({
   function toDislike() {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/news/toDislike/${id}/${
-          userData.id
-        }`,
+        `http://${import.meta.env.VITE_HOST}:${
+          import.meta.env.VITE_PORT
+        }/news/toDislike/${id}/${userData.id}`
       )
       .then(({ data }) => {
         if (data) {
           axios
             .get(
-              `http://${import.meta.env.VITE_HOST}:3000/news/statistics/${id}`,
+              `http://${import.meta.env.VITE_HOST}:${
+                import.meta.env.VITE_PORT
+              }/news/statistics/${id}`
             )
             .then(({ data }) => setStatistics(data));
         }

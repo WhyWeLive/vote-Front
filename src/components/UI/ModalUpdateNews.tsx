@@ -35,9 +35,9 @@ export const ModalUpdateNews = ({
 
   function deleteImage() {
     axios.get(
-      `http://${import.meta.env.VITE_HOST}:3000/news/deleteImage/${
-        newsData.id
-      }`,
+      `http://${import.meta.env.VITE_HOST}:${
+        import.meta.env.VITE_PORT
+      }/news/deleteImage/${newsData.id}`
     );
     setShowImage(false);
   }
@@ -50,7 +50,9 @@ export const ModalUpdateNews = ({
   function updateNews() {
     axios
       .put(
-        `http://${import.meta.env.VITE_HOST}:3000/news/${newsData.id}`,
+        `http://${import.meta.env.VITE_HOST}:${
+          import.meta.env.VITE_PORT
+        }/news/${newsData.id}`,
         {
           image: selectedFile ?? newsData.photos,
           grup: news.grup,
@@ -62,7 +64,7 @@ export const ModalUpdateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => (window.location.href = "/"));
   }
@@ -175,9 +177,9 @@ export const ModalUpdateNews = ({
                     }
                   >
                     <img
-                      src={`http://${
-                        import.meta.env.VITE_HOST
-                      }:3000/files/getNewsPicture/${newsData.photos}`}
+                      src={`http://${import.meta.env.VITE_HOST}:${
+                        import.meta.env.VITE_PORT
+                      }/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button

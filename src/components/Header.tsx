@@ -35,9 +35,9 @@ export const Header = ({
       <div className="2xl:px-56 md:px-8 flex-row items-center flex justify-center sm:justify-between py-2">
         <div className="flex items-center gap-2 whitespace-nowrap ">
           <img
-            src={`http://${
-              import.meta.env.VITE_HOST
-            }:3000/files/getProfilePicture/header.jpg`}
+            src={`http://${import.meta.env.VITE_HOST}:${
+              import.meta.env.VITE_PORT
+            }/files/getProfilePicture/header.jpg`}
             className="h-10 w-10 rounded-3xl hidden sm:block"
           />
           <div className="font-semibold md:w-[273px] xl:text-lg sm:block hidden">

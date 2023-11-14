@@ -58,21 +58,21 @@ export const VoteForm = ({
 
   function getWinner(id: number) {
     axios
-      .get(`http://${import.meta.env.VITE_HOST}:3000/vote/getWinner/${id}`)
+      .get(`http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/getWinner/${id}`)
       .then(({ data }) => {
         setWinner(data);
         setVoteFinish(!!data);
 
         if (!data) {
           axios
-            .put(`http://${import.meta.env.VITE_HOST}:3000/vote/${id}`, {
+            .put(`http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/${id}`, {
               endedAt: String(+endedAt + 86400),
               extended: true,
             })
             .then(() => getCounter());
         } else {
           axios.delete(
-            `http://${import.meta.env.VITE_HOST}:3000/vote/delForHour/${id}`,
+            `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/delForHour/${id}`,
           );
         }
       });
@@ -85,7 +85,7 @@ export const VoteForm = ({
   function getName(name: string) {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/users/getNameByEmail/${name}`,
+        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/users/getNameByEmail/${name}`,
       )
       .then((response) => {
         setName(response.data);
@@ -94,14 +94,14 @@ export const VoteForm = ({
 
   function deleteVote(idVote: number) {
     axios
-      .delete(`http://${import.meta.env.VITE_HOST}:3000/vote/${idVote}`)
+      .delete(`http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/${idVote}`)
       .then(() => getCounter());
   }
 
   function vote() {
     axios
       .get(
-        `http://${import.meta.env.VITE_HOST}:3000/vote/toVote/${id}/${
+        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/vote/toVote/${id}/${
           userData.id
         }/${elect}`,
       )

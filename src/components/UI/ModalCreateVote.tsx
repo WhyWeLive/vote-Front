@@ -37,8 +37,8 @@ export const ModalCreateVote = ({
     inputValues.push(
       ...count.map(
         (item, index) =>
-          (document.getElementById(index.toString()) as HTMLInputElement).value,
-      ),
+          (document.getElementById(index.toString()) as HTMLInputElement).value
+      )
     );
 
     if (inputValues.includes("")) {
@@ -49,14 +49,16 @@ export const ModalCreateVote = ({
     } else {
       axios
         .post(
-          `http://${import.meta.env.VITE_HOST}:3000/vote`,
+          `http://${import.meta.env.VITE_HOST}:${
+            import.meta.env.VITE_PORT
+          }/vote`,
           {
             header: VoteData.header,
             grup: VoteData.grup,
             elected: inputValues,
             endedAt: VoteData.endedAt,
           },
-          {},
+          {}
         )
         .then(() => (window.location.href = "/vote"));
     }

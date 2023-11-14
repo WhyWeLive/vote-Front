@@ -22,7 +22,7 @@ export const Auth = ({
   async function auth() {
     await axios
       .post(
-        `http://${import.meta.env.VITE_HOST}:3000/auth`,
+        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/auth`,
         {
           email,
           password,
@@ -35,7 +35,7 @@ export const Auth = ({
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Authorization",
           },
-        },
+        }
       )
 
       .then(({ data }) => {
@@ -43,7 +43,9 @@ export const Auth = ({
 
         axios
           .post(
-            `http://${import.meta.env.VITE_HOST}:3000/auth/decode`,
+            `http://${import.meta.env.VITE_HOST}:${
+              import.meta.env.VITE_PORT
+            }/auth/decode`,
             {
               token: `${document.cookie.split("=")[1]}`,
             },
@@ -55,7 +57,7 @@ export const Auth = ({
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Authorization",
               },
-            },
+            }
           )
           .then(({ data }) => {
             toAuth(data);

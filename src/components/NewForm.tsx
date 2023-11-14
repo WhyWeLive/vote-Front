@@ -63,7 +63,11 @@ export const NewForm = ({
 
   function deleteNews() {
     axios
-      .delete(`http://${import.meta.env.VITE_HOST}:3000/news/${id}`)
+      .delete(
+        `http://${import.meta.env.VITE_HOST}:${
+          import.meta.env.VITE_PORT
+        }/news/${id}`
+      )
       .then(() => getCounter());
   }
 
@@ -178,9 +182,9 @@ export const NewForm = ({
             className={
               "w-min object-cover h-max rounded-2xl pointer-events-none "
             }
-            src={`http://${
-              import.meta.env.VITE_HOST
-            }:3000/files/getNewsPicture/${image}`}
+            src={`http://${import.meta.env.VITE_HOST}:${
+              import.meta.env.VITE_PORT
+            }/files/getNewsPicture/${image}`}
           />
         </div>
       ) : (

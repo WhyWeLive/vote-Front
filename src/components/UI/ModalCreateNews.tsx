@@ -30,7 +30,7 @@ export const ModalCreateNews = ({
   function createNews() {
     axios
       .post(
-        `http://${import.meta.env.VITE_HOST}:3000/news`,
+        `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT}/news`,
         {
           image: selectedFile,
           grup: news.grup,
@@ -42,7 +42,7 @@ export const ModalCreateNews = ({
             accept: "application/json",
             "Content-Type": `multipart/form-data`,
           },
-        },
+        }
       )
       .then(() => (window.location.href = "/"));
   }
