@@ -28,7 +28,7 @@ export const Dropdown = ({
           <div className="flex items-center text-center place-items-center gap-2 hover:cursor-pointer">
             <div className="w-10">
               <img
-                src={`/files/getProfilePicture/${
+                src={`https://vote-api.whywelive.me/files/getProfilePicture/${
                   (userData.profile_picture && userData.profile_picture) ??
                   "stockPicture.png"
                 }`}

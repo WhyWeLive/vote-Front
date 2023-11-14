@@ -62,11 +62,7 @@ export const NewForm = ({
   const [deleteModal, setdeleteModal] = useState(false);
 
   function deleteNews() {
-    axios
-      .delete(
-        `/news/${id}`
-      )
-      .then(() => getCounter());
+    axios.delete(`/news/${id}`).then(() => getCounter());
   }
 
   return (
@@ -180,7 +176,7 @@ export const NewForm = ({
             className={
               "w-min object-cover h-max rounded-2xl pointer-events-none "
             }
-            src={`/files/getNewsPicture/${image}`}
+            src={`https://vote-api.whywelive.me/files/getNewsPicture/${image}`}
           />
         </div>
       ) : (

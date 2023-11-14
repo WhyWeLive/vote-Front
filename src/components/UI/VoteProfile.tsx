@@ -57,14 +57,14 @@ export const VoteProfile = ({
             >
               {userData.profile_picture ? (
                 <img
-                  src={`/files/getProfilePicture/${userData.profile_picture}`}
+                  src={`https://vote-api.whywelive.me/files/getProfilePicture/${userData.profile_picture}`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }
                 />
               ) : (
                 <img
-                  src={`/files/getProfilePicture/stockPicture.png`}
+                  src={`https://vote-api.whywelive.me/files/getProfilePicture/stockPicture.png`}
                   className={
                     "w-64 h-64 rounded-full pointer-events-none object-cover"
                   }

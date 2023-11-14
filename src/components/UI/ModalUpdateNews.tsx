@@ -34,9 +34,7 @@ export const ModalUpdateNews = ({
   }, [newsData]);
 
   function deleteImage() {
-    axios.get(
-      `/news/deleteImage/${newsData.id}`
-    );
+    axios.get(`/news/deleteImage/${newsData.id}`);
     setShowImage(false);
   }
 
@@ -173,7 +171,7 @@ export const ModalUpdateNews = ({
                     }
                   >
                     <img
-                      src={`/files/getNewsPicture/${newsData.photos}`}
+                      src={`https://vote-api.whywelive.me/files/getNewsPicture/${newsData.photos}`}
                       className={"w-32 h-32 rounded-xl object-cover"}
                     />
                     <button

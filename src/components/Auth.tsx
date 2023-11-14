@@ -43,9 +43,7 @@ export const Auth = ({
 
         axios
           .post(
-            `http://${import.meta.env.VITE_HOST}:${
-              import.meta.env.VITE_PORT
-            }/auth/decode`,
+            `/auth/decode`,
             {
               token: `${document.cookie.split("=")[1]}`,
             },

@@ -29,31 +29,23 @@ export const Elected = ({
   const [name, setName] = useState("");
 
   function getElectedData() {
-    axios
-      .get(
-        `/users/emailWithoutPass/${item}`
-      )
-      .then(({ data }) => {
-        if (data) {
-          giveElectedDataToFather(data);
-          setShowVoteProfile(true);
-        }
-      });
+    axios.get(`/users/emailWithoutPass/${item}`).then(({ data }) => {
+      if (data) {
+        giveElectedDataToFather(data);
+        setShowVoteProfile(true);
+      }
+    });
   }
 
   useEffect(() => {
     axios
-      .get(
-        `/users/getNameByEmail/${item}`
-      )
+      .get(`/users/getNameByEmail/${item}`)
       .then((response) => {
         setName(response.data);
       })
       .then(() => {
         axios
-          .get(
-            `/vote/getVotesCountByEmail/${id}/${item}`
-          )
+          .get(`/vote/getVotesCountByEmail/${id}/${item}`)
           .then(({ data }) => setVotesCount(data));
       });
   }, [1]);
@@ -124,7 +116,7 @@ export const Elected = ({
                 ) : (
                   <img
                     className={"w-16 h-16 rounded-full object-cover z-4"}
-                    src={`/users/getPhotoByEmail/${item}`}
+                    src={`https://vote-api.whywelive.me/users/getPhotoByEmail/${item}`}
                   />
                 )}
               </div>
